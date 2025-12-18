@@ -108,7 +108,7 @@ const ReportRow = ({ title, children }) => (
   </div>
 );
 
-const SymptomChecker = () => {
+const SymptomChecker = ({ embedded = false }) => {
   const [activeStep, setActiveStep] = useState(0);
   const [sessionId, setSessionId] = useState('');
   const [age, setAge] = useState('');
@@ -269,9 +269,14 @@ const SymptomChecker = () => {
     window.print();
   };
 
+  const outerClasses = embedded ? '' : 'bg-[#f4fbe7] px-4 py-10 sm:px-6 lg:px-12';
+  const innerClasses = embedded
+    ? 'mx-auto max-w-6xl rounded-3xl border border-slate-200 bg-white/90 px-4 py-6 shadow-[0_24px_48px_rgba(12,92,26,0.12)] sm:px-6 lg:px-8'
+    : 'mx-auto max-w-6xl';
+
   return (
-    <div className="bg-[#f4fbe7] px-4 py-10 sm:px-6 lg:px-12">
-      <div className="mx-auto max-w-6xl">
+    <div className={outerClasses}>
+      <div className={innerClasses}>
         <div className="mb-6">
           <p className="text-xs uppercase tracking-[0.25em] text-[#0d7120]">Natural Immunotherapy</p>
           <h1 className="mt-1 text-3xl font-bold text-slate-900 sm:text-4xl">

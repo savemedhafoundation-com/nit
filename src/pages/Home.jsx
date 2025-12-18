@@ -1,9 +1,8 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import ThreePillars from "../components/ThreePillars";
 import PatientStories from "../components/PatientStories";
-
-import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import SymptomChecker from "./SymptomChecker";
 import heroImage from "../assets/photo/13.png";
 import heroBackground from "../assets/photo/Rectangle 154.png";
 import missionImage from "../assets/photo/Rectangle 153.png";
@@ -248,6 +247,29 @@ const Home = () => {
         <>
         <HowNITWorks/>
       </>
+
+      <section id="symptom-checker" className="bg-[#e9f8dd] py-16 px-4 sm:px-6 lg:px-10">
+        <div className="mx-auto max-w-[1180px] space-y-6 rounded-[36px] bg-gradient-to-r from-[#f6fff0] via-white to-[#ecf9e2] p-6 shadow-[0_26px_54px_rgba(13,93,23,0.12)] lg:p-10">
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+            <div className="space-y-2">
+              <p className="text-xs font-semibold uppercase tracking-[0.32em] text-[#0d7120]">Symptom Checker</p>
+              <h2 className="text-3xl font-semibold leading-tight text-[#123a1e] sm:text-4xl font-montserrat">
+                Explore conditions that may match your symptoms
+              </h2>
+              <p className="max-w-2xl text-lg leading-8 text-[#21412b] font-lora">
+                Start the non-diagnostic checker right on the home page or open the full experience on its dedicated page.
+              </p>
+            </div>
+            <Link
+              to="/symptom-checker"
+              className="inline-flex items-center justify-center rounded-full border border-[#0d7120] bg-white px-6 py-3 text-sm font-semibold uppercase tracking-[0.24em] text-[#0d7120] shadow-[0_14px_28px_rgba(13,93,23,0.16)] transition hover:-translate-y-0.5 hover:bg-[#e8f7ed]"
+            >
+              Open full checker
+            </Link>
+          </div>
+          <SymptomChecker embedded />
+        </div>
+      </section>
 
       <section className="bg-[#f2ffe3] py-20">
         <div className="mx-auto flex max-w-[1180px] flex-col gap-16 px-6 lg:flex-row lg:items-center lg:gap-12 lg:px-10">
