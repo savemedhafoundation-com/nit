@@ -8,14 +8,16 @@ const resolveBaseURL = () => {
     return trimTrailingSlash(explicit);
   }
 
+  // Default to deployed backend when no env var is provided.
+  const hosted = 'https://nitbackend.vercel.app/api';
+
+  // In dev, we still use hosted unless a VITE_API_URL overrides.
   if (import.meta.env.DEV) {
-    // Use Vite proxy (`/api`) when no explicit URL is provided to dodge CORS in dev.
-    return '/api';
+    return hosted;
   }
 
-  const origin =
-    typeof window !== 'undefined' && window.location?.origin ? window.location.origin : '';
-  return `${trimTrailingSlash(origin)}/api`;
+  // In prod/preview, hosted is the fallback.
+  return hosted;
 };
 
 const baseURL = resolveBaseURL();
