@@ -9,6 +9,8 @@ import Boosters from './pages/Boosters';
 import Blog from './pages/Blog';
 import Contact from './pages/Contact';
 import SymptomChecker from './pages/SymptomChecker';
+import UploadReport from './pages/UploadReport';
+import ReportResult from './pages/ReportResult';
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
           <Route path="/blog" element={<Blog />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/symptom-checker" element={<SymptomChecker />} />
+          <Route path="/upload-report" element={<UploadReport />} />
+          <Route path="/report-result" element={<ReportResult />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>

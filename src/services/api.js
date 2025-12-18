@@ -78,4 +78,24 @@ export const createReportSnapshot = async sessionId => {
   return data;
 };
 
+// Medical report explainer
+export const uploadMedicalReport = async file => {
+  const formData = new FormData();
+  formData.append('file', file);
+
+  const { data } = await api.post('/reports/upload', formData, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+    timeout: Number(import.meta.env.VITE_API_TIMEOUT || 15000),
+  });
+
+  return data;
+};
+
+export const explainMedicalReport = async payload => {
+  const { data } = await api.post('/reports/explain', payload, {
+    timeout: Number(import.meta.env.VITE_API_TIMEOUT || 20000),
+  });
+  return data;
+};
+
 export default api;
