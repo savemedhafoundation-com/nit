@@ -35,4 +35,47 @@ export const getPatientProfile = async () => {
   return data;
 };
 
+// Symptom checker flow
+export const startCheckerSession = async payload => {
+  const { data } = await api.post('/checker/sessions', payload);
+  return data;
+};
+
+export const fetchCheckerSymptoms = async params => {
+  const { data } = await api.get('/checker/symptoms', { params });
+  return data;
+};
+
+export const fetchCommonCheckerSymptoms = async params => {
+  const { data } = await api.get('/checker/symptoms/common', { params });
+  return data;
+};
+
+export const saveSessionSymptoms = async (sessionId, selectedSymptoms) => {
+  const { data } = await api.post(`/checker/sessions/${sessionId}/symptoms`, {
+    selectedSymptoms,
+  });
+  return data;
+};
+
+export const matchConditions = async (sessionId, payload) => {
+  const { data } = await api.post(`/checker/sessions/${sessionId}/match`, payload);
+  return data;
+};
+
+export const fetchConditionDetails = async slug => {
+  const { data } = await api.get(`/checker/conditions/${slug}`);
+  return data;
+};
+
+export const fetchTreatmentDetails = async conditionId => {
+  const { data } = await api.get(`/checker/treatments/${conditionId}`);
+  return data;
+};
+
+export const createReportSnapshot = async sessionId => {
+  const { data } = await api.post('/checker/reports', { sessionId });
+  return data;
+};
+
 export default api;

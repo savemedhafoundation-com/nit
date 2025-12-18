@@ -8,6 +8,7 @@ const navItems = [
   { label: 'ABOUT NIT', path: '/about' },
   { label: 'OUR THERAPIES', path: '/diseases', caret: true },
   { label: 'WHY CHOOSE NIT', path: '/boosters' },
+  { label: 'SYMPTOM CHECKER', path: '/symptom-checker' },
   { label: 'PAGE', path: '/blog', caret: true },
 ];
 

@@ -8,6 +8,7 @@ import Diseases from './pages/Diseases';
 import Boosters from './pages/Boosters';
 import Blog from './pages/Blog';
 import Contact from './pages/Contact';
+import SymptomChecker from './pages/SymptomChecker';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/boosters" element={<Boosters />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/symptom-checker" element={<SymptomChecker />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>
