@@ -96,6 +96,7 @@ const ReportResult = () => {
               <ul className="mt-2 space-y-2 text-sm text-slate-700">
                 <li>Detected parameters: {structured.parameters?.length || 0}</li>
                 <li>Abnormal values: {abnormal.length}</li>
+                {structured.patient?.name && <li>Patient: {structured.patient.name}</li>}
                 {structured.patient?.gender && <li>Sex: {structured.patient.gender}</li>}
                 {structured.patient?.age != null && <li>Age: {structured.patient.age}</li>}
                 {state?.metadata?.filename && <li>Source: {state.metadata.filename}</li>}

@@ -10,56 +10,46 @@ const UploadReport = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [rawText, setRawText] = useState('');
   const [metadata, setMetadata] = useState(null);
-  const [age, setAge] = useState('');
-  const [gender, setGender] = useState('');
   const [uploading, setUploading] = useState(false);
   const [explaining, setExplaining] = useState(false);
   const [error, setError] = useState('');
   const [note, setNote] = useState('');
 
-  const handleUpload = async () => {
+  const handleExplain = async () => {
     setError('');
     setNote('');
-    if (!selectedFile) {
+    if (!selectedFile && !rawText.trim()) {
       setError('Please select a PDF, JPG, or PNG report first.');
       return;
     }
 
-    setUploading(true);
-    try {
-      const data = await uploadMedicalReport(selectedFile);
-      setRawText(data.rawText || '');
-      setMetadata(data.metadata || null);
-      setNote('Text extracted. Review below, then generate explanation.');
-    } catch (err) {
-      const detail = err?.response?.data?.message || err?.message || 'Unable to extract text.';
-      setError(detail);
-    } finally {
-      setUploading(false);
-    }
-  };
-
-  const handleExplain = async () => {
-    setError('');
-    setNote('');
-    if (!rawText.trim()) {
-      setError('Upload a report and ensure text is available before generating.');
-      return;
-    }
-
     setExplaining(true);
+    let latestText = rawText;
+    let latestMetadata = metadata;
+
     try {
-      const payload = {
-        rawText,
-        age: age ? Number(age) : null,
-        gender: gender || null,
-      };
+      if (!latestText.trim()) {
+        setUploading(true);
+        const data = await uploadMedicalReport(selectedFile);
+        latestText = data.rawText || '';
+        latestMetadata = data.metadata || null;
+        setRawText(latestText);
+        setMetadata(latestMetadata);
+        setNote('Text extracted automatically from your file.');
+        setUploading(false);
+      }
+
+      if (!latestText.trim()) {
+        throw new Error('Unable to extract text from the report. Please try another file.');
+      }
+
+      const payload = { rawText: latestText };
 
       const data = await explainMedicalReport(payload);
       navigate('/report-result', {
         state: {
-          rawText,
-          metadata,
+          rawText: latestText,
+          metadata: latestMetadata,
           ...data,
         },
       });
@@ -71,6 +61,7 @@ const UploadReport = () => {
         'Unable to generate explanation right now.';
       setError(detail);
     } finally {
+      setUploading(false);
       setExplaining(false);
     }
   };
@@ -96,47 +87,19 @@ const UploadReport = () => {
               helperText="We ignore headers/footers and focus on lab values."
             />
 
-            <div className="grid gap-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm lg:grid-cols-3">
-              <label className="flex flex-col gap-2">
-                <span className="text-sm font-semibold text-slate-700">Age (optional)</span>
-                <input
-                  type="number"
-                  min="0"
-                  value={age}
-                  onChange={e => setAge(e.target.value)}
-                  className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm shadow-inner focus:border-sky-400 focus:outline-none"
-                  placeholder="e.g., 35"
-                />
-              </label>
-              <label className="flex flex-col gap-2">
-                <span className="text-sm font-semibold text-slate-700">Sex</span>
-                <select
-                  value={gender}
-                  onChange={e => setGender(e.target.value)}
-                  className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm shadow-inner focus:border-sky-400 focus:outline-none"
-                >
-                  <option value="">Select</option>
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
-                  <option value="other">Other / prefer not to say</option>
-                </select>
-              </label>
-              <div className="flex items-end gap-3">
-                <button
-                  type="button"
-                  onClick={handleUpload}
-                  disabled={uploading}
-                  className="flex-1 rounded-lg bg-sky-600 px-4 py-2 text-sm font-semibold text-white shadow hover:bg-sky-700 focus:outline-none disabled:opacity-60"
-                >
-                  {uploading ? 'Extracting...' : 'Extract text'}
-                </button>
+            <div className="space-y-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+              <p className="text-sm text-slate-700">
+                We will automatically extract text and detect patient name, age, and sex from the report before
+                generating the explanation.
+              </p>
+              <div className="flex flex-col gap-3 sm:flex-row">
                 <button
                   type="button"
                   onClick={handleExplain}
-                  disabled={explaining}
+                  disabled={explaining || uploading}
                   className="flex-1 rounded-lg bg-emerald-600 px-4 py-2 text-sm font-semibold text-white shadow hover:bg-emerald-700 focus:outline-none disabled:opacity-60"
                 >
-                  {explaining ? 'Generating...' : 'Generate explanation'}
+                  {uploading ? 'Extracting text...' : explaining ? 'Generating...' : 'Generate explanation'}
                 </button>
               </div>
             </div>
@@ -144,7 +107,7 @@ const UploadReport = () => {
             {note && <p className="text-sm font-semibold text-emerald-700">{note}</p>}
             {error && <p className="text-sm text-red-600">{error}</p>}
 
-            <div className="space-y-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+            {/* <div className="space-y-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
               <div className="flex items-center justify-between">
                 <p className="text-sm font-semibold text-slate-800">Normalized text preview</p>
                 {metadata?.filename && (
@@ -154,9 +117,9 @@ const UploadReport = () => {
                 )}
               </div>
               <pre className="max-h-64 overflow-y-auto whitespace-pre-wrap rounded-lg bg-slate-50 p-3 text-sm text-slate-700">
-                {rawText || 'Text preview will appear here after upload.'}
+                {rawText || 'Text preview will appear here after we extract it from your report.'}
               </pre>
-            </div>
+            </div> */}
           </div>
 
           <div className="lg:col-span-2 space-y-4">
