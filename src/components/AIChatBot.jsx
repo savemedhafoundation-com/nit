@@ -1,7 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { MessageCircle, X } from "lucide-react";
+import { boosterMap } from "./boosterMap";
 
-const N8N_WEBHOOK_URL = "https://minta2512.app.n8n.cloud/webhook/dantura-multi-analyzer";
+const N8N_WEBHOOK_URL =
+  "https://fankinbo4.app.n8n.cloud/webhook/dantura-multi-analyzer";
+const boosterFallbackImage = new URL(
+  "../assets/photo/Rectangle 162.png",
+  import.meta.url
+).href;
 
 const escapeHtml = (text = "") =>
   text
@@ -43,6 +49,68 @@ const extractResponseText = (rawText = "") => {
   return trimmed;
 };
 
+const extractBoostersFromText = (text = "") => {
+  if (!text.trim()) {
+    return { boosters: [], cleanedText: "" };
+  }
+
+  let cleanedText = text;
+  let jsonBlock = "";
+  const fencedMatch = text.match(/```json\s*([\s\S]*?)\s*```/i);
+  if (fencedMatch) {
+    jsonBlock = fencedMatch[1];
+    cleanedText = text.replace(fencedMatch[0], "").trim();
+  } else {
+    const trimmed = text.trim();
+    if (trimmed.startsWith("{") && trimmed.endsWith("}")) {
+      jsonBlock = trimmed;
+      cleanedText = "";
+    }
+  }
+
+  if (!jsonBlock) {
+    return { boosters: [], cleanedText };
+  }
+
+  try {
+    const parsed = JSON.parse(jsonBlock);
+    const boosters = Array.isArray(parsed?.boosters) ? parsed.boosters : [];
+    return { boosters, cleanedText };
+  } catch {
+    return { boosters: [], cleanedText };
+  }
+};
+
+const normalizedBoosterMap = Object.fromEntries(
+  Object.entries(boosterMap).map(([name, data]) => [name.toLowerCase(), data])
+);
+
+const toTitleCase = (value = "") =>
+  value.replace(/\w\S*/g, (word) => word[0].toUpperCase() + word.slice(1));
+
+const getBoosterMeta = (booster) => {
+  if (!booster) {
+    return { img: boosterFallbackImage, link: "" };
+  }
+
+  const nameMatch = booster.name
+    ? normalizedBoosterMap[booster.name.toLowerCase()]
+    : null;
+  if (nameMatch) {
+    return { img: nameMatch.img, link: nameMatch.link };
+  }
+
+  if (booster.image_key) {
+    const keyName = toTitleCase(booster.image_key.replace(/-/g, " "));
+    const keyMatch = normalizedBoosterMap[keyName.toLowerCase()];
+    if (keyMatch) {
+      return { img: keyMatch.img, link: keyMatch.link };
+    }
+  }
+
+  return { img: boosterFallbackImage, link: booster.product_url || "" };
+};
+
 const AIChatBot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
@@ -53,6 +121,8 @@ const AIChatBot = () => {
       ),
     },
   ]);
+
+  console.log("message", messages);
   const [input, setInput] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
   const [filePreviewUrl, setFilePreviewUrl] = useState("");
@@ -71,12 +141,15 @@ const AIChatBot = () => {
     }
   }, [messages, isOpen]);
 
-  useEffect(() => () => {
-    if (pendingRequestRef.current) {
-      pendingRequestRef.current.abort("Component unmounted.");
-      pendingRequestRef.current = null;
-    }
-  }, []);
+  useEffect(
+    () => () => {
+      if (pendingRequestRef.current) {
+        pendingRequestRef.current.abort("Component unmounted.");
+        pendingRequestRef.current = null;
+      }
+    },
+    []
+  );
 
   useEffect(() => {
     if (!isOpen || !selectedFile) return;
@@ -140,9 +213,15 @@ const AIChatBot = () => {
     const trimmed = input.trim();
     const fileToUpload = selectedFile;
     const hasAttachment = Boolean(fileToUpload);
-    if ((!trimmed && !hasAttachment) || isLoading || pendingRequestRef.current) {
+    if (
+      (!trimmed && !hasAttachment) ||
+      isLoading ||
+      pendingRequestRef.current
+    ) {
       if (pendingRequestRef.current) {
-        console.warn("Chat request already in flight; skipping new submission.");
+        console.warn(
+          "Chat request already in flight; skipping new submission."
+        );
       }
       return;
     }
@@ -178,7 +257,11 @@ const AIChatBot = () => {
     setMessages((prev) => [
       ...prev,
       userMessage,
-      { role: "assistant", content: formatMessageContent(statusText), id: placeholderId },
+      {
+        role: "assistant",
+        content: formatMessageContent(statusText),
+        id: placeholderId,
+      },
     ]);
     setInput("");
     if (hasAttachment) {
@@ -206,19 +289,27 @@ const AIChatBot = () => {
       let botReply = extractResponseText(rawResponse);
 
       if (!botReply) {
-        botReply = "The server sent an empty reply. Please try asking your question again.";
+        botReply =
+          "The server sent an empty reply. Please try asking your question again.";
       }
 
-      const formattedBotReply = formatMessageContent(botReply);
+      const { boosters, cleanedText } = extractBoostersFromText(botReply);
+      const messageText = cleanedText || (boosters.length ? "" : botReply);
+      const formattedBotReply = formatStructuredResponse(
+        formatMessageContent(messageText)
+      );
 
       setMessages((prev) =>
         prev.map((message) =>
           message.id === placeholderId
-            ? { ...message, content: formattedBotReply }
+            ? { ...message, content: formattedBotReply, boosters }
             : message
         )
       );
-      console.info("AIChatBot request resolved", { payload: payloadSummary, reply: botReply });
+      console.info("AIChatBot request resolved", {
+        payload: payloadSummary,
+        reply: botReply,
+      });
     } catch (error) {
       const wasAborted = error.name === "AbortError";
       const isNetworkError = error instanceof TypeError;
@@ -249,7 +340,10 @@ const AIChatBot = () => {
         console.error("Chatbot fetch error:", error, {
           payload: lastPayloadRef.current,
         });
-        console.info("Replaying failed payload for verification:", lastPayloadRef.current);
+        console.info(
+          "Replaying failed payload for verification:",
+          lastPayloadRef.current
+        );
       }
     } finally {
       setIsLoading(false);
@@ -257,6 +351,41 @@ const AIChatBot = () => {
         pendingRequestRef.current = null;
       }
     }
+  };
+
+  const formatStructuredResponse = (rawText = "") => {
+    const sections = [
+      { key: "Summary", icon: "🧠" },
+      { key: "Internal Problems", icon: "⚠️" },
+      { key: "Foods to Avoid", icon: "🥗" },
+      { key: "Recommended Dantura Boosters", icon: "💊" },
+      { key: "Motivational Closing Line", icon: "✨" },
+       { key: "Common Hidden reason", icon: "😥" },
+      { key:"How Natural Immunotherapy Looks at This", icon:"👍"},
+      {key:"Simple Immediate Care Tips", icon:"💪"},
+      {key:"Help & Support", icon:"📲"},
+    ];
+
+    let formatted = rawText;
+
+    sections.forEach(({ key, icon }) => {
+      const regex = new RegExp(`(\\d+\\)\\s*${key}[^<]*<br\\/>?)`, "i");
+      formatted = formatted.replace(
+        regex,
+        `<hr class="my-3 border-[#7BFE7A]/60" />
+       <div class="flex items-center gap-2 font-semibold text-[#165F14]">
+         <span>${icon}</span>
+         <span>${key}</span>
+       </div>`
+      );
+    });
+
+    // Beautify bullet points
+    formatted = formatted
+      .replace(/<br\/>\s*-\s*/g, "<br/>• ")
+      .replace(/<br\/>\s*(\d+)\.\s*/g, "<br/><strong>$1.</strong> ");
+
+    return formatted;
   };
 
   return (
@@ -268,7 +397,11 @@ const AIChatBot = () => {
         aria-label={isOpen ? "Close chat" : "Open chat"}
         className="fixed bottom-6 right-5 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-[#1F8720] to-[#165F14] text-white shadow-lg transition hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#7BFE7A]"
       >
-        {isOpen ? <X className="h-6 w-6" /> : <MessageCircle className="h-6 w-6" />}
+        {isOpen ? (
+          <X className="h-6 w-6" />
+        ) : (
+          <MessageCircle className="h-6 w-6" />
+        )}
       </button>
 
       {/* Chat Window */}
@@ -294,7 +427,9 @@ const AIChatBot = () => {
             {messages.map((message, index) => (
               <div
                 key={`${message.role}-${index}`}
-                className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}
+                className={`flex ${
+                  message.role === "user" ? "justify-end" : "justify-start"
+                }`}
               >
                 <div
                   className={`max-w-[80%] rounded-3xl border px-3 py-2 ${
@@ -304,10 +439,97 @@ const AIChatBot = () => {
                   }`}
                 >
                   {message.content ? (
-                    <div dangerouslySetInnerHTML={{ __html: message.content }} />
+                    <div className="space-y-2 leading-relaxed text-sm">
+                      <div
+                        dangerouslySetInnerHTML={{ __html: message.content }}
+                      />
+                    </div>
+                  ) : null}
+                  {message.boosters?.length ? (
+                    <div className="mt-3 space-y-3">
+                      {message.boosters.map((booster, boosterIndex) => {
+                        const boosterMeta = getBoosterMeta(booster);
+                        const boosterLink = boosterMeta.link;
+                        return (
+                          <div
+                            key={`${booster.name || "booster"}-${boosterIndex}`}
+                            className={`flex gap-3 rounded-2xl border text-left ${
+                              message.role === "user"
+                                ? "border-white/30 bg-white/10 text-white"
+                                : "border-[#186A17]/20 bg-[#f7ffe7] text-slate-900"
+                            }`}
+                          >
+                            <img
+                              src={boosterMeta.img}
+                              alt={booster.name || "Dantura booster"}
+                              className="h-16 w-16 rounded-xl border border-white/30 object-cover"
+                            />
+                            <div className="flex-1 space-y-1">
+                              <div className="flex flex-wrap items-center justify-between gap-2">
+                                <p className="text-sm font-semibold">
+                                  {boosterLink ? (
+                                    <a
+                                      href={boosterLink}
+                                      target="_blank"
+                                      rel="noreferrer"
+                                      className={`text-xs font-semibold underline underline-offset-2 ${
+                                        message.role === "user"
+                                          ? "text-white"
+                                          : "text-[#165F14]"
+                                      }`}
+                                    >
+                                      {booster.name || "Dantura Booster"}
+                                    </a>
+                                  ) : (
+                                    booster.name || "Dantura Booster"
+                                  )}
+                                </p>
+
+                                {booster.sale_price_inr ? (
+                                  <span className="rounded-full bg-[#1F8720]/10 px-2 py-0.5 text-xs font-semibold text-[#1F8720]">
+                                    ₹{booster.sale_price_inr}
+                                  </span>
+                                ) : null}
+                              </div>
+                              <p
+                                className={`text-xs ${
+                                  message.role === "user"
+                                    ? "text-white/80"
+                                    : "text-slate-700"
+                                }`}
+                              >
+                                {[
+                                  booster.strength_mg
+                                    ? `${booster.strength_mg} mg`
+                                    : null,
+                                  booster.capsules
+                                    ? `${booster.capsules} capsules`
+                                    : null,
+                                ]
+                                  .filter(Boolean)
+                                  .join(" - ")}
+                              </p>
+                              {booster.reason ? (
+                                <p
+                                  className={`text-xs ${
+                                    message.role === "user"
+                                      ? "text-white/80"
+                                      : "text-slate-600"
+                                  }`}
+                                >
+                                  {booster.reason}
+                                </p>
+                              ) : null}
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
                   ) : null}
                   {message.attachments?.length ? (
-                    <div className={`${message.content ? "mt-2" : ""} space-y-2`}>
+                    <div
+                      className={`${message.content ? "mt-2" : ""} space-y-2`}
+                    >
                       {message.attachments.map((attachment, attachmentIndex) =>
                         attachment.type === "image" && attachment.url ? (
                           <img
@@ -318,7 +540,9 @@ const AIChatBot = () => {
                           />
                         ) : (
                           <a
-                            key={`${attachment.name || "document"}-${attachmentIndex}`}
+                            key={`${
+                              attachment.name || "document"
+                            }-${attachmentIndex}`}
                             href={attachment.url}
                             target="_blank"
                             rel="noreferrer"
@@ -354,7 +578,9 @@ const AIChatBot = () => {
                       Remove
                     </button>
                   </div>
-                  <p className="mt-1 text-sm font-semibold">{selectedFile.name}</p>
+                  <p className="mt-1 text-sm font-semibold">
+                    {selectedFile.name}
+                  </p>
                   {selectedFile.type.startsWith("image/") && filePreviewUrl ? (
                     <img
                       src={filePreviewUrl}
@@ -385,7 +611,10 @@ const AIChatBot = () => {
           </div>
 
           {/* Input Field */}
-          <form onSubmit={handleSubmit} className="border-t border-[#186A17]/40 bg-[#ECFF8F] px-4 py-3">
+          <form
+            onSubmit={handleSubmit}
+            className="border-t border-[#186A17]/40 bg-[#ECFF8F] px-4 py-3"
+          >
             <input
               type="file"
               accept="image/jpeg,image/png,application/pdf"
