@@ -485,11 +485,11 @@ const AIChatBot = () => {
                                   )}
                                 </p>
 
-                                {booster.sale_price_inr ? (
+                                {/* {booster.sale_price_inr ? (
                                   <span className="rounded-full bg-[#1F8720]/10 px-2 py-0.5 text-xs font-semibold text-[#1F8720]">
                                     ₹{booster.sale_price_inr}
                                   </span>
-                                ) : null}
+                                ) : null} */}
                               </div>
                               <p
                                 className={`text-xs ${
