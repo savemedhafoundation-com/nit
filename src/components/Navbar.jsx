@@ -10,7 +10,7 @@ const navItems = [
   { label: 'WHY CHOOSE NIT', path: '/boosters' },
   { label: 'SYMPTOM CHECKER', path: '/symptom-checker' },
   { label: 'REPORT EXPLAINER', path: '/upload-report' },
-  { label: 'PAGE', path: '/blog', caret: true },
+  { label: 'BLOG', path: '/blog' },
 ];
 
 const Navbar = () => {
