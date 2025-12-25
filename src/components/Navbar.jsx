@@ -1,22 +1,22 @@
-import { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
-import nitLogoGreen from '../assets/photo/NIT final.png';
-import nitLogoWhite from '../assets/photo/NIT white.png';
+import { useState } from "react";
+import { Link, NavLink } from "react-router-dom";
+import nitLogoGreen from "../assets/photo/NIT final.png";
+import nitLogoWhite from "../assets/photo/NIT white.png";
 
 const navItems = [
-  { label: 'HOME', path: '/' },
-  { label: 'ABOUT NIT', path: '/about' },
-  { label: 'OUR THERAPIES', path: '/diseases', caret: true },
-  { label: 'WHY CHOOSE NIT', path: '/boosters' },
-  { label: 'SYMPTOM CHECKER', path: '/symptom-checker' },
-  { label: 'REPORT EXPLAINER', path: '/upload-report' },
-  { label: 'BLOG', path: '/blog' },
+  { label: "HOME", path: "/" },
+  { label: "ABOUT NIT", path: "/about" },
+  { label: "OUR THERAPIES", path: "/diseases", caret: true },
+  { label: "WHY CHOOSE NIT", path: "/boosters" },
+  { label: "SYMPTOM CHECKER", path: "/symptom-checker" },
+  { label: "REPORT EXPLAINER", path: "/upload-report" },
+  { label: "BLOG", path: "/blog" },
 ];
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const toggleMenu = () => setIsOpen(prev => !prev);
+  const toggleMenu = () => setIsOpen((prev) => !prev);
 
   const closeMenu = () => setIsOpen(false);
 
@@ -39,30 +39,37 @@ const Navbar = () => {
   );
 
   return (
-    <header className="sticky top-0 z-50  bg-white">
-      <div className="mx-auto flex max-w-7xl items-center justify-between border-b border-[#0d7120] px-5 py-4 sm:px-12 lg:px-10 gap-3">
-        <Link to="/" className="flex items-center">
-          <img
-            src={nitLogoGreen}
-            onError={event => {
-              event.currentTarget.src = nitLogoWhite;
-            }}
-            alt="Natural Immunotherapy logo"
-            className="h-16 w-auto object-contain lg:h-20"
-            draggable="false"
-          />
-        </Link>
+ <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md 
+shadow-sm supports-[backdrop-filter]:bg-white/80 relative">
+      <div
+        className="mx-auto flex max-w-7xl items-center justify-between 
+border-b border-[#0d7120]/30 
+px-5 py-3 sm:px-12 lg:px-0 gap-6"
+      >
+        {/* <Link to="/" className="flex items-center"> */}
+        <img
+          src={nitLogoGreen}
+          onError={(event) => {
+            event.currentTarget.src = nitLogoWhite;
+          }}
+          alt="Natural Immunotherapy logo"
+          className="h-14 lg:h-16 w-auto object-contain select-none lg:absolute lg:left-24"
+          draggable="false"
+        />
+        {/* </Link> */}
 
-        <nav className="hidden items-center gap-8 pl-4 font-inter md:flex">
-          {navItems.map(item => (
+        <nav className="hidden items-center gap-7 pl-4 font-inter md:flex">
+          {navItems.map((item) => (
             <NavLink
               key={item.path}
               to={item.path}
               className={({ isActive }) =>
                 [
-                  'group flex items-center gap-2 whitespace-nowrap text-sm font-semibold tracking-[0.25em] uppercase transition-colors',
-                  isActive ? 'text-[#0a7c1b]' : 'text-slate-900 hover:text-[#0a7c1b]',
-                ].join(' ')
+                  "group flex items-center gap-2 whitespace-nowrap text-[13px] font-semibold uppercase tracking-[0.18em] transition-colors",
+                  isActive
+                    ? "text-[#0a7c1b]"
+                    : "text-slate-800 hover:text-[#0a7c1b]",
+                ].join(" ")
               }
               onClick={closeMenu}
             >
@@ -72,7 +79,7 @@ const Navbar = () => {
           ))}
         </nav>
 
-        <div className="hidden items-center gap-7 pl-6 md:flex">
+        <div className="hidden items-center gap-6 pl-6 md:flex">
           <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#0a7c1b] text-white shadow-[0_8px_16px_rgba(12,99,24,0.28)]">
             <svg
               className="h-5 w-5"
@@ -113,9 +120,22 @@ const Navbar = () => {
                 xmlns="http://www.w3.org/2000/svg"
                 aria-hidden="true"
               >
-                <rect x="4" y="6" width="16" height="12" rx="2" stroke="currentColor" strokeWidth="1.5" />
+                <rect
+                  x="4"
+                  y="6"
+                  width="16"
+                  height="12"
+                  rx="2"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                />
                 <path d="M4 10h16" stroke="currentColor" strokeWidth="1.5" />
-                <path d="M9 14h2m3 0h2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                <path
+                  d="M9 14h2m3 0h2"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                />
               </svg>
             </span>
             <span>CONTACT US</span>
@@ -127,7 +147,13 @@ const Navbar = () => {
                 xmlns="http://www.w3.org/2000/svg"
                 aria-hidden="true"
               >
-                <path d="m6 3 5 5-5 5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                <path
+                  d="m6 3 5 5-5 5"
+                  stroke="currentColor"
+                  strokeWidth="1.6"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
               </svg>
             </span>
           </Link>
@@ -140,7 +166,9 @@ const Navbar = () => {
           aria-label="Toggle navigation menu"
         >
           <svg
-            className={`h-5 w-5 transition-transform ${isOpen ? 'rotate-90' : ''}`}
+            className={`h-5 w-5 transition-transform ${
+              isOpen ? "rotate-90" : ""
+            }`}
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -164,15 +192,17 @@ const Navbar = () => {
       {isOpen && (
         <div className="md:hidden">
           <nav className="space-y-1 border-t border-[#0d7120]/20 bg-white px-4 py-4 font-inter">
-            {navItems.map(item => (
+            {navItems.map((item) => (
               <NavLink
                 key={item.path}
                 to={item.path}
                 className={({ isActive }) =>
                   [
-                    'flex items-center justify-between rounded-md px-3 py-2 text-sm font-semibold uppercase tracking-[0.22em]',
-                    isActive ? 'bg-[#e6f6ea] text-[#0a7c1b]' : 'text-slate-700 hover:bg-[#eef9f1] hover:text-[#0a7c1b]',
-                  ].join(' ')
+                    "flex items-center justify-between rounded-md px-3 py-2 text-sm font-semibold uppercase tracking-[0.22em]",
+                    isActive
+                      ? "bg-[#e6f6ea] text-[#0a7c1b]"
+                      : "text-slate-700 hover:bg-[#eef9f1] hover:text-[#0a7c1b]",
+                  ].join(" ")
                 }
                 onClick={closeMenu}
               >
@@ -193,7 +223,13 @@ const Navbar = () => {
                 xmlns="http://www.w3.org/2000/svg"
                 aria-hidden="true"
               >
-                <path d="m6 3 5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path
+                  d="m6 3 5 5-5 5"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
               </svg>
             </Link>
           </nav>

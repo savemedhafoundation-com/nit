@@ -37,11 +37,13 @@ export default function HowNITWorks() {
   return (
     <section className="bg-[#f2ffe3] py-20">
       {/* Title */}
-      <div className="flex justify-center mb-16">
-        <h2 className="inline-flex rounded-full bg-gradient-to-r from-[#0a6f1b] via-[#4ab33e] to-[#0a6f1b] px-24 py-3 text-lg md:text-xl font-semibold uppercase tracking-[0.18em] font-montserrat text-white shadow-[0_16px_32px_rgba(20,110,33,0.35)]">
-          How NIT Works in Your Body
-        </h2>
-      </div>
+  
+
+       <div className="mx-auto mt-10 mb-8 w-full max-w-[1180px] overflow-hidden rounded-[28px] bg-gradient-to-r from-[#0a5f12] via-[#1a7f1f] to-[#2f8f2d] px-6 py-5 text-center text-white shadow-[0_18px_36px_rgba(7,71,21,0.35)] sm:px-10">
+          <h3 className="text-2xl font-semibold tracking-[0.08em] sm:text-3xl font-montserrat">
+           How NIT Works in Your Body ?
+          </h3>
+        </div>
 
       {/* Stages */}
       <div className="flex flex-col md:flex-row items-center justify-center gap-6 px-6">

@@ -22,3 +22,75 @@ body {
 #root {
   min-height: 100vh;
 }
+
+.nit-logo-core {
+  filter: drop-shadow(0 22px 40px rgba(13, 93, 23, 0.35));
+  animation: nit-breathe 6s ease-in-out infinite;
+}
+
+.nit-logo-orbit {
+  position: absolute;
+  inset: 0;
+  animation: nit-orbit 16s linear infinite;
+}
+
+.nit-logo-orbit-2 {
+  animation-duration: 20s;
+  animation-direction: reverse;
+}
+
+.nit-logo-orbit-3 {
+  animation-duration: 24s;
+}
+
+.nit-logo-orbit-image {
+  position: absolute;
+  width: 80px;
+  top: -8%;
+  left: 50%;
+  transform: translate(-50%, -10%);
+  filter: drop-shadow(0 14px 26px rgba(10, 79, 21, 0.4));
+  animation: nit-float 5s ease-in-out infinite;
+}
+
+@keyframes nit-orbit {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes nit-float {
+  0%,
+  100% {
+    transform: translate(-50%, -10%) scale(0.95);
+  }
+  50% {
+    transform: translate(-50%, -20%) scale(1);
+  }
+}
+
+@keyframes nit-breathe {
+  0%,
+  100% {
+    transform: scale(0.98);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.typed-cursor {
+  color: #22c55e;
+}

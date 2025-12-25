@@ -1,4 +1,5 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
+import { useState } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import AIChatBot from '@/components/AIChatBot';
@@ -13,12 +14,20 @@ import Contact from './pages/Contact';
 import SymptomChecker from './pages/SymptomChecker';
 import UploadReport from './pages/UploadReport';
 import ReportResult from './pages/ReportResult';
+import AnimatedDepthHero from './components/AnimatedDepthHero';
 
 function App() {
+  const [showSubscribe, setShowSubscribe] = useState(true);
+
   return (
     <div className="flex min-h-screen flex-col bg-slate-50 text-slate-900">
       <ScrollToTop />
-      <Navbar />
+      {showSubscribe && (
+        // <AnimatedDepthHero onClose={() => setShowSubscribe(false)} />
+        <></>
+      )}
+      {/* {!showSubscribe && <Navbar />} */}
+      <Navbar/>
       <main className="flex-1 w-full">
         <Routes>
           <Route path="/" element={<Home />} />
@@ -31,6 +40,7 @@ function App() {
           <Route path="/symptom-checker" element={<SymptomChecker />} />
           <Route path="/upload-report" element={<UploadReport />} />
           <Route path="/report-result" element={<ReportResult />} />
+          {/* <Route path='/new-design' element={<AnimatedDepthHero/>} /> */}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>

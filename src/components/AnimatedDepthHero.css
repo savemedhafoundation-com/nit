@@ -1,0 +1,124 @@
+.depth-scene {
+  position: fixed;
+  inset: 0;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background: #000;
+  z-index: 50;
+}
+
+/* DNA image background */
+.depth-background {
+  position: absolute;
+  inset: 0;
+  background: url("/public/dna-bg.jpeg") center / cover no-repeat;
+  filter: brightness(0.75) contrast(1.05);
+  transform: scale(1.05);
+}
+
+/* Optional cinematic overlay */
+.depth-background::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(0, 0, 0, 0.2),
+    rgba(0, 0, 0, 0.65)
+  );
+}
+
+/* Floating text layer */
+.depth-text-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.depth-text {
+  position: absolute;
+  color: #e8f3ff;
+  font-size: 24px;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  will-change: transform, filter, opacity;
+}
+
+/* Center glass card */
+.depth-card {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: min(480px, 90vw);
+  height: 320px;
+  padding: 32px 36px 28px;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(14px);
+  border-radius: 12px;
+  text-align: center;
+  z-index: 5;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+}
+
+.depth-card h2 {
+  margin-bottom: 10px;
+  color: #0a6f1b;
+}
+
+.depth-card p {
+  margin-bottom: 18px;
+  color: #3d3d3d;
+}
+
+.depth-form {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.depth-label {
+  font-size: 14px;
+  text-align: left;
+  color: #1a1a1a;
+}
+
+.depth-input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid #cfd4d9;
+  font-size: 15px;
+  outline: none;
+}
+
+.depth-input:focus {
+  border-color: #0a6f1b;
+  box-shadow: 0 0 0 3px rgba(10, 111, 27, 0.15);
+}
+
+.depth-primary {
+  border: none;
+  border-radius: 8px;
+  padding: 12px 16px;
+  background: #0a6f1b;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.depth-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 18px rgba(10, 111, 27, 0.22);
+}
+
+.depth-skip {
+  border: none;
+  background: transparent;
+  color: #0a6f1b;
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
