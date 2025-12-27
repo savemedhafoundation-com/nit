@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import $ from "jquery";
 import "./AnimatedDepthHero.css"
 
-const AnimatedDepthHero = ({ onClose }) => {
+const AnimatedDepthHero = ({ onClose, variant = "full" }) => {
   const navigate = useNavigate();
 
 
@@ -38,23 +38,23 @@ const AnimatedDepthHero = ({ onClose }) => {
     return () => cancelAnimationFrame(rafId);
   }, []);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    if (onClose) {
-      onClose();
-    }
-    navigate("/");
-  };
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   if (onClose) {
+  //     onClose();
+  //   }
+  //   navigate("/");
+  // };
 
-  const handleSkip = () => {
-    if (onClose) {
-      onClose();
-    }
-    navigate("/");
-  };
+  // const handleSkip = () => {
+  //   if (onClose) {
+  //     onClose();
+  //   }
+  //   navigate("/");
+  // };
 
   return (
-    <div className='depth-scene'>
+    <div className={`depth-scene ${variant === "section" ? "depth-scene--section" : ""}`}>
      <div className='depth-background'/>
 
      <div className='depth-text-layer'>
@@ -91,28 +91,28 @@ const AnimatedDepthHero = ({ onClose }) => {
         <span className="depth-text" data-depth="1" style={{ top: "98%", left: "18%" }}>
           Immune Signaling
         </span>
+
+        <span className="depth-text" data-depth="2" style={{ top: "10%", left: "58%" }}>
+          Natural Immunotherapy
+        </span>
+        <span className="depth-text" data-depth="1" style={{ top: "14%", left: "30%" }}>
+          Cellular Intelligence
+        </span>
+        <span className="depth-text" data-depth="3" style={{ top: "22%", left: "78%" }}>
+          Nutrient Signaling
+        </span>
+        <span className="depth-text" data-depth="2" style={{ top: "70%", left: "8%" }}>
+          Detoxification Pathways
+        </span>
+        <span className="depth-text" data-depth="1" style={{ top: "86%", left: "62%" }}>
+          Immune Balance
+        </span>
+        <span className="depth-text" data-depth="3" style={{ top: "90%", left: "34%" }}>
+          Micronutrient Repair
+        </span>
      </div>
 
-
-      <div className="depth-card">
-        <img className="depth-logo" src="../src/assets/photo/NIT LOGO_1.png" alt="Nit Logo" />
-        <p>A newsletter by Dr. Rhonda Patrick, exploring the science of stress resilience, disease prevention, and living a more fulfilled life — rooted in biology and inspired by her podcast.</p>
-        <form className="depth-form" onSubmit={handleSubmit}>
-          <label className="depth-label" htmlFor="subscribe-email">Email address</label>
-          <input
-            id="subscribe-email"
-            name="email"
-            type="email"
-            placeholder="you@example.com"
-            className="depth-input"
-            required
-          />
-          <button type="submit" className="depth-primary">Subscribe</button>
-        </form>
-        <button type="button" className="depth-skip" onClick={handleSkip}>
-          No thanks, take me to the homepage
-        </button>
-      </div>
+     <div className="depth-center-title">About NIT</div>
 
     </div>
   )

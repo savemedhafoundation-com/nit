@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import AnimatedDepthHero from '../components/AnimatedDepthHero';
 import missionImage from '../assets/photo/Rectangle 153.png';
 import sectionBg from '../assets/photo/bg.png';
 
@@ -35,6 +36,9 @@ const achievements = [
 const About = () => {
   return (
     <div className="min-h-screen w-full bg-[#f4fbe7] text-slate-900">
+      <div className="mx-auto max-w-full px-6 lg:px-0">
+        <AnimatedDepthHero variant="section" />
+      </div>
       {/* Section 1 - Introduction */}
       <section className="bg-[#f4fbe7]">
         <div className="mx-auto flex max-w-[1180px] flex-col gap-8 px-6 py-10 lg:flex-row lg:items-center lg:px-8">

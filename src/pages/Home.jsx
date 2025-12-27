@@ -5,7 +5,9 @@ import ThreePillars from "../components/ThreePillars";
 import PatientStories from "../components/PatientStories";
 import SymptomChecker from "./SymptomChecker";
 import heroImage from "../assets/photo/13.png";
+import whentoseek from "../assets/photo/WhenToSeek.png";
 import heroBackground from "../assets/photo/Rectangle 154.png";
+import ethicalguide from "../assets/photo/ethicalGuidance.png"
 import HerBackgroundVideo from "../../public/4.mp4";
 import missionImage from "../assets/photo/Rectangle 153.png";
 import beliefSecondaryImage from "../assets/photo/Rectangle 158.png";
@@ -14,7 +16,11 @@ import sectionVideo from "../assets/photo/demo.mp4";
 import sectionBg from "../assets/photo/bg.png";
 import HowNITWorks from "../components/HowNITWorks";
 import NITicon from "../assets/photo/NIT ICON.png";
-import nitSolution from "../assets/photo/Natural_Supplement.mp4"
+import nitSolution from "../assets/photo/Natural_Supplement.mp4";
+import Footer from "../components/Footer";
+import asknit from "../assets/photo/asknit.png";
+import { RiChatAiLine } from "react-icons/ri";
+
 const therapyTabs = [
   { label: "NATURAL CURE" },
   { label: "NON CHEMICAL THERAPY" },
@@ -78,7 +84,7 @@ const Home = () => {
   const heroCompactTypedInstanceRef = useRef(null);
   const heroPanelTimerRef = useRef(null);
   const heroVideoTimeRef = useRef(0);
-   const videoRef = useRef(null);
+  const videoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
 
   const handlePlay = () => {
@@ -188,7 +194,6 @@ const Home = () => {
     };
   }, []);
 
-
   return (
     <div className="min-h-[100px] w-full bg-[#f4fbe7] absolute">
       <section className="relative h-[90vh] w-full overflow-hidden text-white bg-[#f4fbe7]">
@@ -280,7 +285,7 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
                 href="#therapies"
                 className="inline-flex items-center justify-center rounded-full bg-gradient-to-b from-[#76e16d] via-[#31a12d] to-[#0d6615] px-10 py-3 text-lg font-semibold text-white shadow-[0_16px_32px_rgba(20,110,33,0.35)] transition hover:-translate-y-0.5 hover:shadow-[0_18px_36px_rgba(20,110,33,0.45)] font-montserrat"
               >
-                Explore
+                Ask Your Problem
               </a>
             </div>
           </div>
@@ -297,9 +302,9 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
             </p>
             <a
               href="#therapies"
-              className="inline-flex items-center justify-center rounded-full bg-gradient-to-b from-[#76e16d] via-[#31a12d] to-[#0d6615] px-10 py-3 text-lg font-semibold text-white shadow-[0_16px_32px_rgba(20,110,33,0.35)] transition hover:-translate-y-0.5 hover:shadow-[0_18px_36px_rgba(20,110,33,0.45)] font-montserrat"
+              className="inline-flex items-center justify-center uppercase rounded-full bg-gradient-to-b from-[#76e16d] via-[#31a12d] to-[#0d6615] px-10 py-3 text-lg font-semibold text-white shadow-[0_16px_32px_rgba(20,110,33,0.35)] transition hover:-translate-y-0.5 hover:shadow-[0_18px_36px_rgba(20,110,33,0.45)] font-montserrat"
             >
-              Explore
+              Ask Your Problem
             </a>
           </div>
         </div>
@@ -389,7 +394,7 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
               </div>
               <button
                 type="button"
-                className="inline-flex items-center justify-center  bg-gradient-to-b from-[#76e16d] via-[#31a12d] to-[#0d6615] px-10 py-3 text-lg font-semibold text-white shadow-[0_16px_32px_rgba(20,110,33,0.35)] transition hover:-translate-y-0.5 hover:shadow-[0_18px_36px_rgba(20,110,33,0.45)] font-montserrat"
+                className="inline-flex items-center justify-center rounded-lg bg-gradient-to-b from-[#76e16d] via-[#31a12d] to-[#0d6615] px-10 py-3 text-lg font-semibold text-white shadow-[0_16px_32px_rgba(20,110,33,0.35)] transition hover:-translate-y-0.5 hover:shadow-[0_18px_36px_rgba(20,110,33,0.45)] font-montserrat"
               >
                 Our Mission
               </button>
@@ -402,11 +407,36 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
         id="symptom-checker"
         className="bg-[#e9f8dd] py-16 pb-20 px-4 sm:px-6 lg:px-10"
       >
-        <div className="mx-auto mb-8 w-full max-w-[1180px] overflow-hidden rounded-[28px] bg-gradient-to-r from-[#0a5f12] via-[#1a7f1f] to-[#2f8f2d] px-6 py-5 text-center text-white shadow-[0_18px_36px_rgba(7,71,21,0.35)] sm:px-10">
-          <h3 className="text-2xl font-semibold tracking-[0.08em] sm:text-3xl font-montserrat">
+        <div
+          className="
+    relative
+    h-[120px]
+    mb-8
+    -ml-12
+    mr-[140px]
+    overflow-hidden
+    bg-gradient-to-r
+    from-[#0a5f12]
+    via-[#1a7f1f]
+    to-[#2f8f2d]
+    px-6
+    py-5
+    text-center
+    text-white
+    shadow-[0_18px_36px_rgba(7,71,21,0.35)]
+    sm:px-10
+    flex
+    flex-col
+    items-center
+    justify-center
+        rounded-tr-[28px]
+    rounded-br-[28px]
+  "
+        >
+          <h3 className="text-2xl font-semibold tracking-[0.08em] sm:text-3xl font-montserrat max-w-[1180px]">
             Body / Symptom Selector
           </h3>
-          <p className="mt-2 text-sm uppercase tracking-[0.22em] text-white/90 sm:text-base font-montserrat">
+          <p className="mt-2 text-sm uppercase tracking-[0.22em] text-white/90 sm:text-base font-montserrat max-w-[1180px]">
             &rarr; Head | Chest | Gut | Kidney | Skin | Neuro | Cancer
           </p>
         </div>
@@ -435,8 +465,11 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
         </div>
       </section>
       <>
-        <div className="mx-auto mt-10 mb-8 w-full max-w-[1180px] overflow-hidden rounded-[28px] bg-gradient-to-r from-[#0a5f12] via-[#1a7f1f] to-[#2f8f2d] px-6 py-5 text-center text-white shadow-[0_18px_36px_rgba(7,71,21,0.35)] sm:px-10">
-          <h3 className="text-2xl font-semibold tracking-[0.08em] sm:text-3xl font-montserrat">
+        <div
+          className="h-[120px] flex items-center justify-center mt-10 mb-8 ml-[140px] overflow-hidden rounded-tl-[28px]
+    rounded-bl-[28px] bg-gradient-to-r from-[#0a5f12] via-[#1a7f1f] to-[#2f8f2d] px-6 py-5 text-center text-white shadow-[0_18px_36px_rgba(7,71,21,0.35)] sm:px-10"
+        >
+          <h3 className="text-2xl font-semibold tracking-[0.08em] sm:text-3xl font-montserrat max-w-[980px]">
             What is Natural Immunotherapy ?
           </h3>
         </div>
@@ -533,9 +566,32 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
       </>
       {/* What Problem NIT can help with section */}
       <section className="bg-white py-16 px-4 sm:px-6 lg:px-10">
-        <div className="mx-auto max-w-[1180px]">
-          <div className="mx-auto mt-0 mb-8 w-full max-w-[1180px] overflow-hidden rounded-[28px] bg-gradient-to-r from-[#0a5f12] via-[#1a7f1f] to-[#2f8f2d] px-6 py-5 text-center text-white shadow-[0_18px_36px_rgba(7,71,21,0.35)] sm:px-10">
-            <h3 className="text-2xl font-semibold tracking-[0.08em] sm:text-3xl font-montserrat">
+        <div className="mx-auto">
+          <div
+            className=" relative
+                 h-[120px]
+    mb-8
+    -ml-12
+    mr-[140px]
+    overflow-hidden
+    bg-gradient-to-r
+    from-[#0a5f12]
+    via-[#1a7f1f]
+    to-[#2f8f2d]
+    px-6
+    py-5
+    text-center
+    text-white
+    shadow-[0_18px_36px_rgba(7,71,21,0.35)]
+    sm:px-10
+    flex
+    flex-col
+    items-center
+    justify-center
+        rounded-tr-[28px]
+    rounded-br-[28px]"
+          >
+            <h3 className="text-2xl font-semibold tracking-[0.08em] sm:text-3xl font-montserrat max-w-[800px]">
               What Problems NIT Can Help With ?
             </h3>
           </div>
@@ -556,51 +612,81 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
               </div>
             </div>
           </div> */}
-          <div className="mx-auto max-w-[800px] px-4 pb-[90px]">
+          <div className="mx-auto max-w-[1200px] px-4 pb-[90px]">
             {/* Outer green frame */}
-            <div className="relative rounded-tl-[64px] rounded-tr-[22px] rounded-bl-[0px] rounded-br-[0px] bg-gradient-to-r from-[#53d744] via-[#2ea02e] to-[#0b5d16] p-5 sm:p-6 min-h-[350px]">
+            <div className="relative rounded-tl-[64px] rounded-tr-[22px] rounded-bl-[0px] rounded-br-[0px] bg-gradient-to-r from-[#53d744] via-[#2ea02e] to-[#0b5d16] p-5 sm:p-6 min-h-[550px]">
               {/* Inner white card */}
-              <div className="absolute top-[20px] right-[50px] overflow-hidden rounded-[40px] bg-white shadow-[0_22px_50px_rgba(0,0,0,0.18)]">
-      <div className="relative flex h-[400px] w-[600px] items-center justify-center bg-black">
+              <div className="absolute top-[20px] right-[50px] overflow-hidden rounded-[110px] bg-white shadow-[0_22px_50px_rgba(0,0,0,0.18)]">
+                <div className="relative flex h-[600px] w-[800px] items-center justify-center">
+                  {/* Video */}
+                  <video
+                    ref={videoRef}
+                    src={nitSolution}
+                    controls={isPlaying}
+                    playsInline
+                    className="h-[600px] w-[800px] object-fill"
+                    poster={beliefSecondaryImage}
+                  />
 
-        {/* Video */}
-        <video
-          ref={videoRef}
-          src={nitSolution}
-          controls={isPlaying}
-          playsInline
-          className="max-h-full max-w-full object-contain"
-          poster={beliefSecondaryImage}
-        />
-
-        {/* Custom Play Button */}
-        {!isPlaying && (
-          <button
-            onClick={handlePlay}
-            aria-label="Play video"
-            className="absolute flex h-16 w-16 items-center justify-center
+                  {/* Custom Play Button */}
+                  {!isPlaying && (
+                    <button
+                      onClick={handlePlay}
+                      aria-label="Play video"
+                      className="absolute flex h-16 w-16 items-center justify-center
                        rounded-full bg-white shadow-[0_10px_30px_rgba(0,0,0,0.35)]
                        hover:scale-105 transition"
-          >
-            <svg
-              className="h-7 w-7 text-red-600 translate-x-[1px]"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-            >
-              <path d="M8 5.5v13l10-6.5-10-6.5z" />
-            </svg>
-          </button>
-        )}
-      </div>
-    </div>
+                    >
+                      <svg
+                        className="h-7 w-7 text-red-600 translate-x-[1px]"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                      >
+                        <path d="M8 5.5v13l10-6.5-10-6.5z" />
+                      </svg>
+                    </button>
+                  )}
+                </div>
+              </div>
             </div>
           </div>
 
-          <p className="mx-auto mt-8 max-w-[980px] text-center text-xs font-semibold uppercase tracking-[0.18em] text-[#b23b12] sm:text-sm font-montserrat">
+          <p
+            className="
+    mx-auto
+    mt-8
+    max-w-[980px]
+ 
+    px-6
+    py-4
+
+    text-center
+    font-inter
+    text-[36px]
+    font-semibold
+    leading-[1]
+    tracking-[0.05em]
+    text-[#B93A0C]
+  "
+          >
             Natural Immunotherapy is intended as a supportive and complementary
             approach and should be used under proper guidance.
           </p>
-          <p className="mx-auto mt-4 max-w-[980px] text-center text-sm leading-7 text-[#2d3b2f] sm:text-base font-lora">
+
+          <p
+            className="  mx-auto
+    mt-4
+    max-w-[980px]
+    font-inter
+    font-normal
+    text-[24px]
+    leading-[1]
+    tracking-[0.08em]
+    text-justify
+    text-black
+    leading-[1.25] sm:leading-[1.6]
+    "
+          >
             Natural Immunotherapy (NIT) has shown positive supportive outcomes
             in managing chronic conditions such as cancer, kidney disorders,
             heart disease, spinal problems, and neurological conditions by
@@ -614,141 +700,282 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
         </div>
       </section>
 
-      <section className="bg-[#f2ffe3] py-20">
-        <div className="mx-auto flex max-w-[1180px] flex-col gap-16 px-6 lg:flex-row lg:items-center lg:gap-12 lg:px-10">
-          <div className="relative flex-1 overflow-hidden rounded-[36px] bg-white shadow-[0_24px_52px_rgba(44,85,58,0.2)]">
-            <img
-              src={heroImage}
-              alt="Herbal capsules with leaves"
-              className="h-full w-full object-cover"
-              loading="lazy"
-            />
-          </div>
-          <div className="flex-1 space-y-8 text-[#1c2d1f]">
-            <div>
-              <span className="inline-flex rounded-full bg-gradient-to-r from-[#0a6f1b] via-[#4ab33e] to-[#0a6f1b] px-6 py-2 text-base font-semibold uppercase tracking-[0.18em] font-montserrat text-white shadow-[0_16px_32px_rgba(20,110,33,0.35)]">
-                Why People Choose NIT ?
-              </span>
-              <p className="mt-4 text-xl font-medium text-[#3a4f3a] font-lora">
-                Holistic recovery that feels personal.
-              </p>
-            </div>
-
-            <ul className="space-y-4 text-lg leading-8 text-[#1e311f] font-lora">
-              <li className="flex gap-4">
-                <span className="mt-1 inline-flex h-8 w-8 items-center justify-center rounded-lg bg-[#dafbe2] text-[#0d8b1f] shadow-[0_10px_20px_rgba(23,94,36,0.2)]">
-                  <svg
-                    className="h-4 w-4"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  >
-                    <path
-                      d="m5 12 4 4 10-10"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </span>
-                <span>
-                  <strong>100% Non-Conventional</strong> No chemotherapy, no
-                  radiation, no surgery.
-                </span>
-              </li>
-              <li className="flex gap-4">
-                <span className="mt-1 inline-flex h-8 w-8 items-center justify-center rounded-lg bg-[#dafbe2] text-[#0d8b1f] shadow-[0_10px_20px_rgba(23,94,36,0.2)]">
-                  <svg
-                    className="h-4 w-4"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  >
-                    <path
-                      d="m5 12 4 4 10-10"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </span>
-                <span>
-                  <strong>Food &amp; Nutrient-Based Therapy</strong> using
-                  vitamins, minerals, and natural boosters.
-                </span>
-              </li>
-              <li className="flex gap-4">
-                <span className="mt-1 inline-flex h-8 w-8 items-center justify-center rounded-lg bg-[#dafbe2] text-[#0d8b1f] shadow-[0_10px_20px_rgba(23,94,36,0.2)]">
-                  <svg
-                    className="h-4 w-4"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  >
-                    <path
-                      d="m5 12 4 4 10-10"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </span>
-                <span>
-                  <strong>Real Recovery Stories</strong> from patients once
-                  declared &ldquo;untreatable.&rdquo;
-                </span>
-              </li>
-              <li className="flex gap-4">
-                <span className="mt-1 inline-flex h-8 w-8 items-center justify-center rounded-lg bg-[#dafbe2] text-[#0d8b1f] shadow-[0_10px_20px_rgba(23,94,36,0.2)]">
-                  <svg
-                    className="h-4 w-4"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  >
-                    <path
-                      d="m5 12 4 4 10-10"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </span>
-                <span>
-                  <strong>The Future of Healing</strong> backed by biological
-                  intelligence, not chemicals.
-                </span>
-              </li>
-            </ul>
-
-            <a
-              href="https://dantura.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 rounded-lg bg-[#f8d547] px-6 py-3 text-sm font-semibold uppercase tracking-[0.25em] text-[#164c18] shadow-[0_16px_28px_rgba(146,108,5,0.25)] transition hover:bg-[#0d8b1f] hover:text-[#fffdfd] hover:-translate-y-0.5 hover:shadow-[0_18px_32px_rgba(146,108,5,0.35)] font-montserrat"
-            >
-              EXPLORE
-              <span className="inline-grid h-8 w-8 place-items-center rounded-full bg-[#0d8b1f] hover:bg-[#f8d547] text-white">
-                <svg
-                  className="h-4 w-4"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <path
-                    d="M7.5 4.5 12.5 10 7.5 15.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </span>
-            </a>
-          </div>
+      {/* WHEN TO SEEK MEDICAL HELP (ETHICAL GUIDANCE) section */}
+      <section className="bg-white py-16 mb-10">
+        <div className="relative
+        h-[120px]
+    mb-8
+    -ml-12
+    mr-[140px]
+    overflow-hidden
+    bg-gradient-to-r
+    from-[#0a5f12]
+    via-[#1a7f1f]
+    to-[#2f8f2d]
+    px-6
+    py-5
+    text-center
+    text-white
+    shadow-[0_18px_36px_rgba(7,71,21,0.35)]
+    sm:px-10
+    flex
+    flex-col
+    items-center
+    justify-center
+        rounded-tr-[28px]
+    rounded-br-[28px]">
+          <h3 className="text-xl font-semibold uppercase tracking-[0.22em] font-montserrat sm:text-2xl">
+            When to Seek Medical Help ?
+          </h3>
+          <p className="mt-1 text-sm font-semibold uppercase tracking-[0.2em] text-white/90 font-montserrat">
+            (Ethical Guidance)
+          </p>
         </div>
+
+        <div className="mx-auto max-w-[1180px] px-6 pt-10 lg:px-10">
+  <div className="grid lg:grid-cols-[0.7fr,1fr] items-stretch h-[900px]">
+
+    {/* LEFT CARD */}
+    <div
+  className="
+    relative
+    flex flex-col
+    justify-center
+    align-center
+    overflow-hidden
+    shadow-[0_18px_36px_rgba(18,41,25,0.2)]
+    bg-right-bottom bg-no-repeat bg-cover
+  "
+  style={{
+    backgroundImage: `url(${whentoseek})`,
+  }}
+>
+  {/* OVERLAY for readability */}
+  <div className="absolute inset-0 bg-[#f4f0ea]/40" />
+
+  {/* CONTENT */}
+  <div className="relative z-10 flex flex-col items-center Justify-center gap-10 px-8 py-10 text-center">
+    {/* <div className="mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-white shadow-[0_10px_20px_rgba(0,0,0,0.12)]">
+      <img
+        src={NITicon}
+        alt="Natural Immunotherapy icon"
+        className="h-10 w-10 object-contain"
+      />
+    </div> */}
+
+    <h4 className="text-2xl font-semibold text-[#2b3a2f] font-montserrat">
+      Natural Immunotherapy (NIT)
+    </h4>
+
+    <p className="mt-3 max-w-[340px] text-lg font-semibold leading-6 text-[#48584a] font-lora">
+      Even if you follow Natural Immunotherapy (NIT) or other natural
+      therapies, there are situations where immediate conventional medical
+      care is ethically essential.
+    </p>
+  </div>
+</div>
+
+
+    {/* RIGHT CARD */}
+  <div className="overflow-hidden shadow-[0_18px_36px_rgba(18,41,25,0.2)] bg-white">
+
+  {/* IMAGE SECTION (TOP) */}
+  <div className="h-[380px] w-full">
+    <img
+      src={ethicalguide}
+      alt="Medical team"
+      className="h-full w-full object-cover"
+    />
+  </div>
+
+  {/* TEXT SECTION (BOTTOM) */}
+ <div className="
+    flex-1
+    px-8 py-6
+    bg-[#1B212C]
+    text-white
+    h-full
+  ">
+    <p className="text-2xl font-semibold uppercase tracking-[0.2em] text-[#E23A3A] font-montserrat">
+      Emergency Conditions –
+    </p>
+
+    <h4 className="mt-2 text-2xl font-semibold uppercase text-[#E23A3A] font-montserrat">
+      Do Not Delay Medical Care
+    </h4>
+
+    <p className="mt-5 text-xl text-white/85 font-lora">
+      Natural Immunotherapy should not be used as a substitute in the
+      following situations:
+    </p>
+
+    <ul className="mt-5 space-y-1 text-lg text-white/90 font-lora">
+      <li>• Severe trauma / accidents</li>
+      <li>• Heart attack symptoms</li>
+      <li>• Stroke symptoms</li>
+      <li>• Severe bleeding</li>
+      <li>• Acute infections</li>
+      <li>• High fever in infants</li>
+      <li>• Loss of consciousness</li>
+      <li>• Sudden, severe pain</li>
+    </ul>
+  </div>
+
+</div>
+
+
+
+  </div>
+</div>
+
       </section>
 
-      <section className="px-6 pb-24 lg:px-10">
+      {/* Discover the science of natural immunotherapy */}
+
+
+
+      
+
+      {/* <PatientStories /> */}
+      <div className="mb-10 relative">
+        <section className="relative overflow-hidden py-16 -mt-20 text-white z-10"
+        style={{
+                clipPath:
+                  "polygon(0 18%, 50% 0, 100% 18%, 100% 82%, 50% 100%, 0 82%)",
+              }}
+        >
+          <img
+            src={sectionBg}
+            alt="Herbal background"
+            className="absolute inset-0 h-full w-full object-cover"
+            loading="lazy"
+          />
+          <div className="relative z-10  px-6 text-center flex flex-col items-center justify-center">
+          
+
+            <div
+  className="
+    relative
+    w-screen
+    h-[300px]
+    -mx-4
+    sm:-mx-6
+    lg:-mx-10
+
+    px-8
+    py-10
+
+    flex
+    flex-col
+    justify-center
+    items-center
+    space-y-6
+
+    shadow-[0_24px_48px_rgba(8,62,16,0.35)]
+  "
+>
+  <h2 className="text-2xl font-semibold sm:text-[46px] font-montserrat">
+    Discover the Science of Natural Immunotherapy
+  </h2>
+
+  <p className="text-sm text-white/90 sm:text-base font-lora">
+    Learn how Cellular Intelligence, Micronutrients, and
+    Detoxification work together to heal your body naturally.
+  </p>
+
+  <button
+    onClick={() => window.open("https://dantura.com", "_blank")}
+    className="
+      w-fit
+      items-center
+      justify-center
+      rounded-md
+      bg-white
+      px-6
+      py-2
+      text-base
+      font-semibold
+      uppercase
+      tracking-[0.2em]
+      text-[#114616]
+      shadow-[0_14px_26px_rgba(0,0,0,0.28)]
+    "
+  >
+    Explore Today
+  </button>
+</div>
+
+
+        
+          </div>
+        </section>
+        <div className=" absolute w-[100%] h-[850px] top-[300px] pt-80 mt-12 flex flex-col items-center gap-4   bg-center
+    bg-no-repeat
+    bg-cover"
+    
+     style={{
+    backgroundImage: `url(${asknit})`,
+  }}
+
+    >
+              <p className="
+  text-[46px]
+  font-semibold
+  uppercase
+  tracking-[0.20em]
+  text-white
+  font-montserrat
+  [text-shadow:0px_2px_10px_rgba(0,0,0,0.45),0px_6px_19px_rgba(0,0,0,0.55)]
+   leading-[1.35]
+  flex
+  flex-col
+  justify-center
+  items-center
+  pb-16
+">
+  <span className="block">
+    Ask our NIT Chatbot Agent
+  </span>
+  <span className="block">
+    For your any queries.
+  </span>
+              </p>
+             <div
+  className="
+    flex items-center justify-center
+    h-32 w-32
+    rounded-full
+    bg-gradient-to-b
+    from-[#2ebd3a]
+    to-[#0b6c1a]
+
+    shadow-[0_0_45px_rgba(255,255,255,0.70),0_0_80px_rgba(255,255,255,0.65)]
+  "
+>
+  <div
+    className="
+      flex items-center justify-center
+      h-22 w-22
+      rounded-full
+      border-2 border-white
+      bg-white/10
+      p-5
+    "
+  >
+    <RiChatAiLine
+      className="
+        h-14 w-14
+        text-white
+        drop-shadow-[0_6px_14px_rgba(0,0,0,0.45)]
+      "
+    />
+  </div>
+</div>
+
+            </div>
+      </div>
+
+      <section className="px-6 mb-5 mt-[800px] lg:px-10">
         <div className="mx-auto max-w-[1180px] overflow-hidden rounded-[40px] bg-gradient-to-r from-[#0c4d1a] via-[#0b8d26] to-[#0c4d1a] shadow-[0_32px_60px_rgba(5,46,16,0.4)]">
           <div className="flex flex-col items-center gap-10 px-8 py-12 text-center text-white lg:flex-row lg:items-center lg:justify-between lg:text-left">
             <div className="max-w-[520px] space-y-4 font-lora text-lg leading-9">
@@ -789,49 +1016,7 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
           </div>
         </div>
       </section>
-
-      <PatientStories />
-      <div>
-        <section className="relative text-white text-center py-16 overflow-hidden">
-          <img
-            src={sectionBg}
-            alt="Herbal background"
-            className="absolute inset-0 h-full w-full object-cover opacity-80"
-            loading="lazy"
-          />
-          <div className="absolute inset-0 bg-[#006705]/25" />
-          <div className="relative z-10 px-4">
-            <h2 className="text-4xl font-bold font-koho mb-4">
-              Discover the Science of Natural Immunotherapy
-            </h2>
-            <p className="max-w-2xl mx-auto text-lg mb-8">
-              Learn how Cellular Intelligence, Micronutrients, and
-              Detoxification work together to heal your body naturally.
-            </p>
-            <button
-              onClick={() => window.open("https://dantura.com", "_blank")}
-              className="inline-flex items-center gap-3 rounded-lg bg-[#f8d547] px-6 py-3 text-sm font-semibold uppercase tracking-[0.25em] text-[#164c18] shadow-[0_16px_28px_rgba(146,108,5,0.25)] transition hover:bg-[#0d8b1f] hover:text-[#fffdfd] hover:-translate-y-0.5 hover:shadow-[0_18px_32px_rgba(146,108,5,0.35)] font-montserrat"
-            >
-              Explore How NIT Works
-              <span className="inline-grid h-8 w-8 place-items-center rounded-full bg-[#0d8b1f] hover:bg-[#f8d547] text-white">
-                <svg
-                  className="h-4 w-4"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <path
-                    d="M7.5 4.5 12.5 10 7.5 15.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </span>
-            </button>
-          </div>
-        </section>
-      </div>
+      <Footer />
     </div>
   );
 };

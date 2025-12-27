@@ -1,4 +1,7 @@
 import { Link, useParams } from 'react-router-dom';
+import heroImageOne from '../assets/photo/recovery.png';
+import heroImageTwo from '../assets/photo/2._Micronutrient Therapy.png';
+import heroImageThree from '../assets/photo/1._Cellular Intelligence.png';
 
 const blogPosts = {
   '1': {
@@ -7,8 +10,7 @@ const blogPosts = {
     date: 'Thursday, 03 Feb 2025',
     readTime: '6 min read',
     author: 'Rosa Alvarez',
-    heroImage:
-      'https://images.unsplash.com/photo-1546182990-dffeafbe841d?q=80&w=2000&auto=format&fit=crop',
+    heroImage: heroImageOne,
     intro:
       'Across the savannah, lion numbers continue to decline as habitats shrink and conflict rises. Conservation teams are shifting toward community-first programs that protect both predators and livelihoods.',
     sections: [
@@ -40,8 +42,7 @@ const blogPosts = {
     date: 'Tuesday, 28 Jan 2025',
     readTime: '5 min read',
     author: 'Gani Murata',
-    heroImage:
-      'https://images.unsplash.com/photo-1508264165352-258a6c3b43de?q=80&w=2000&auto=format&fit=crop',
+    heroImage: heroImageTwo,
     intro:
       'Giant pandas rely on delicate mountain ecosystems and a steady bamboo supply. Conservation teams are now focusing on climate resiliency plans for bamboo forests.',
     sections: [
@@ -68,8 +69,7 @@ const blogPosts = {
     date: 'Monday, 20 Jan 2025',
     readTime: '4 min read',
     author: 'Mansi Patel',
-    heroImage:
-      'https://images.unsplash.com/photo-1470115636492-6d2b56f9146d?q=80&w=2000&auto=format&fit=crop',
+    heroImage: heroImageThree,
     intro:
       'From coastal wetlands to alpine valleys, birds reveal the health of every ecosystem they cross. Conservationists now rely on soundscapes to measure recovery.',
     sections: [

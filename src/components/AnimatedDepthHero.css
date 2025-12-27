@@ -8,6 +8,16 @@
   z-index: 50;
 }
 
+.depth-scene--section {
+  position: relative;
+  inset: auto;
+  height: 380px;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  z-index: 1;
+}
+
 /* DNA image background */
 .depth-background {
   position: absolute;
@@ -15,6 +25,7 @@
   background: url("/public/dna-bg.jpeg") center / cover no-repeat;
   filter: brightness(0.75) contrast(1.05);
   transform: scale(1.05);
+  border-radius: inherit;
 }
 
 /* Optional cinematic overlay */
@@ -45,6 +56,20 @@
   will-change: transform, filter, opacity;
 }
 
+.depth-center-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 4;
+  transform: translate(-50%, -50%);
+  color: #ffffff;
+  font-size: 56px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-shadow: 0 10px 28px rgba(0, 0, 0, 0.55), 0 0 30px rgba(92, 255, 170, 0.45), 0 0 60px rgba(92, 255, 170, 0.35);
+}
+
 /* Center glass card */
 .depth-card {
   position: absolute;
@@ -59,6 +84,13 @@
   text-align: center;
   z-index: 5;
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+}
+
+.depth-scene--section .depth-card {
+  width: min(520px, 88vw);
+  height: 280px;
+  padding: 24px 28px 22px;
+  border-radius: 16px;
 }
 
 .depth-card h2 {

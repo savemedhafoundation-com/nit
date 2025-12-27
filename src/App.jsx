@@ -25,6 +25,7 @@ function App() {
       {showSubscribe && (
         // <AnimatedDepthHero onClose={() => setShowSubscribe(false)} />
         <></>
+        
       )}
       {/* {!showSubscribe && <Navbar />} */}
       <Navbar/>

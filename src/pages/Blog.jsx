@@ -1,12 +1,25 @@
 import { Link } from 'react-router-dom';
+import heroBanner from '../assets/photo/bg.png';
+import featuredImage from '../assets/photo/recovery.png';
+import popularImageOne from '../assets/photo/cell.png';
+import popularImageTwo from '../assets/photo/detox.png';
+import latestImageOne from '../assets/photo/1._Cellular Intelligence.png';
+import latestImageTwo from '../assets/photo/2._Micronutrient Therapy.png';
+import latestImageThree from '../assets/photo/3._Toxin Detoxification.png';
+import latestImageFour from '../assets/photo/repair.png';
+import latestImageFive from '../assets/photo/toxin.png';
+import latestImageSix from '../assets/photo/5th.png';
+import projectImageOne from '../assets/photo/Rectangle 151.png';
+import projectImageTwo from '../assets/photo/Rectangle 153.png';
+import projectImageThree from '../assets/photo/Rectangle 158.png';
+import getInvolvedImage from '../assets/photo/ethicalGuidance.png';
 
 const Blog = () => {
   const featuredArticle = {
     id: 1,
     title: 'Guardians of the Pride: The Urgency of Lion Conservation Efforts',
     author: 'Rosa',
-    image:
-      'https://images.unsplash.com/photo-1546182990-dffeafbe841d?q=80&w=1600&auto=format&fit=crop',
+    image: featuredImage,
   };
 
   const popularArticles = [
@@ -14,15 +27,13 @@ const Blog = () => {
       id: 2,
       title: 'Unveiling the Enigmatic World of Giant Pandas',
       author: 'Gani',
-      image:
-        'https://images.unsplash.com/photo-1508264165352-258a6c3b43de?q=80&w=900&auto=format&fit=crop',
+      image: popularImageOne,
     },
     {
       id: 3,
       title: 'Exploring the Fascinating Realm of Birds',
       author: 'Mansi',
-      image:
-        'https://images.unsplash.com/photo-1470115636492-6d2b56f9146d?q=80&w=900&auto=format&fit=crop',
+      image: popularImageTwo,
     },
   ];
 
@@ -30,43 +41,37 @@ const Blog = () => {
     {
       id: 1,
       title: 'Fascinating facts about the yellow hammer',
-      image:
-        'https://images.unsplash.com/photo-1502082553048-f009c37129b9?q=80&w=900&auto=format&fit=crop',
+      image: latestImageOne,
       date: 'Thursday, 03 Feb 2025',
     },
     {
       id: 2,
       title: 'Supporting the Orkney Buffalo: A conservation tale',
-      image:
-        'https://images.unsplash.com/photo-1444464666168-49d633b86797?q=80&w=900&auto=format&fit=crop',
+      image: latestImageTwo,
       date: 'Tuesday, 28 Jan 2025',
     },
     {
       id: 3,
       title: 'Flamingo elegance: Unveiling the body and work',
-      image:
-        'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=900&auto=format&fit=crop',
+      image: latestImageThree,
       date: 'Monday, 20 Jan 2025',
     },
     {
       id: 4,
       title: 'Protecting the oceans and coral reefs of the tropics',
-      image:
-        'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=900&auto=format&fit=crop',
+      image: latestImageFour,
       date: 'Thursday, 16 Jan 2025',
     },
     {
       id: 5,
       title: 'Riverside otters: Discovering the enchanted wild',
-      image:
-        'https://images.unsplash.com/photo-1456926631375-92c8ce872def?q=80&w=900&auto=format&fit=crop',
+      image: latestImageFive,
       date: 'Wednesday, 08 Jan 2025',
     },
     {
       id: 6,
       title: 'Blossoms of Borneo: A journey into the orchid realm',
-      image:
-        'https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=900&auto=format&fit=crop',
+      image: latestImageSix,
       date: 'Thursday, 02 Jan 2025',
     },
   ];
@@ -75,22 +80,19 @@ const Blog = () => {
     {
       id: 1,
       title: 'Silent Night Flyers: A closer look at the mysterious world of owls',
-      image:
-        'https://images.unsplash.com/photo-1501706362039-c6e08f2a7b88?q=80&w=900&auto=format&fit=crop',
+      image: projectImageOne,
       tag: 'Birds Club',
     },
     {
       id: 2,
       title: 'Conserving African Cane Forest Kingdom',
-      image:
-        'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=900&auto=format&fit=crop',
+      image: projectImageTwo,
       tag: 'Plantation',
     },
     {
       id: 3,
       title: 'Exploring the Snowy World of White Tigers',
-      image:
-        'https://images.unsplash.com/photo-1516637090014-cb1ab0d08fc7?q=80&w=900&auto=format&fit=crop',
+      image: projectImageThree,
       tag: 'Wildlife',
     },
   ];
@@ -104,7 +106,7 @@ const Blog = () => {
         <div className="relative overflow-hidden rounded-[28px] bg-[#4d6b2f] shadow-[0_30px_80px_-60px_rgba(0,0,0,0.6)]">
           <img
             className="absolute inset-0 h-full w-full object-cover opacity-90"
-            src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=2000&auto=format&fit=crop"
+            src={heroBanner}
             alt="Lush green habitat"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#2f3c1a]/85 via-[#2f3c1a]/60 to-transparent" />
@@ -300,7 +302,7 @@ const Blog = () => {
               <div className="relative overflow-hidden rounded-2xl">
                 <img
                   className="h-full w-full object-cover"
-                  src="https://images.unsplash.com/photo-1456926631375-92c8ce872def?q=80&w=1400&auto=format&fit=crop"
+                  src={getInvolvedImage}
                   alt="Wildlife closeup"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
