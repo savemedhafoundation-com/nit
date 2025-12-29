@@ -827,6 +827,42 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
 
   </div>
 </div>
+  {/* Emergency conditions when choose for substitute */}
+  <div>
+    <div className="mx-auto max-w-[980px] rounded-[24px] bg-white px-6 py-10  sm:px-10">
+      <h3 className="text-2xl font-bold uppercase tracking-[0.18em] text-[#E23A3A] font-montserrat sm:text-xl">
+        Emergency Conditions When Choose for Substitute:
+      </h3>
+      <ul className="mt-3 list-disc space-y-2 pl-5 text-lg leading-7 text-[#1f2933] font-lora">
+        <li>
+          Severe chest pain, suspected heart attack, or stroke symptoms (sudden
+          weakness, slurred speech, facial drooping)
+        </li>
+        <li>Unconsciousness, seizures, or sudden collapse</li>
+        <li>Severe breathing difficulty, choking, or bluish lips/face</li>
+        <li>Heavy bleeding, major injury, fractures, or head trauma</li>
+        <li>High fever with confusion, stiff neck, or seizures</li>
+        <li>
+          Severe allergic reactions (swelling of face/throat, hives,
+          breathlessness)
+        </li>
+        <li>
+          Acute abdominal pain (appendicitis, intestinal obstruction,
+          perforation)
+        </li>
+        <li>Poisoning, overdose, or snake/insect bites</li>
+        <li>
+          Pregnancy emergencies (heavy bleeding, severe pain, reduced fetal
+          movement)
+        </li>
+        <li>
+          Severe dehydration, persistent vomiting, or diarrhea (especially in
+          children/elderly)
+        </li>
+        <li>Sudden loss of vision or speech</li>
+      </ul>
+    </div>
+  </div>
 
       </section>
 

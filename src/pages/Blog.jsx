@@ -219,7 +219,7 @@ const Blog = () => {
                 className="block overflow-hidden rounded-2xl bg-white shadow-[0_16px_36px_-28px_rgba(0,0,0,0.6)]"
               >
                 <div className="relative h-44">
-                  <img className="h-full w-full object-cover" src={article.image} alt={article.title} />
+                  <img className="h-full w-full object-contain" src={article.image} alt={article.title} />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
                 </div>
                 <div className="p-4">
