@@ -162,6 +162,14 @@ const BlogDetails = () => {
     });
   };
 
+  const loadingBar = (
+    <div className="mt-6 flex items-center justify-center">
+      <div className="h-2 w-full max-w-[320px] overflow-hidden rounded-full bg-slate-200">
+        <div className="h-full w-2/3 animate-pulse rounded-full bg-slate-400/60" />
+      </div>
+    </div>
+  );
+
   const handleLike = async () => {
     if (!post?._id) return;
     if (liked) return;
@@ -281,20 +289,20 @@ const BlogDetails = () => {
         <div className="mt-6 grid gap-8 lg:grid-cols-[2.1fr_1fr]">
           <article className="overflow-hidden rounded-[28px] bg-white shadow-[0_24px_60px_-40px_rgba(0,0,0,0.6)]">
             <div className="relative h-64 sm:h-72 lg:h-96">
-              <img
-                className="h-full w-full object-cover"
-                src={post?.imageUrl || heroImageOne}
-                alt={post?.title || 'Blog'}
-              />
+              {!status.loading && (
+                <img
+                  className="h-full w-full object-cover"
+                  src={post?.imageUrl || heroImageOne}
+                  alt={post?.title || 'Blog'}
+                />
+              )}
               <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/20 to-transparent" />
               <span className="absolute left-6 top-6 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-slate-700">
                 {post?.category || 'Blog'}
               </span>
             </div>
             <div className="p-8">
-              {status.loading && (
-                <p className="text-xs uppercase tracking-[0.25em] text-slate-400">Loading...</p>
-              )}
+              {status.loading && loadingBar}
               {!status.loading && status.error && (
                 <p className="text-xs uppercase tracking-[0.25em] text-red-500">{status.error}</p>
               )}
@@ -314,34 +322,38 @@ const BlogDetails = () => {
                 <span className="text-slate-300">|</span>
                 <span>{readTime(post?.description)}</span>
               </div>
-              <div className="mt-4 flex flex-wrap items-center gap-3 text-sm text-slate-600">
-                <span>Likes: {post?.likesCount ?? 0}</span>
-                <span className="text-slate-300">|</span>
-                <span>Shares: {post?.sharesCount ?? 0}</span>
-                <span className="text-slate-300">|</span>
-                <span>Comments: {post?.comments?.length ?? 0}</span>
-              </div>
-              <div className="mt-4 flex flex-wrap gap-3">
-                <button
-                  type="button"
-                  onClick={handleLike}
-                  disabled={liked}
-                  className="rounded-full border border-slate-300 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-slate-700"
-                >
-                  {liked ? 'Liked' : 'Like'}
-                </button>
-                <button
-                  type="button"
-                  onClick={handleShare}
-                  className="rounded-full border border-slate-300 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-slate-700"
-                >
-                  Share
-                </button>
-              </div>
+              {!status.loading && !status.error && (
+                <>
+                  <div className="mt-4 flex flex-wrap items-center gap-3 text-sm text-slate-600">
+                    <span>Likes: {post?.likesCount ?? 0}</span>
+                    <span className="text-slate-300">|</span>
+                    <span>Shares: {post?.sharesCount ?? 0}</span>
+                    <span className="text-slate-300">|</span>
+                    <span>Comments: {post?.comments?.length ?? 0}</span>
+                  </div>
+                  <div className="mt-4 flex flex-wrap gap-3">
+                    <button
+                      type="button"
+                      onClick={handleLike}
+                      disabled={liked}
+                      className="rounded-full border border-slate-300 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-slate-700"
+                    >
+                      {liked ? 'Liked' : 'Like'}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={handleShare}
+                      className="rounded-full border border-slate-300 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-slate-700"
+                    >
+                      Share
+                    </button>
+                  </div>
+                </>
+              )}
 
-              {post?.description && <div className="mt-6">{renderDescription()}</div>}
+              {!status.loading && post?.description && <div className="mt-6">{renderDescription()}</div>}
 
-              {Array.isArray(post?.faqs) && post.faqs.length > 0 && (
+              {!status.loading && Array.isArray(post?.faqs) && post.faqs.length > 0 && (
                 <div className="mt-8 rounded-2xl bg-[#f6f2ea] p-6">
                   <h3
                     className="text-lg font-semibold text-slate-900"
@@ -377,7 +389,8 @@ const BlogDetails = () => {
               </div>
             )}
 
-            <div className="rounded-2xl bg-white p-6 shadow-sm">
+            {!status.loading && (
+              <div className="rounded-2xl bg-white p-6 shadow-sm">
               <h3
                 className="text-lg font-semibold text-slate-900"
                 style={{ fontFamily: '"Playfair Display", serif' }}
@@ -436,7 +449,8 @@ const BlogDetails = () => {
                   ))}
                 </ul>
               )}
-            </div>
+              </div>
+            )}
 
             <div className="rounded-2xl bg-white p-6 shadow-sm">
               <h3

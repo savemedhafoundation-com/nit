@@ -1,110 +1,19 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import heroBanner from '../assets/photo/bg.png';
-import featuredImage from '../assets/photo/recovery.png';
-import popularImageOne from '../assets/photo/cell.png';
-import popularImageTwo from '../assets/photo/detox.png';
-import latestImageOne from '../assets/photo/1._Cellular Intelligence.png';
-import latestImageTwo from '../assets/photo/2._Micronutrient Therapy.png';
-import latestImageThree from '../assets/photo/3._Toxin Detoxification.png';
-import latestImageFour from '../assets/photo/repair.png';
-import latestImageFive from '../assets/photo/toxin.png';
-import latestImageSix from '../assets/photo/5th.png';
-import projectImageOne from '../assets/photo/Rectangle 151.png';
-import projectImageTwo from '../assets/photo/Rectangle 153.png';
-import projectImageThree from '../assets/photo/Rectangle 158.png';
 import getInvolvedImage from '../assets/photo/ethicalGuidance.png';
 import api from '../utils/api';
 
 const Blog = () => {
   const [latestBlogs, setLatestBlogs] = useState([]);
-  const featuredArticle = {
-    id: 1,
-    title: 'Guardians of the Pride: The Urgency of Lion Conservation Efforts',
-    author: 'Rosa',
-    image: featuredImage,
-  };
-
-  const popularArticles = [
-    {
-      id: 2,
-      title: 'Unveiling the Enigmatic World of Giant Pandas',
-      author: 'Gani',
-      image: popularImageOne,
-    },
-    {
-      id: 3,
-      title: 'Exploring the Fascinating Realm of Birds',
-      author: 'Mansi',
-      image: popularImageTwo,
-    },
-  ];
-
-  const fallbackLatestArticles = [
-    {
-      id: 1,
-      title: 'Fascinating facts about the yellow hammer',
-      image: latestImageOne,
-      date: 'Thursday, 03 Feb 2025',
-    },
-    {
-      id: 2,
-      title: 'Supporting the Orkney Buffalo: A conservation tale',
-      image: latestImageTwo,
-      date: 'Tuesday, 28 Jan 2025',
-    },
-    {
-      id: 3,
-      title: 'Flamingo elegance: Unveiling the body and work',
-      image: latestImageThree,
-      date: 'Monday, 20 Jan 2025',
-    },
-    {
-      id: 4,
-      title: 'Protecting the oceans and coral reefs of the tropics',
-      image: latestImageFour,
-      date: 'Thursday, 16 Jan 2025',
-    },
-    {
-      id: 5,
-      title: 'Riverside otters: Discovering the enchanted wild',
-      image: latestImageFive,
-      date: 'Wednesday, 08 Jan 2025',
-    },
-    {
-      id: 6,
-      title: 'Blossoms of Borneo: A journey into the orchid realm',
-      image: latestImageSix,
-      date: 'Thursday, 02 Jan 2025',
-    },
-  ];
-
-  const projects = [
-    {
-      id: 1,
-      title: 'Silent Night Flyers: A closer look at the mysterious world of owls',
-      image: projectImageOne,
-      tag: 'Birds Club',
-    },
-    {
-      id: 2,
-      title: 'Conserving African Cane Forest Kingdom',
-      image: projectImageTwo,
-      tag: 'Plantation',
-    },
-    {
-      id: 3,
-      title: 'Exploring the Snowy World of White Tigers',
-      image: projectImageThree,
-      tag: 'Wildlife',
-    },
-  ];
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     let isMounted = true;
 
     const loadLatestBlogs = async () => {
       try {
+        setLoading(true);
         const { data } = await api.get('/blogs?limit=12');
         const items = Array.isArray(data?.data) ? data.data : [];
         if (isMounted) {
@@ -113,6 +22,10 @@ const Blog = () => {
       } catch (error) {
         if (isMounted) {
           setLatestBlogs([]);
+        }
+      } finally {
+        if (isMounted) {
+          setLoading(false);
         }
       }
     };
@@ -136,48 +49,51 @@ const Blog = () => {
     });
   };
 
-  const latestFeed =
-    latestBlogs.length > 0
-      ? latestBlogs.slice(0, 6).map((blog, index) => ({
-          id: blog._id,
-          title: blog.title,
-          image: blog.imageUrl || latestImageOne,
-          date: formatDate(blog.createdAt) || fallbackLatestArticles[index]?.date || '',
-        }))
-      : fallbackLatestArticles;
-
   const featuredContent = latestBlogs[0]
     ? {
         id: latestBlogs[0]._id,
         title: latestBlogs[0].title,
         author: latestBlogs[0].writtenBy || 'NIT',
-        image: latestBlogs[0].imageUrl || featuredImage,
+        image: latestBlogs[0].imageUrl,
       }
-    : featuredArticle;
+    : null;
 
-  const popularFallback = latestBlogs.slice(1, 3).map((blog, index) => ({
-    id: blog._id,
-    title: blog.title,
-    author: blog.writtenBy || 'NIT',
-    image: blog.imageUrl || (index === 0 ? popularImageOne : popularImageTwo),
-  }));
-
-  const popularSpotlight = latestBlogs
+  const popularContent = latestBlogs
     .filter(blog => blog.spotlight)
     .slice(0, 2)
-    .map((blog, index) => ({
+    .map(blog => ({
       id: blog._id,
       title: blog.title,
       author: blog.writtenBy || 'NIT',
-      image: blog.imageUrl || (index === 0 ? popularImageOne : popularImageTwo),
-    }));
+      image: blog.imageUrl,
+    }))
+    .concat(
+      latestBlogs
+        .filter(blog => !blog.spotlight)
+        .slice(1, 3)
+        .map(blog => ({
+          id: blog._id,
+          title: blog.title,
+          author: blog.writtenBy || 'NIT',
+          image: blog.imageUrl,
+        }))
+    )
+    .slice(0, 2);
 
-  const popularContent =
-    popularSpotlight.length > 0
-      ? popularSpotlight
-      : popularFallback.length > 0
-      ? popularFallback
-      : popularArticles;
+  const latestFeed = latestBlogs.slice(0, 6).map(blog => ({
+    id: blog._id,
+    title: blog.title,
+    image: blog.imageUrl,
+    date: formatDate(blog.createdAt),
+  }));
+
+  const loadingBar = (
+    <div className="mt-6 flex items-center justify-center">
+      <div className="h-2 w-full max-w-[320px] overflow-hidden rounded-full bg-slate-200">
+        <div className="h-full w-2/3 animate-pulse rounded-full bg-slate-400/60" />
+      </div>
+    </div>
+  );
 
   return (
     <section className="bg-[#f3f1ec] text-slate-900" style={{ fontFamily: '"Source Sans 3", sans-serif' }}>
@@ -222,53 +138,55 @@ const Blog = () => {
             </button>
           </div>
 
-          <div className="mt-6 grid gap-6 lg:grid-cols-[2fr_1fr]">
-            <Link
-              to={`/blog/${featuredContent.id}`}
-              className="group block overflow-hidden rounded-2xl bg-white shadow-[0_20px_40px_-30px_rgba(0,0,0,0.6)]"
-            >
-              <div className="relative h-56 sm:h-64 lg:h-[360px]">
-                <img
-                  className="h-full w-full object-cover"
-                  src={featuredContent.image}
-                  alt={featuredContent.title}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/15 to-transparent" />
-                <span className="absolute bottom-4 left-4 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-slate-700">
-                  By {featuredContent.author}
-                </span>
-              </div>
-              <div className="p-6">
-                <h3
-                  className="text-lg font-semibold text-slate-900 group-hover:text-[#4d6b2f]"
-                  style={{ fontFamily: '"Playfair Display", serif' }}
-                >
-                  {featuredContent.title}
-                </h3>
-              </div>
-            </Link>
-            <div className="space-y-4">
-              {popularContent.map(article => (
-                <Link
-                  key={article.id}
-                  to={`/blog/${article.id}`}
-                  className="block overflow-hidden rounded-2xl bg-white shadow-sm"
-                >
-                  <div className="flex items-center gap-4 p-3">
-                    <img className="h-16 w-16 rounded-xl object-cover" src={article.image} alt={article.title} />
-                    <div>
-                      <p className="text-xs uppercase tracking-[0.2em] text-slate-400">Spotlight</p>
-                      <h3
-                        className="text-sm font-semibold text-slate-800"
-                        style={{ fontFamily: '"Playfair Display", serif' }}
-                      >
-                        {article.title}
-                      </h3>
+          {loading && loadingBar}
+          {!loading && featuredContent && (
+            <div className="mt-6 grid gap-6 lg:grid-cols-[2fr_1fr]">
+              <Link
+                to={`/blog/${featuredContent.id}`}
+                className="group block overflow-hidden rounded-2xl bg-white shadow-[0_20px_40px_-30px_rgba(0,0,0,0.6)]"
+              >
+                <div className="relative h-56 sm:h-64 lg:h-[360px]">
+                  <img
+                    className="h-full w-full object-cover"
+                    src={featuredContent.image}
+                    alt={featuredContent.title}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/15 to-transparent" />
+                  <span className="absolute bottom-4 left-4 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-slate-700">
+                    By {featuredContent.author}
+                  </span>
+                </div>
+                <div className="p-6">
+                  <h3
+                    className="text-lg font-semibold text-slate-900 group-hover:text-[#4d6b2f]"
+                    style={{ fontFamily: '"Playfair Display", serif' }}
+                  >
+                    {featuredContent.title}
+                  </h3>
+                </div>
+              </Link>
+              <div className="space-y-4">
+                {popularContent.map(article => (
+                  <Link
+                    key={article.id}
+                    to={`/blog/${article.id}`}
+                    className="block overflow-hidden rounded-2xl bg-white shadow-sm"
+                  >
+                    <div className="flex items-center gap-4 p-3">
+                      <img className="h-16 w-16 rounded-xl object-cover" src={article.image} alt={article.title} />
+                      <div>
+                        <p className="text-xs uppercase tracking-[0.2em] text-slate-400">Spotlight</p>
+                        <h3
+                          className="text-sm font-semibold text-slate-800"
+                          style={{ fontFamily: '"Playfair Display", serif' }}
+                        >
+                          {article.title}
+                        </h3>
+                      </div>
                     </div>
-                  </div>
-                </Link>
-              ))}
-              <div className="rounded-2xl bg-[#e7e3dc] p-6">
+                  </Link>
+                ))}
+                 <div className="rounded-2xl bg-[#e7e3dc] p-6">
                 <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-600">Highlights</h3>
                 <p className="mt-3 text-sm text-slate-600">
                   Field researchers share the newest insights on wildlife care, habitat restoration, and community-led
@@ -278,8 +196,12 @@ const Blog = () => {
                   Read the digest
                 </button>
               </div>
+              </div>
             </div>
-          </div>
+          )}
+          {!loading && !featuredContent && (
+            <p className="mt-6 text-sm text-slate-500">No blogs available yet.</p>
+          )}
         </div>
 
         <div className="mt-14">
@@ -297,29 +219,35 @@ const Blog = () => {
               &gt;&gt;
             </button>
           </div>
-          <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {latestFeed.map(article => (
-              <Link
-                key={article.id}
-                to={`/blog/${article.id}`}
-                className="block overflow-hidden rounded-2xl bg-white shadow-[0_16px_36px_-28px_rgba(0,0,0,0.6)]"
-              >
-                <div className="relative h-44">
-                  <img className="h-full w-full object-contain" src={article.image} alt={article.title} />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
-                </div>
-                <div className="p-4">
-                  <p className="text-xs uppercase tracking-[0.2em] text-slate-400">{article.date}</p>
-                  <h3
-                    className="mt-2 text-sm font-semibold text-slate-900"
-                    style={{ fontFamily: '"Playfair Display", serif' }}
-                  >
-                    {article.title}
-                  </h3>
-                </div>
-              </Link>
-            ))}
-          </div>
+          {loading && loadingBar}
+          {!loading && latestFeed.length > 0 && (
+            <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {latestFeed.map(article => (
+                <Link
+                  key={article.id}
+                  to={`/blog/${article.id}`}
+                  className="block overflow-hidden rounded-2xl bg-white shadow-[0_16px_36px_-28px_rgba(0,0,0,0.6)]"
+                >
+                  <div className="relative h-44">
+                    <img className="h-full w-full object-contain" src={article.image} alt={article.title} />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
+                  </div>
+                  <div className="p-4">
+                    <p className="text-xs uppercase tracking-[0.2em] text-slate-400">{article.date}</p>
+                    <h3
+                      className="mt-2 text-sm font-semibold text-slate-900"
+                      style={{ fontFamily: '"Playfair Display", serif' }}
+                    >
+                      {article.title}
+                    </h3>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          )}
+          {!loading && latestFeed.length === 0 && (
+            <p className="mt-6 text-sm text-slate-500">No blogs available yet.</p>
+          )}
         </div>
 
         <div className="mt-14">
@@ -337,30 +265,36 @@ const Blog = () => {
               &gt;
             </button>
           </div>
-          <div className="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {latestBlogs.slice(0, 3).map(project => (
-              <article
-                key={project.id}
-                className="group overflow-hidden rounded-2xl bg-white shadow-[0_20px_40px_-32px_rgba(0,0,0,0.6)]"
-              >
-                <div className="relative h-44">
-                  <img className="h-full w-full object-cover" src={project.imageUrl} alt={project.title} />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/5 to-transparent" />
-                  <span className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-slate-700">
-                    {project.category}
-                  </span>
-                </div>
-                <div className="p-4">
-                  <h3
-                    className="text-sm font-semibold text-slate-900 group-hover:text-[#4d6b2f]"
-                    style={{ fontFamily: '"Playfair Display", serif' }}
-                  >
-                    {project.title}
-                  </h3>
-                </div>
-              </article>
-            ))}
-          </div>
+          {loading && loadingBar}
+          {!loading && latestBlogs.length > 0 && (
+            <div className="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {latestBlogs.slice(0, 3).map(project => (
+                <article
+                  key={project._id}
+                  className="group overflow-hidden rounded-2xl bg-white shadow-[0_20px_40px_-32px_rgba(0,0,0,0.6)]"
+                >
+                  <div className="relative h-44">
+                    <img className="h-full w-full object-cover" src={project.imageUrl} alt={project.title} />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/5 to-transparent" />
+                    <span className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-slate-700">
+                      {project.category}
+                    </span>
+                  </div>
+                  <div className="p-4">
+                    <h3
+                      className="text-sm font-semibold text-slate-900 group-hover:text-[#4d6b2f]"
+                      style={{ fontFamily: '"Playfair Display", serif' }}
+                    >
+                      {project.title}
+                    </h3>
+                  </div>
+                </article>
+              ))}
+            </div>
+          )}
+          {!loading && latestBlogs.length === 0 && (
+            <p className="mt-6 text-sm text-slate-500">No blogs available yet.</p>
+          )}
         </div>
 
         <div className="mt-16 overflow-hidden rounded-[28px] bg-[#f6f2ea] shadow-[0_30px_60px_-45px_rgba(0,0,0,0.6)]">
