@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import heroBanner from '../assets/photo/bg.png';
 import featuredImage from '../assets/photo/recovery.png';
@@ -13,8 +14,10 @@ import projectImageOne from '../assets/photo/Rectangle 151.png';
 import projectImageTwo from '../assets/photo/Rectangle 153.png';
 import projectImageThree from '../assets/photo/Rectangle 158.png';
 import getInvolvedImage from '../assets/photo/ethicalGuidance.png';
+import api from '../utils/api';
 
 const Blog = () => {
+  const [latestBlogs, setLatestBlogs] = useState([]);
   const featuredArticle = {
     id: 1,
     title: 'Guardians of the Pride: The Urgency of Lion Conservation Efforts',
@@ -37,7 +40,7 @@ const Blog = () => {
     },
   ];
 
-  const latestArticles = [
+  const fallbackLatestArticles = [
     {
       id: 1,
       title: 'Fascinating facts about the yellow hammer',
@@ -97,6 +100,85 @@ const Blog = () => {
     },
   ];
 
+  useEffect(() => {
+    let isMounted = true;
+
+    const loadLatestBlogs = async () => {
+      try {
+        const { data } = await api.get('/blogs?limit=12');
+        const items = Array.isArray(data?.data) ? data.data : [];
+        if (isMounted) {
+          setLatestBlogs(items);
+        }
+      } catch (error) {
+        if (isMounted) {
+          setLatestBlogs([]);
+        }
+      }
+    };
+
+    loadLatestBlogs();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const formatDate = value => {
+    if (!value) return '';
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime())) return '';
+    return date.toLocaleDateString('en-US', {
+      weekday: 'long',
+      day: '2-digit',
+      month: 'short',
+      year: 'numeric',
+    });
+  };
+
+  const latestFeed =
+    latestBlogs.length > 0
+      ? latestBlogs.slice(0, 6).map((blog, index) => ({
+          id: blog._id,
+          title: blog.title,
+          image: blog.imageUrl || latestImageOne,
+          date: formatDate(blog.createdAt) || fallbackLatestArticles[index]?.date || '',
+        }))
+      : fallbackLatestArticles;
+
+  const featuredContent = latestBlogs[0]
+    ? {
+        id: latestBlogs[0]._id,
+        title: latestBlogs[0].title,
+        author: latestBlogs[0].writtenBy || 'NIT',
+        image: latestBlogs[0].imageUrl || featuredImage,
+      }
+    : featuredArticle;
+
+  const popularFallback = latestBlogs.slice(1, 3).map((blog, index) => ({
+    id: blog._id,
+    title: blog.title,
+    author: blog.writtenBy || 'NIT',
+    image: blog.imageUrl || (index === 0 ? popularImageOne : popularImageTwo),
+  }));
+
+  const popularSpotlight = latestBlogs
+    .filter(blog => blog.spotlight)
+    .slice(0, 2)
+    .map((blog, index) => ({
+      id: blog._id,
+      title: blog.title,
+      author: blog.writtenBy || 'NIT',
+      image: blog.imageUrl || (index === 0 ? popularImageOne : popularImageTwo),
+    }));
+
+  const popularContent =
+    popularSpotlight.length > 0
+      ? popularSpotlight
+      : popularFallback.length > 0
+      ? popularFallback
+      : popularArticles;
+
   return (
     <section className="bg-[#f3f1ec] text-slate-900" style={{ fontFamily: '"Source Sans 3", sans-serif' }}>
       <style>{`
@@ -142,14 +224,18 @@ const Blog = () => {
 
           <div className="mt-6 grid gap-6 lg:grid-cols-[2fr_1fr]">
             <Link
-              to={`/blog/${featuredArticle.id}`}
+              to={`/blog/${featuredContent.id}`}
               className="group block overflow-hidden rounded-2xl bg-white shadow-[0_20px_40px_-30px_rgba(0,0,0,0.6)]"
             >
               <div className="relative h-56 sm:h-64 lg:h-[360px]">
-                <img className="h-full w-full object-cover" src={featuredArticle.image} alt={featuredArticle.title} />
+                <img
+                  className="h-full w-full object-cover"
+                  src={featuredContent.image}
+                  alt={featuredContent.title}
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/15 to-transparent" />
                 <span className="absolute bottom-4 left-4 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-slate-700">
-                  By {featuredArticle.author}
+                  By {featuredContent.author}
                 </span>
               </div>
               <div className="p-6">
@@ -157,12 +243,12 @@ const Blog = () => {
                   className="text-lg font-semibold text-slate-900 group-hover:text-[#4d6b2f]"
                   style={{ fontFamily: '"Playfair Display", serif' }}
                 >
-                  {featuredArticle.title}
+                  {featuredContent.title}
                 </h3>
               </div>
             </Link>
             <div className="space-y-4">
-              {popularArticles.map(article => (
+              {popularContent.map(article => (
                 <Link
                   key={article.id}
                   to={`/blog/${article.id}`}
@@ -212,7 +298,7 @@ const Blog = () => {
             </button>
           </div>
           <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {latestArticles.map(article => (
+            {latestFeed.map(article => (
               <Link
                 key={article.id}
                 to={`/blog/${article.id}`}
@@ -252,13 +338,16 @@ const Blog = () => {
             </button>
           </div>
           <div className="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {projects.map(project => (
-              <article key={project.id} className="group overflow-hidden rounded-2xl bg-white shadow-[0_20px_40px_-32px_rgba(0,0,0,0.6)]">
+            {latestBlogs.slice(0, 3).map(project => (
+              <article
+                key={project.id}
+                className="group overflow-hidden rounded-2xl bg-white shadow-[0_20px_40px_-32px_rgba(0,0,0,0.6)]"
+              >
                 <div className="relative h-44">
-                  <img className="h-full w-full object-cover" src={project.image} alt={project.title} />
+                  <img className="h-full w-full object-cover" src={project.imageUrl} alt={project.title} />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/5 to-transparent" />
                   <span className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-slate-700">
-                    {project.tag}
+                    {project.category}
                   </span>
                 </div>
                 <div className="p-4">
