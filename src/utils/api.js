@@ -9,8 +9,8 @@ const resolveBaseURL = () => {
   }
 
   // Default to deployed backend when no env var is provided.
-  // const hosted = 'https://nitbackend.vercel.app/api';
-   const hosted = 'http://localhost:3000/api';
+  const hosted = 'https://nitbackend.vercel.app/api';
+  //  const hosted = 'http://localhost:3000/api';
   // In dev, we still use hosted unless a VITE_API_URL overrides.
   if (import.meta.env.DEV) {
     return hosted;
