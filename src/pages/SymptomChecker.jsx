@@ -10,6 +10,7 @@ import {
   fetchTreatmentDetails,
   createReportSnapshot,
 } from '../services/api';
+import BoostersParticles from '../components/BoostersParticles';
 
 const steps = [
   'Info',
@@ -275,7 +276,10 @@ const SymptomChecker = ({ embedded = false }) => {
     : 'mx-auto max-w-6xl';
 
   return (
+    <section className="bg-slate-900 text-slate-50">
+      <BoostersParticles name={"CHECK CAUSE FOR THE SYMPTOMS"} />
     <div className={outerClasses}>
+    
       <div className={innerClasses}>
         <div className="mb-6">
           <p className="text-xs uppercase tracking-[0.25em] text-[#0d7120]">Natural Immunotherapy</p>
@@ -670,6 +674,7 @@ const SymptomChecker = ({ embedded = false }) => {
         )}
       </div>
     </div>
+    </section>
   );
 };
 

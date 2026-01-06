@@ -1,7 +1,14 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import { FaFacebookF, FaLinkedinIn, FaWhatsapp } from 'react-icons/fa';
+import { FaXTwitter } from 'react-icons/fa6';
+import { FiCopy } from 'react-icons/fi';
+import { MdEmail } from 'react-icons/md';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import heroImageOne from '../assets/photo/recovery.png';
 import api from '../utils/api';
+import { IoClose } from "react-icons/io5";
 
 const BlogDetails = () => {
   const { id } = useParams();
@@ -11,6 +18,7 @@ const BlogDetails = () => {
   const [commentStatus, setCommentStatus] = useState({ loading: false, error: '', success: '' });
   const [liked, setLiked] = useState(false);
   const [shareOpen, setShareOpen] = useState(false);
+  const [relatedPosts, setRelatedPosts] = useState([]);
 
   useEffect(() => {
     let isMounted = true;
@@ -55,6 +63,12 @@ const BlogDetails = () => {
   };
 
   const stripHtml = value => (value ? value.replace(/<(.|\n)*?>/g, ' ').trim() : '');
+
+  const truncateText = (value, maxLength) => {
+    if (!value) return '';
+    if (value.length <= maxLength) return value;
+    return `${value.slice(0, maxLength).trim()}...`;
+  };
 
   const readTime = value => {
     const text = stripHtml(value);
@@ -241,8 +255,9 @@ const BlogDetails = () => {
     if (platform === 'copy') {
       try {
         await navigator.clipboard.writeText(shareUrl);
+        toast.success('Link copied.');
       } catch (error) {
-        // Ignore clipboard errors.
+        toast.error('Unable to copy the link.');
       }
     } else if (links[platform]) {
       window.open(links[platform], '_blank', 'noopener,noreferrer');
@@ -261,6 +276,39 @@ const BlogDetails = () => {
     const stored = localStorage.getItem(`liked-blog-${post._id}`) === 'true';
     setLiked(stored);
   }, [post?._id]);
+
+  useEffect(() => {
+    if (!post?.category || !post?._id) {
+      setRelatedPosts([]);
+      return;
+    }
+
+    let isMounted = true;
+
+    const loadRelated = async () => {
+      try {
+        const { data } = await api.get('/blogs?limit=12');
+        const items = Array.isArray(data?.data) ? data.data : [];
+        const filtered = items
+          .filter(item => item?._id && item._id !== post._id)
+          .filter(item => (item?.category || '').toLowerCase() === post.category.toLowerCase())
+          .slice(0, 3);
+        if (isMounted) {
+          setRelatedPosts(filtered);
+        }
+      } catch (error) {
+        if (isMounted) {
+          setRelatedPosts([]);
+        }
+      }
+    };
+
+    loadRelated();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [post?._id, post?.category]);
 
   return (
     <section className="bg-[#f3f1ec] text-slate-900" style={{ fontFamily: '"Source Sans 3", sans-serif' }}>
@@ -439,15 +487,18 @@ const BlogDetails = () => {
                 </button>
               </form>
               {Array.isArray(post?.comments) && post.comments.length > 0 && (
-                <ul className="mt-5 space-y-3 text-sm text-slate-700">
+                <div className="mt-5 max-h-72 space-y-3 overflow-y-auto pr-2 text-sm text-slate-700">
                   {post.comments.map(item => (
-                    <li key={item._id || `${item.name}-${item.createdAt}`}>
-                      <p className="font-semibold">{item.name}</p>
-                      <p className="text-xs text-slate-400">{item.phoneNumber}</p>
-                      <p className="mt-1">{item.comment}</p>
-                    </li>
+                    <div
+                      key={item._id || `${item.name}-${item.createdAt}`}
+                      className="rounded-2xl border border-slate-200 bg-slate-50 p-4 shadow-sm"
+                    >
+                      <p className="font-semibold text-slate-900">{item.name}</p>
+                      {/* <p className="text-xs text-slate-400">{item.phoneNumber}</p> */}
+                      <p className="mt-2 text-sm text-slate-600">{item.comment}</p>
+                    </div>
                   ))}
-                </ul>
+                </div>
               )}
               </div>
             )}
@@ -474,6 +525,40 @@ const BlogDetails = () => {
                 </button>
               </div>
             </div>
+
+            {relatedPosts.length > 0 && (
+              <div className="rounded-2xl bg-white p-6 shadow-sm">
+                <h3
+                  className="text-lg font-semibold text-slate-900"
+                  style={{ fontFamily: '"Playfair Display", serif' }}
+                >
+                  Related blogs
+                </h3>
+                <div className="mt-4 space-y-4">
+                  {relatedPosts.map(item => (
+                    <Link
+                      key={item._id}
+                      to={`/blog/${item._id}`}
+                      className="flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 p-3 transition hover:border-slate-300"
+                    >
+                      <img
+                        className="h-16 w-16 rounded-lg object-cover"
+                        src={item.imageUrl}
+                        alt={item.title || 'Related blog'}
+                      />
+                      <div>
+                        <p className="text-xs uppercase tracking-[0.2em] text-slate-400">
+                          {readTime(item.description)}
+                        </p>
+                        <p className="mt-1 text-sm font-semibold text-slate-800">
+                          {truncateText(item.title || 'Blog', 58)}
+                        </p>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
           </aside>
         </div>
       </div>
@@ -492,56 +577,63 @@ const BlogDetails = () => {
                 onClick={() => setShareOpen(false)}
                 className="rounded-full border border-slate-300 bg-white px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-slate-700"
               >
-                Close
+                <IoClose className="text-2xl" />
               </button>
             </div>
             <div className="mt-4 grid grid-cols-2 gap-3 text-sm">
               <button
                 type="button"
                 onClick={() => handleShareClick('facebook')}
-                className="rounded-xl border border-slate-200 bg-white px-4 py-3 text-slate-700"
+                className="rounded-xl border border-slate-200 bg-white px-4 py-3 text-[#1877F2]"
+                aria-label="Share on Facebook"
               >
-                Facebook
+                <FaFacebookF className="mx-auto h-5 w-5" />
               </button>
               <button
                 type="button"
                 onClick={() => handleShareClick('twitter')}
-                className="rounded-xl border border-slate-200 bg-white px-4 py-3 text-slate-700"
+                className="rounded-xl border border-slate-200 bg-white px-4 py-3 text-black"
+                aria-label="Share on X"
               >
-                Twitter
+                <FaXTwitter className="mx-auto h-5 w-5" />
               </button>
               <button
                 type="button"
                 onClick={() => handleShareClick('linkedin')}
-                className="rounded-xl border border-slate-200 bg-white px-4 py-3 text-slate-700"
+                className="rounded-xl border border-slate-200 bg-white px-4 py-3 text-[#0A66C2]"
+                aria-label="Share on LinkedIn"
               >
-                LinkedIn
+                <FaLinkedinIn className="mx-auto h-5 w-5" />
               </button>
               <button
                 type="button"
                 onClick={() => handleShareClick('whatsapp')}
-                className="rounded-xl border border-slate-200 bg-white px-4 py-3 text-slate-700"
+                className="rounded-xl border border-slate-200 bg-white px-4 py-3 text-[#25D366]"
+                aria-label="Share on WhatsApp"
               >
-                WhatsApp
+                <FaWhatsapp className="mx-auto h-5 w-5" />
               </button>
               <button
                 type="button"
                 onClick={() => handleShareClick('email')}
-                className="rounded-xl border border-slate-200 bg-white px-4 py-3 text-slate-700"
+                className="rounded-xl border border-slate-200 bg-white px-4 py-3 text-[#EA4335]"
+                aria-label="Share via email"
               >
-                Email
+                <MdEmail className="mx-auto h-5 w-5" />
               </button>
               <button
                 type="button"
                 onClick={() => handleShareClick('copy')}
                 className="rounded-xl border border-slate-200 bg-white px-4 py-3 text-slate-700"
+                aria-label="Copy link"
               >
-                Copy link
+                <FiCopy className="mx-auto h-5 w-5" />
               </button>
             </div>
           </div>
         </div>
       )}
+      <ToastContainer position="bottom-center" autoClose={2200} hideProgressBar theme="colored" />
     </section>
   );
 };

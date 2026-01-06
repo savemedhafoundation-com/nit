@@ -21,6 +21,7 @@ import Footer from "../components/Footer";
 import asknit from "../assets/photo/asknit.png";
 import { RiChatAiLine } from "react-icons/ri";
 
+
 const therapyTabs = [
   { label: "NATURAL CURE" },
   { label: "NON CHEMICAL THERAPY" },
@@ -296,19 +297,30 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
             showHeroPanel ? "pointer-events-none opacity-0" : "opacity-100"
           }`}
         >
-          <div className="flex min-h-[180px] w-full max-w-[720px] min-w-[320px] flex-col items-center gap-6 rounded-3xl border border-white/20 bg-white/10 px-8 py-10 text-center backdrop-blur-xl">
-            <p className="min-h-[48px] text-[34px] leading-[48px] font-lora font-normal text-white">
+          <div className="flex min-h-[280px] w-full max-w-[720px] min-w-[320px] flex-col items-center gap-6 rounded-3xl border border-white/20 bg-white/10 px-8 py-10 text-center backdrop-blur-xl">
+            <p className="min-h-[40px]
+    sm:min-h-[44px]
+    md:min-h-[48px] text-[34px] leading-[48px] font-lora font-normal text-white">
               <span ref={heroCompactTypedRef} />
             </p>
             <a
-              href="#therapies"
-              className="inline-flex items-center justify-center uppercase rounded-full bg-gradient-to-b from-[#76e16d] via-[#31a12d] to-[#0d6615] px-10 py-3 text-lg font-semibold text-white shadow-[0_16px_32px_rgba(20,110,33,0.35)] transition hover:-translate-y-0.5 hover:shadow-[0_18px_36px_rgba(20,110,33,0.45)] font-montserrat"
-            >
-              Ask Your Problem
-            </a>
+  href="#therapies"
+  className="
+    inline-flex items-center justify-center
+    uppercase rounded-full
+    bg-gradient-to-b from-[#76e16d] via-[#31a12d] to-[#0d6615]
+    px-10 py-3 text-lg font-semibold text-white
+    shadow-[0_16px_32px_rgba(20,110,33,0.35)]
+    transition hover:-translate-y-0.5
+    hover:shadow-[0_18px_36px_rgba(20,110,33,0.45)]
+    font-montserrat
+  "
+>
+  Ask Your Problem
+</a>
           </div>
         </div>
-        <div className="absolute inset-x-0 bottom-[-24px] z-10 flex justify-center px-6 sm:bottom-[-32px] lg:bottom-[50px]">
+        {/* <div className="absolute inset-x-0 bottom-[-24px] z-10 flex justify-center px-6 sm:bottom-[-32px] lg:bottom-[50px]">
           <div className="w-full max-w-[980px]">
             <div className="flex items-center justify-between gap-4 rounded-[36px] bg-white px-6 py-5 shadow-[0_16px_34px_rgba(15,90,32,0.28)] sm:px-10 sm:py-6">
               {therapyTabs.map((tab) => (
@@ -327,12 +339,26 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
               ))}
             </div>
           </div>
-        </div>
+        </div> */}
+          <div
+  className="
+    absolute
+    inset-x-0
+    top-[80vh]
+    h-[20px]
+    bg-gradient-to-r
+    from-[#0d6615]
+    via-[#76e16d]
+    to-[#0d6615]
+    z-[5]
+  "
+/>
       </section>
 
       <section id="therapies" className=" mt-0 bg-[#f7ffe8] pb-20">
         <div className="mx-auto max-w-[1180px] px-6 lg:px-10">
           <div className="grid items-center gap-12 rounded-[36px] bg-[#f6ffe9] p-8 shadow-[0_22px_48px_rgba(22,108,39,0.18)] lg:grid-cols-[1.05fr,0.95fr]">
+
             <div className="relative overflow-hidden rounded-[32px] bg-white shadow-[0_18px_36px_rgba(22,108,39,0.18)]">
               <div className="absolute left-6 top-6 flex flex-col gap-1.5">
                 <span className="h-1 w-10 rounded-full bg-[#0f8f28]" />
@@ -350,6 +376,8 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
                 <source src={sectionVideo} type="video/mp4" />
               </video>
             </div>
+            
+
             <div className="space-y-6 text-primary-900">
               <div className="flex items-start gap-4">
                 <h2 className="text-3xl font-semibold leading-snug text-[#0e4d1b] font-montserrat">

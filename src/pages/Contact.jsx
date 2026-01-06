@@ -1,5 +1,6 @@
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
+import BoostersParticles from "../components/BoostersParticles";
 
 const Contact = () => {
   const [status, setStatus] = useState("");
@@ -47,6 +48,7 @@ const Contact = () => {
 
   return (
     <section id="contact" className="bg-slate-900">
+            <BoostersParticles name={"WE ARE A CLICK AWAY"} />
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:px-8">
         {/* ----- Left Side Info ----- */}
         <div className="space-y-6 text-slate-100">

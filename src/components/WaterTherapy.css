@@ -1,0 +1,91 @@
+.water-therapy {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0px;
+  min-height: 320px;
+  color: #01050a;
+  background-image: url('/Group-9479.png');
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.25);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.water-therapy::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(42, 122, 31, 0.35);
+  pointer-events: none;
+}
+
+/* .water-therapy:hover::after {
+  background: linear-gradient(120deg, rgba(15, 23, 42, 0.45), rgba(14, 116, 144, 0.15));
+} */
+
+.water-therapy__content {
+  position: relative;
+  z-index: 1;
+  max-width: 560px;
+  padding: 64px 48px;
+}
+
+.water-therapy__eyebrow {
+  display: inline-block;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(1, 14, 29, 0.85);
+}
+
+.water-therapy__title {
+  margin-top: 16px;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.water-therapy__copy {
+  margin-top: 16px;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(3, 38, 83, 0.85);
+}
+
+.water-therapy__cta {
+  margin-top: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1px solid rgba(226, 232, 240, 0.6);
+  padding: 10px 22px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #000407;
+  background: rgba(81, 181, 209, 0.45);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.water-therapy__cta:hover {
+  transform: translateY(-1px);
+  background: rgba(14, 116, 144, 0.7);
+}
+
+@media (max-width: 640px) {
+  .water-therapy {
+    border-radius: 20px;
+    min-height: 260px;
+  }
+
+  .water-therapy__content {
+    padding: 48px 28px;
+  }
+
+  .water-therapy__title {
+    font-size: 1.6rem;
+  }
+}

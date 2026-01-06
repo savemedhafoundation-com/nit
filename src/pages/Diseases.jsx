@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { fetchDiseases } from '../services/api';
+import WaterTherapy from '../components/WaterTherapy';
 
 const sanitizeText = value =>
   typeof value === 'string' ? value.replace(/\uFFFD/g, "'").replace(/\s+/g, ' ').trim() : value;
@@ -439,126 +440,133 @@ const Diseases = () => {
   const diseasesToRender = activeSpecialty?.diseases || [];
 
   return (
-    <section className="bg-white">
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="max-w-5xl">
-          <span className="text-sm font-semibold uppercase tracking-widest text-primary-500">Our Disease</span>
-          <h1 className="mt-3 text-3xl font-semibold text-slate-900">Choose From Below Specialities</h1>
-          <p className="mt-4 text-sm text-slate-600">
-            Explore how Natural Immunotherapy collaborates across specialties to guide your recovery. Select a category
-            to see the conditions we support with tailored protocols and practitioner-led care.
-          </p>
+    <>
+      <div className="bg-white sm:px-0 lg:px-0">
+        <div className="mx-auto max-w-full px-6 lg:px-0">
+          <WaterTherapy />
         </div>
+      </div>
+      <section className="bg-white">
+        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+          <div className="max-w-5xl">
+            <span className="text-sm font-semibold uppercase tracking-widest text-primary-500">Our Disease</span>
+            <h1 className="mt-3 text-3xl font-semibold text-slate-900">Choose From Below Specialities</h1>
+            <p className="mt-4 text-sm text-slate-600">
+              Explore how Natural Immunotherapy collaborates across specialties to guide your recovery. Select a category
+              to see the conditions we support with tailored protocols and practitioner-led care.
+            </p>
+          </div>
 
-        <div className="mt-10 flex flex-wrap items-center gap-4 text-sm font-semibold text-slate-500">
-          {specialties.main.map(spec => {
-            const isActive = spec.key === activeKey;
-            return (
+          <div className="mt-10 flex flex-wrap items-center gap-4 text-sm font-semibold text-slate-500">
+            {specialties.main.map(spec => {
+              const isActive = spec.key === activeKey;
+              return (
+                <button
+                  key={spec.key}
+                  type="button"
+                  onClick={() => {
+                    setActiveKey(spec.key);
+                    setShowOthers(false);
+                  }}
+                  className={[
+                    'relative pb-2 transition-colors',
+                    isActive ? 'text-primary-500' : 'hover:text-primary-500',
+                  ].join(' ')}
+                >
+                  {spec.label}
+                  {isActive && (
+                    <span className="absolute bottom-0 left-0 h-0.5 w-full bg-primary-500" aria-hidden />
+                  )}
+                </button>
+              );
+            })}
+
+            <div className="relative" ref={dropdownRef}>
               <button
-                key={spec.key}
                 type="button"
-                onClick={() => {
-                  setActiveKey(spec.key);
-                  setShowOthers(false);
-                }}
+                onClick={() => setShowOthers(prev => !prev)}
                 className={[
-                  'relative pb-2 transition-colors',
-                  isActive ? 'text-primary-500' : 'hover:text-primary-500',
+                  'flex items-center gap-2 rounded-full border border-slate-200 px-4 py-2 transition-colors',
+                  activeKey.startsWith('natural') || specialties.others.some(spec => spec.key === activeKey)
+                    ? 'bg-primary-50 text-primary-500 border-primary-200'
+                    : 'hover:border-primary-200 hover:text-primary-500',
                 ].join(' ')}
               >
-                {spec.label}
-                {isActive && (
-                  <span className="absolute bottom-0 left-0 h-0.5 w-full bg-primary-500" aria-hidden />
-                )}
-              </button>
-            );
-          })}
-
-          <div className="relative" ref={dropdownRef}>
-            <button
-              type="button"
-              onClick={() => setShowOthers(prev => !prev)}
-              className={[
-                'flex items-center gap-2 rounded-full border border-slate-200 px-4 py-2 transition-colors',
-                activeKey.startsWith('natural') || specialties.others.some(spec => spec.key === activeKey)
-                  ? 'bg-primary-50 text-primary-500 border-primary-200'
-                  : 'hover:border-primary-200 hover:text-primary-500',
-              ].join(' ')}
-            >
-              Others
-              <svg
-                className={`h-4 w-4 transition-transform ${showOthers ? 'rotate-180' : ''}`}
-                viewBox="0 0 20 20"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.5"
-              >
-                <path d="M5 7l5 5 5-5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </button>
-
-            {showOthers && (
-              <div className="absolute right-0 z-10 mt-3 w-64 rounded-xl border border-slate-200 bg-white p-2 shadow-2xl">
-                {specialties.others.map(spec => {
-                  const isActive = spec.key === activeKey;
-                  return (
-                    <button
-                      key={spec.key}
-                      type="button"
-                      onClick={() => {
-                        setActiveKey(spec.key);
-                        setShowOthers(false);
-                      }}
-                      className={[
-                        'w-full rounded-lg px-3 py-2 text-left text-sm transition-colors',
-                        isActive ? 'bg-primary-50 text-primary-500' : 'hover:bg-slate-100',
-                      ].join(' ')}
-                    >
-                      {spec.label}
-                    </button>
-                  );
-                })}
-              </div>
-            )}
-          </div>
-        </div>
-
-        <div className="mt-6 h-px w-full bg-gradient-to-r from-primary-200 via-slate-200 to-primary-200" />
-
-        {alert && (
-          <div className="mt-6 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-700">
-            {alert}
-          </div>
-        )}
-
-        <div className="mt-8 max-w-4xl">
-          <h2 className="text-2xl font-semibold text-slate-900">{activeSpecialty.label}</h2>
-          <p className="mt-3 text-sm text-slate-600">{activeSpecialty.description}</p>
-        </div>
-
-        {loading && activeSpecialty.key === 'natural-immunotherapy' ? (
-          <p className="mt-10 text-sm text-slate-500">Loading conditions...</p>
-        ) : (
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
-            {diseasesToRender.map(disease => (
-              <article
-                key={disease.id}
-                className="flex h-full flex-col rounded-2xl border border-primary-100 bg-primary-50/60 p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
-              >
-                <h3 className="text-lg font-semibold text-slate-900">{disease.name}</h3>
-                <p className="mt-3 flex-1 text-sm text-slate-600">{disease.description}</p>
-                <button
-                  type="button"
-                  className="mt-6 inline-flex w-max items-center rounded-full bg-primary-500 px-4 py-2 text-sm font-semibold text-white shadow hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-300"
+                Others
+                <svg
+                  className={`h-4 w-4 transition-transform ${showOthers ? 'rotate-180' : ''}`}
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
                 >
-                  Read More
-                </button>
-              </article>
-            ))}
+                  <path d="M5 7l5 5 5-5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+
+              {showOthers && (
+                <div className="absolute right-0 z-10 mt-3 w-64 rounded-xl border border-slate-200 bg-white p-2 shadow-2xl">
+                  {specialties.others.map(spec => {
+                    const isActive = spec.key === activeKey;
+                    return (
+                      <button
+                        key={spec.key}
+                        type="button"
+                        onClick={() => {
+                          setActiveKey(spec.key);
+                          setShowOthers(false);
+                        }}
+                        className={[
+                          'w-full rounded-lg px-3 py-2 text-left text-sm transition-colors',
+                          isActive ? 'bg-primary-50 text-primary-500' : 'hover:bg-slate-100',
+                        ].join(' ')}
+                      >
+                        {spec.label}
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
           </div>
-        )}
-      </div>
-    </section>
+
+          <div className="mt-6 h-px w-full bg-gradient-to-r from-primary-200 via-slate-200 to-primary-200" />
+
+          {alert && (
+            <div className="mt-6 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-700">
+              {alert}
+            </div>
+          )}
+
+          <div className="mt-8 max-w-4xl">
+            <h2 className="text-2xl font-semibold text-slate-900">{activeSpecialty.label}</h2>
+            <p className="mt-3 text-sm text-slate-600">{activeSpecialty.description}</p>
+          </div>
+
+          {loading && activeSpecialty.key === 'natural-immunotherapy' ? (
+            <p className="mt-10 text-sm text-slate-500">Loading conditions...</p>
+          ) : (
+            <div className="mt-12 grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+              {diseasesToRender.map(disease => (
+                <article
+                  key={disease.id}
+                  className="flex h-full flex-col rounded-2xl border border-primary-100 bg-primary-50/60 p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+                >
+                  <h3 className="text-lg font-semibold text-slate-900">{disease.name}</h3>
+                  <p className="mt-3 flex-1 text-sm text-slate-600">{disease.description}</p>
+                  <button
+                    type="button"
+                    className="mt-6 inline-flex w-max items-center rounded-full bg-primary-500 px-4 py-2 text-sm font-semibold text-white shadow hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-300"
+                  >
+                    Read More
+                  </button>
+                </article>
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+    </>
   );
 };
 

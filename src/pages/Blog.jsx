@@ -100,8 +100,7 @@ const Blog = () => {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@400;500;600&display=swap');
       `}</style>
-      <div className="mx-auto w-full max-w-[1200px] px-4 py-12 sm:px-6 lg:px-8">
-        <div className="relative overflow-hidden rounded-[28px] bg-[#4d6b2f] shadow-[0_30px_80px_-60px_rgba(0,0,0,0.6)]">
+       <div className="relative overflow-hidden rounded-[0px] bg-[#4d6b2f] shadow-[0_30px_80px_-60px_rgba(0,0,0,0.6)]">
           <img
             className="absolute inset-0 h-full w-full object-cover opacity-90"
             src={heroBanner}
@@ -121,6 +120,8 @@ const Blog = () => {
             </p>
           </div>
         </div>
+      <div className="mx-auto w-full max-w-[1400px] px-4 py-12 sm:px-6 lg:px-8">
+       
 
         <div className="mt-12">
           <div className="flex items-end justify-between gap-4">

@@ -4,6 +4,7 @@ import FileUploader from '@/components/report/FileUploader';
 import ExplanationBlock from '@/components/report/ExplanationBlock';
 import DisclaimerFooter from '@/components/report/DisclaimerFooter';
 import { explainMedicalReport, uploadMedicalReport } from '@/services/api';
+import BoostersParticles from '../components/BoostersParticles';
 
 const UploadReport = () => {
   const navigate = useNavigate();
@@ -67,6 +68,8 @@ const UploadReport = () => {
   };
 
   return (
+    <section className="bg-slate-900 text-slate-50">
+      <BoostersParticles name={"YOUR REPORT EXPLAINER"} />
     <div className="bg-gradient-to-b from-slate-50 to-white">
       <div className="mx-auto max-w-6xl px-4 pb-16 pt-10">
         <div className="mb-8 flex flex-col gap-3">
@@ -136,6 +139,7 @@ const UploadReport = () => {
         </div>
       </div>
     </div>
+    </section>
   );
 };
 

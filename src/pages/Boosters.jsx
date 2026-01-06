@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { fetchBoosters } from '../services/api';
+import BoostersParticles from '../components/BoostersParticles';
 
 const Boosters = () => {
   const [boosters, setBoosters] = useState([]);
@@ -41,6 +42,7 @@ const Boosters = () => {
 
   return (
     <section className="bg-slate-900 text-slate-50">
+      <BoostersParticles name={"WHY CHOOSE NIT"} />
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <h1 className="text-3xl font-semibold text-white">Booster Systems</h1>
         <p className="mt-4 max-w-2xl text-sm text-slate-200">
