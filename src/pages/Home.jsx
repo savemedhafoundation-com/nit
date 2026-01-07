@@ -7,7 +7,7 @@ import SymptomChecker from "./SymptomChecker";
 import heroImage from "../assets/photo/13.png";
 import whentoseek from "../assets/photo/WhenToSeek.png";
 import heroBackground from "../assets/photo/Rectangle 154.png";
-import ethicalguide from "../assets/photo/ethicalGuidance.png"
+import ethicalguide from "../assets/photo/ethicalGuidance.png";
 import HerBackgroundVideo from "../../public/4.mp4";
 import missionImage from "../assets/photo/Rectangle 153.png";
 import beliefSecondaryImage from "../assets/photo/Rectangle 158.png";
@@ -20,7 +20,6 @@ import nitSolution from "../assets/photo/Natural_Supplement.mp4";
 import Footer from "../components/Footer";
 import asknit from "../assets/photo/asknit.png";
 import { RiChatAiLine } from "react-icons/ri";
-
 
 const therapyTabs = [
   { label: "NATURAL CURE" },
@@ -86,11 +85,21 @@ const Home = () => {
   const heroPanelTimerRef = useRef(null);
   const heroVideoTimeRef = useRef(0);
   const videoRef = useRef(null);
+  const mobileVideoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isMobilePlaying, setIsMobilePlaying] = useState(false);
 
   const handlePlay = () => {
     videoRef.current.play();
     setIsPlaying(true);
+  };
+
+  const handleMobilePlay = () => {
+    if (!mobileVideoRef.current) {
+      return;
+    }
+    mobileVideoRef.current.play();
+    setIsMobilePlaying(true);
   };
 
   useEffect(() => {
@@ -298,14 +307,16 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
           }`}
         >
           <div className="flex min-h-[280px] w-full max-w-[720px] min-w-[320px] flex-col items-center gap-6 rounded-3xl border border-white/20 bg-white/10 px-8 py-10 text-center backdrop-blur-xl">
-            <p className="min-h-[40px]
+            <p
+              className="min-h-[40px]
     sm:min-h-[44px]
-    md:min-h-[48px] text-[34px] leading-[48px] font-lora font-normal text-white">
+    md:min-h-[48px] text-[34px] leading-[48px] font-lora font-normal text-white"
+            >
               <span ref={heroCompactTypedRef} />
             </p>
             <a
-  href="#therapies"
-  className="
+              href="#therapies"
+              className="
     inline-flex items-center justify-center
     uppercase rounded-full
     bg-gradient-to-b from-[#76e16d] via-[#31a12d] to-[#0d6615]
@@ -315,9 +326,9 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
     hover:shadow-[0_18px_36px_rgba(20,110,33,0.45)]
     font-montserrat
   "
->
-  Ask Your Problem
-</a>
+            >
+              Ask Your Problem
+            </a>
           </div>
         </div>
         {/* <div className="absolute inset-x-0 bottom-[-24px] z-10 flex justify-center px-6 sm:bottom-[-32px] lg:bottom-[50px]">
@@ -340,8 +351,8 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
             </div>
           </div>
         </div> */}
-          <div
-  className="
+        <div
+          className="
     absolute
     inset-x-0
     top-[80vh]
@@ -352,13 +363,12 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
     to-[#0d6615]
     z-[5]
   "
-/>
+        />
       </section>
 
       <section id="therapies" className=" mt-0 bg-[#f7ffe8] pb-20">
         <div className="mx-auto max-w-[1180px] px-6 lg:px-10">
           <div className="grid items-center gap-12 rounded-[36px] bg-[#f6ffe9] p-8 shadow-[0_22px_48px_rgba(22,108,39,0.18)] lg:grid-cols-[1.05fr,0.95fr]">
-
             <div className="relative overflow-hidden rounded-[32px] bg-white shadow-[0_18px_36px_rgba(22,108,39,0.18)]">
               <div className="absolute left-6 top-6 flex flex-col gap-1.5">
                 <span className="h-1 w-10 rounded-full bg-[#0f8f28]" />
@@ -376,7 +386,6 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
                 <source src={sectionVideo} type="video/mp4" />
               </video>
             </div>
-            
 
             <div className="space-y-6 text-primary-900">
               <div className="flex items-start gap-4">
@@ -595,8 +604,77 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
       {/* What Problem NIT can help with section */}
       <section className="bg-white py-16 px-4 sm:px-6 lg:px-10">
         <div className="mx-auto">
-          <div
-            className=" relative
+          <div className="md:hidden">
+            <div className="mx-auto max-w-[360px]">
+              <div className="rounded-2xl bg-gradient-to-r from-[#0a5f12] via-[#1a7f1f] to-[#2f8f2d] px-4 py-3 text-center text-white shadow-[0_12px_24px_rgba(7,71,21,0.25)]">
+                <h3 className="text-[12px] font-semibold uppercase tracking-[0.2em] font-montserrat leading-[1.3]">
+                  What Problems NIT Can Help With
+                </h3>
+              </div>
+
+              <div className="mt-4 rounded-[28px] bg-gradient-to-b from-[#54E040] to-[#1b7a16] p-3 shadow-[0_18px_36px_rgba(7,71,21,0.25)]">
+                <div className="overflow-hidden rounded-[22px] bg-white">
+                  <div className="relative">
+                    <video
+                      ref={mobileVideoRef}
+                      src={nitSolution}
+                      controls={isMobilePlaying}
+                      playsInline
+                      className="h-[190px] w-full object-cover"
+                      poster={beliefSecondaryImage}
+                    />
+
+                    {!isMobilePlaying && (
+                      <button
+                        onClick={handleMobilePlay}
+                        aria-label="Play video"
+                        className="absolute left-1/2 top-1/2 flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-[0_10px_30px_rgba(0,0,0,0.35)] transition hover:scale-105"
+                      >
+                        <svg
+                          className="h-5 w-5 translate-x-[1px] text-red-600"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                        >
+                          <path d="M8 5.5v13l10-6.5-10-6.5z" />
+                        </svg>
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              <p className="mt-4 text-center font-inter text-[13px] font-semibold leading-[1.35] text-[#B93A0C]">
+                Natural Immunotherapy is intended as a supportive and
+                complementary approach and should be used under proper guidance.
+              </p>
+
+              <p className="mt-3 text-center font-inter text-[12px] leading-[1.6] text-slate-700">
+                Natural Immunotherapy (NIT) has shown positive supportive
+                outcomes in managing chronic conditions such as cancer, kidney
+                disorders, heart disease, spinal problems, and neurological
+                conditions by strengthening the immune system through natural
+                food-based supplements. It helps improve energy levels,
+                immunity, cellular health, detoxification, and overall quality
+                of life. Many patients experience better physical strength,
+                reduced fatigue, improved nerve and organ support, and enhanced
+                well-being while following Natural Immunotherapy as a holistic,
+                nutrition-focused approach.
+              </p>
+
+              <div className="mt-4 flex justify-center">
+                <button
+                  type="button"
+                  className="rounded-full bg-gradient-to-r from-[#53d744] via-[#2ea02e] to-[#0b5d16] px-6 py-2 text-[11px] font-semibold uppercase text-white shadow-[0_10px_20px_rgba(12,89,31,0.35)]"
+                >
+                  Read Full
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div className="hidden md:block">
+            <div
+              className=" relative
                  h-[120px]
     mb-8
     -ml-12
@@ -618,13 +696,13 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
     justify-center
         rounded-tr-[28px]
     rounded-br-[28px]"
-          >
-            <h3 className="text-2xl font-semibold tracking-[0.08em] sm:text-3xl font-montserrat max-w-[800px]">
-              What Problems NIT Can Help With ?
-            </h3>
-          </div>
+            >
+              <h3 className="text-2xl font-semibold tracking-[0.08em] sm:text-3xl font-montserrat max-w-[800px]">
+                What Problems NIT Can Help With ?
+              </h3>
+            </div>
 
-          {/* <div className="mx-auto max-w-[980px]">
+            {/* <div className="mx-auto max-w-[980px]">
             <div className="rounded-[60px] bg-gradient-to-r from-[#53d744] via-[#2ea02e] to-[#0b5d16] p-6 shadow-[0_18px_40px_rgba(12,89,31,0.35)] sm:p-8">
               <div className="overflow-hidden rounded-[36px] border-4 border-white bg-white shadow-[0_20px_40px_rgba(12,18,12,0.35)]">
                 <div className="relative">
@@ -640,47 +718,47 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
               </div>
             </div>
           </div> */}
-          <div className="mx-auto max-w-[1200px] px-4 pb-[90px]">
-            {/* Outer green frame */}
-            <div className="relative rounded-tl-[64px] rounded-tr-[22px] rounded-bl-[0px] rounded-br-[0px] bg-gradient-to-r from-[#53d744] via-[#2ea02e] to-[#0b5d16] p-5 sm:p-6 min-h-[550px]">
-              {/* Inner white card */}
-              <div className="absolute top-[20px] right-[50px] overflow-hidden rounded-[110px] bg-white shadow-[0_22px_50px_rgba(0,0,0,0.18)]">
-                <div className="relative flex h-[600px] w-[800px] items-center justify-center">
-                  {/* Video */}
-                  <video
-                    ref={videoRef}
-                    src={nitSolution}
-                    controls={isPlaying}
-                    playsInline
-                    className="h-[600px] w-[800px] object-fill"
-                    poster={beliefSecondaryImage}
-                  />
+            <div className="mx-auto max-w-[1200px] px-4 pb-[90px]">
+              {/* Outer green frame */}
+              <div className="relative  rounded-tl-[64px] rounded-tr-[22px] rounded-bl-[0px] rounded-br-[0px] bg-gradient-to-r from-[#53d744] via-[#2ea02e] to-[#0b5d16] p-5 sm:p-6 min-h-[550px]">
+                {/* Inner white card */}
+                <div className="absolute top-[20px] right-[50px] overflow-hidden rounded-[110px] bg-white shadow-[0_22px_50px_rgba(0,0,0,0.18)]">
+                  <div className="relative flex h-[600px] w-[800px] items-center justify-center">
+                    {/* Video */}
+                    <video
+                      ref={videoRef}
+                      src={nitSolution}
+                      controls={isPlaying}
+                      playsInline
+                      className="h-[600px] w-[800px] object-fill"
+                      poster={beliefSecondaryImage}
+                    />
 
-                  {/* Custom Play Button */}
-                  {!isPlaying && (
-                    <button
-                      onClick={handlePlay}
-                      aria-label="Play video"
-                      className="absolute flex h-16 w-16 items-center justify-center
+                    {/* Custom Play Button */}
+                    {!isPlaying && (
+                      <button
+                        onClick={handlePlay}
+                        aria-label="Play video"
+                        className="absolute flex h-16 w-16 items-center justify-center
                        rounded-full bg-white shadow-[0_10px_30px_rgba(0,0,0,0.35)]
                        hover:scale-105 transition"
-                    >
-                      <svg
-                        className="h-7 w-7 text-red-600 translate-x-[1px]"
-                        viewBox="0 0 24 24"
-                        fill="currentColor"
                       >
-                        <path d="M8 5.5v13l10-6.5-10-6.5z" />
-                      </svg>
-                    </button>
-                  )}
+                        <svg
+                          className="h-7 w-7 text-red-600 translate-x-[1px]"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                        >
+                          <path d="M8 5.5v13l10-6.5-10-6.5z" />
+                        </svg>
+                      </button>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <p
-            className="
+            <p
+              className="
     mx-auto
     mt-8
     max-w-[980px]
@@ -696,41 +774,32 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
     tracking-[0.05em]
     text-[#B93A0C]
   "
-          >
-            Natural Immunotherapy is intended as a supportive and complementary
-            approach and should be used under proper guidance.
-          </p>
+            >
+              Natural Immunotherapy is intended as a supportive and
+              complementary approach and should be used under proper guidance.
+            </p>
 
-          <p
-            className="  mx-auto
-    mt-4
-    max-w-[980px]
-    font-inter
-    font-normal
-    text-[24px]
-    leading-[1]
-    tracking-[0.08em]
-    text-justify
-    text-black
-    leading-[1.25] sm:leading-[1.6]
-    "
-          >
-            Natural Immunotherapy (NIT) has shown positive supportive outcomes
-            in managing chronic conditions such as cancer, kidney disorders,
-            heart disease, spinal problems, and neurological conditions by
-            strengthening the immune system through natural food-based
-            supplements. It helps improve energy levels, immunity, cellular
-            health, detoxification, and overall quality of life. Many patients
-            experience better physical strength, reduced fatigue, improved nerve
-            and organ support, and enhanced well-being while following Natural
-            Immunotherapy as a holistic, nutrition-focused approach.
-          </p>
+            <p
+              className="  mx-auto mt-4 max-w-[980px] font-inter font-normal text-[24px] leading-[1] tracking-[0.08em] text-justify text-black leading-[1.25] sm:leading-[1.6]"
+            >
+              Natural Immunotherapy (NIT) has shown positive supportive outcomes
+              in managing chronic conditions such as cancer, kidney disorders,
+              heart disease, spinal problems, and neurological conditions by
+              strengthening the immune system through natural food-based
+              supplements. It helps improve energy levels, immunity, cellular
+              health, detoxification, and overall quality of life. Many patients
+              experience better physical strength, reduced fatigue, improved
+              nerve and organ support, and enhanced well-being while following
+              Natural Immunotherapy as a holistic, nutrition-focused approach.
+            </p>
+          </div>
         </div>
       </section>
 
       {/* WHEN TO SEEK MEDICAL HELP (ETHICAL GUIDANCE) section */}
       <section className="bg-white py-16 mb-10">
-        <div className="relative
+        <div
+          className="relative
         h-[120px]
     mb-8
     -ml-12
@@ -751,7 +820,8 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
     items-center
     justify-center
         rounded-tr-[28px]
-    rounded-br-[28px]">
+    rounded-br-[28px]"
+        >
           <h3 className="text-xl font-semibold uppercase tracking-[0.22em] font-montserrat sm:text-2xl">
             When to Seek Medical Help ?
           </h3>
@@ -761,11 +831,10 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
         </div>
 
         <div className="mx-auto max-w-[1180px] px-6 pt-10 lg:px-10">
-  <div className="grid lg:grid-cols-[0.7fr,1fr] items-stretch h-[900px]">
-
-    {/* LEFT CARD */}
-    <div
-  className="
+          <div className="grid lg:grid-cols-[0.7fr,1fr] items-stretch h-[900px]">
+            {/* LEFT CARD */}
+            <div
+              className="
     relative
     flex flex-col
     justify-center
@@ -774,16 +843,16 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
     shadow-[0_18px_36px_rgba(18,41,25,0.2)]
     bg-right-bottom bg-no-repeat bg-cover
   "
-  style={{
-    backgroundImage: `url(${whentoseek})`,
-  }}
->
-  {/* OVERLAY for readability */}
-  <div className="absolute inset-0 bg-[#f4f0ea]/40" />
+              style={{
+                backgroundImage: `url(${whentoseek})`,
+              }}
+            >
+              {/* OVERLAY for readability */}
+              <div className="absolute inset-0 bg-[#f4f0ea]/40" />
 
-  {/* CONTENT */}
-  <div className="relative z-10 flex flex-col items-center Justify-center gap-10 px-8 py-10 text-center">
-    {/* <div className="mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-white shadow-[0_10px_20px_rgba(0,0,0,0.12)]">
+              {/* CONTENT */}
+              <div className="relative z-10 flex flex-col items-center Justify-center gap-10 px-8 py-10 text-center">
+                {/* <div className="mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-white shadow-[0_10px_20px_rgba(0,0,0,0.12)]">
       <img
         src={NITicon}
         alt="Natural Immunotherapy icon"
@@ -791,122 +860,114 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
       />
     </div> */}
 
-    <h4 className="text-2xl font-semibold text-[#2b3a2f] font-montserrat">
-      Natural Immunotherapy (NIT)
-    </h4>
+                <h4 className="text-2xl font-semibold text-[#2b3a2f] font-montserrat">
+                  Natural Immunotherapy (NIT)
+                </h4>
 
-    <p className="mt-3 max-w-[340px] text-lg font-semibold leading-6 text-[#48584a] font-lora">
-      Even if you follow Natural Immunotherapy (NIT) or other natural
-      therapies, there are situations where immediate conventional medical
-      care is ethically essential.
-    </p>
-  </div>
-</div>
+                <p className="mt-3 max-w-[340px] text-lg font-semibold leading-6 text-[#48584a] font-lora">
+                  Even if you follow Natural Immunotherapy (NIT) or other
+                  natural therapies, there are situations where immediate
+                  conventional medical care is ethically essential.
+                </p>
+              </div>
+            </div>
 
+            {/* RIGHT CARD */}
+            <div className="overflow-hidden shadow-[0_18px_36px_rgba(18,41,25,0.2)] bg-white">
+              {/* IMAGE SECTION (TOP) */}
+              <div className="h-[380px] w-full">
+                <img
+                  src={ethicalguide}
+                  alt="Medical team"
+                  className="h-full w-full object-cover"
+                />
+              </div>
 
-    {/* RIGHT CARD */}
-  <div className="overflow-hidden shadow-[0_18px_36px_rgba(18,41,25,0.2)] bg-white">
-
-  {/* IMAGE SECTION (TOP) */}
-  <div className="h-[380px] w-full">
-    <img
-      src={ethicalguide}
-      alt="Medical team"
-      className="h-full w-full object-cover"
-    />
-  </div>
-
-  {/* TEXT SECTION (BOTTOM) */}
- <div className="
+              {/* TEXT SECTION (BOTTOM) */}
+              <div
+                className="
     flex-1
     px-8 py-6
     bg-[#1B212C]
     text-white
     h-full
-  ">
-    <p className="text-2xl font-semibold uppercase tracking-[0.2em] text-[#E23A3A] font-montserrat">
-      Emergency Conditions –
-    </p>
+  "
+              >
+                <p className="text-2xl font-semibold uppercase tracking-[0.2em] text-[#E23A3A] font-montserrat">
+                  Emergency Conditions –
+                </p>
 
-    <h4 className="mt-2 text-2xl font-semibold uppercase text-[#E23A3A] font-montserrat">
-      Do Not Delay Medical Care
-    </h4>
+                <h4 className="mt-2 text-2xl font-semibold uppercase text-[#E23A3A] font-montserrat">
+                  Do Not Delay Medical Care
+                </h4>
 
-    <p className="mt-5 text-xl text-white/85 font-lora">
-      Natural Immunotherapy should not be used as a substitute in the
-      following situations:
-    </p>
+                <p className="mt-5 text-xl text-white/85 font-lora">
+                  Natural Immunotherapy should not be used as a substitute in
+                  the following situations:
+                </p>
 
-    <ul className="mt-5 space-y-1 text-lg text-white/90 font-lora">
-      <li>• Severe trauma / accidents</li>
-      <li>• Heart attack symptoms</li>
-      <li>• Stroke symptoms</li>
-      <li>• Severe bleeding</li>
-      <li>• Acute infections</li>
-      <li>• High fever in infants</li>
-      <li>• Loss of consciousness</li>
-      <li>• Sudden, severe pain</li>
-    </ul>
-  </div>
-
-</div>
-
-
-
-  </div>
-</div>
-  {/* Emergency conditions when choose for substitute */}
-  <div>
-    <div className="mx-auto max-w-[980px] rounded-[24px] bg-white px-6 py-10  sm:px-10">
-      <h3 className="text-2xl font-bold uppercase tracking-[0.18em] text-[#E23A3A] font-montserrat sm:text-xl">
-        Emergency Conditions When Choose for Substitute:
-      </h3>
-      <ul className="mt-3 list-disc space-y-2 pl-5 text-lg leading-7 text-[#1f2933] font-lora">
-        <li>
-          Severe chest pain, suspected heart attack, or stroke symptoms (sudden
-          weakness, slurred speech, facial drooping)
-        </li>
-        <li>Unconsciousness, seizures, or sudden collapse</li>
-        <li>Severe breathing difficulty, choking, or bluish lips/face</li>
-        <li>Heavy bleeding, major injury, fractures, or head trauma</li>
-        <li>High fever with confusion, stiff neck, or seizures</li>
-        <li>
-          Severe allergic reactions (swelling of face/throat, hives,
-          breathlessness)
-        </li>
-        <li>
-          Acute abdominal pain (appendicitis, intestinal obstruction,
-          perforation)
-        </li>
-        <li>Poisoning, overdose, or snake/insect bites</li>
-        <li>
-          Pregnancy emergencies (heavy bleeding, severe pain, reduced fetal
-          movement)
-        </li>
-        <li>
-          Severe dehydration, persistent vomiting, or diarrhea (especially in
-          children/elderly)
-        </li>
-        <li>Sudden loss of vision or speech</li>
-      </ul>
-    </div>
-  </div>
-
+                <ul className="mt-5 space-y-1 text-lg text-white/90 font-lora">
+                  <li>• Severe trauma / accidents</li>
+                  <li>• Heart attack symptoms</li>
+                  <li>• Stroke symptoms</li>
+                  <li>• Severe bleeding</li>
+                  <li>• Acute infections</li>
+                  <li>• High fever in infants</li>
+                  <li>• Loss of consciousness</li>
+                  <li>• Sudden, severe pain</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* Emergency conditions when choose for substitute */}
+        <div>
+          <div className="mx-auto max-w-[980px] rounded-[24px] bg-white px-6 py-10  sm:px-10">
+            <h3 className="text-2xl font-bold uppercase tracking-[0.18em] text-[#E23A3A] font-montserrat sm:text-xl">
+              Emergency Conditions When Choose for Substitute:
+            </h3>
+            <ul className="mt-3 list-disc space-y-2 pl-5 text-lg leading-7 text-[#1f2933] font-lora">
+              <li>
+                Severe chest pain, suspected heart attack, or stroke symptoms
+                (sudden weakness, slurred speech, facial drooping)
+              </li>
+              <li>Unconsciousness, seizures, or sudden collapse</li>
+              <li>Severe breathing difficulty, choking, or bluish lips/face</li>
+              <li>Heavy bleeding, major injury, fractures, or head trauma</li>
+              <li>High fever with confusion, stiff neck, or seizures</li>
+              <li>
+                Severe allergic reactions (swelling of face/throat, hives,
+                breathlessness)
+              </li>
+              <li>
+                Acute abdominal pain (appendicitis, intestinal obstruction,
+                perforation)
+              </li>
+              <li>Poisoning, overdose, or snake/insect bites</li>
+              <li>
+                Pregnancy emergencies (heavy bleeding, severe pain, reduced
+                fetal movement)
+              </li>
+              <li>
+                Severe dehydration, persistent vomiting, or diarrhea (especially
+                in children/elderly)
+              </li>
+              <li>Sudden loss of vision or speech</li>
+            </ul>
+          </div>
+        </div>
       </section>
 
       {/* Discover the science of natural immunotherapy */}
 
-
-
-      
-
       {/* <PatientStories /> */}
       <div className="mb-10 relative">
-        <section className="relative overflow-hidden py-16 -mt-20 text-white z-10"
-        style={{
-                clipPath:
-                  "polygon(0 18%, 50% 0, 100% 18%, 100% 82%, 50% 100%, 0 82%)",
-              }}
+        <section
+          className="relative overflow-hidden py-16 -mt-20 text-white z-10"
+          style={{
+            clipPath:
+              "polygon(0 18%, 50% 0, 100% 18%, 100% 82%, 50% 100%, 0 82%)",
+          }}
         >
           <img
             src={sectionBg}
@@ -915,10 +976,8 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
             loading="lazy"
           />
           <div className="relative z-10  px-6 text-center flex flex-col items-center justify-center">
-          
-
             <div
-  className="
+              className="
     relative
     w-screen
     h-[300px]
@@ -937,19 +996,19 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
 
     shadow-[0_24px_48px_rgba(8,62,16,0.35)]
   "
->
-  <h2 className="text-2xl font-semibold sm:text-[46px] font-montserrat">
-    Discover the Science of Natural Immunotherapy
-  </h2>
+            >
+              <h2 className="text-2xl font-semibold sm:text-[46px] font-montserrat">
+                Discover the Science of Natural Immunotherapy
+              </h2>
 
-  <p className="text-sm text-white/90 sm:text-base font-lora">
-    Learn how Cellular Intelligence, Micronutrients, and
-    Detoxification work together to heal your body naturally.
-  </p>
+              <p className="text-sm text-white/90 sm:text-base font-lora">
+                Learn how Cellular Intelligence, Micronutrients, and
+                Detoxification work together to heal your body naturally.
+              </p>
 
-  <button
-    onClick={() => window.open("https://dantura.com", "_blank")}
-    className="
+              <button
+                onClick={() => window.open("https://dantura.com", "_blank")}
+                className="
       w-fit
       items-center
       justify-center
@@ -964,25 +1023,22 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
       text-[#114616]
       shadow-[0_14px_26px_rgba(0,0,0,0.28)]
     "
-  >
-    Explore Today
-  </button>
-</div>
-
-
-        
+              >
+                Explore Today
+              </button>
+            </div>
           </div>
         </section>
-        <div className=" absolute w-[100%] h-[850px] top-[300px] pt-80 mt-12 flex flex-col items-center gap-4   bg-center
+        <div
+          className=" absolute w-[100%] h-[850px] top-[300px] pt-80 mt-12 flex flex-col items-center gap-4   bg-center
     bg-no-repeat
     bg-cover"
-    
-     style={{
-    backgroundImage: `url(${asknit})`,
-  }}
-
-    >
-              <p className="
+          style={{
+            backgroundImage: `url(${asknit})`,
+          }}
+        >
+          <p
+            className="
   text-[46px]
   font-semibold
   uppercase
@@ -996,16 +1052,13 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
   justify-center
   items-center
   pb-16
-">
-  <span className="block">
-    Ask our NIT Chatbot Agent
-  </span>
-  <span className="block">
-    For your any queries.
-  </span>
-              </p>
-             <div
-  className="
+"
+          >
+            <span className="block">Ask our NIT Chatbot Agent</span>
+            <span className="block">For your any queries.</span>
+          </p>
+          <div
+            className="
     flex items-center justify-center
     h-32 w-32
     rounded-full
@@ -1015,9 +1068,9 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
 
     shadow-[0_0_45px_rgba(255,255,255,0.70),0_0_80px_rgba(255,255,255,0.65)]
   "
->
-  <div
-    className="
+          >
+            <div
+              className="
       flex items-center justify-center
       h-22 w-22
       rounded-full
@@ -1025,18 +1078,17 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
       bg-white/10
       p-5
     "
-  >
-    <RiChatAiLine
-      className="
+            >
+              <RiChatAiLine
+                className="
         h-14 w-14
         text-white
         drop-shadow-[0_6px_14px_rgba(0,0,0,0.45)]
       "
-    />
-  </div>
-</div>
-
+              />
             </div>
+          </div>
+        </div>
       </div>
 
       <section className="px-6 mb-5 mt-[800px] lg:px-10">
