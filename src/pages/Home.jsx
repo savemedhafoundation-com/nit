@@ -368,8 +368,22 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
 
       <section id="therapies" className=" mt-0 bg-[#f7ffe8] pb-20">
         <div className="mx-auto max-w-[1180px] px-6 lg:px-10">
-          <div className="grid items-center gap-12 rounded-[36px] bg-[#f6ffe9] p-8 shadow-[0_22px_48px_rgba(22,108,39,0.18)] lg:grid-cols-[1.05fr,0.95fr]">
-            <div className="relative overflow-hidden rounded-[32px] bg-white shadow-[0_18px_36px_rgba(22,108,39,0.18)]">
+         <div className="md:hidden mb-3">
+                <div className="relative overflow-hidden -translate-x-8 rounded-tr-[18px] rounded-br-[18px] bg-gradient-to-r from-[#0a5f12] via-[#1a7f1f] to-[#2f8f2d] px-4 py-3 text-center text-white shadow-[0_14px_28px_rgba(7,71,21,0.28)]">
+                  <h3 className="text-[33px] font-semibold tracking-[0.08em] font-montserrat leading-[1.3]">
+                    <span className="block">Healing Beyond</span>
+                    <span className="block">Medicine</span>
+                  </h3>
+                  
+                </div>
+                  <p className="mt-2  px-3 py-2 text-center text-[20px] font-semibold leading-[1.35] text-[#000000] font-montserrat">
+                    Uniting Nature's Intelligence with Scientific Understanding.
+                  </p>
+              </div>
+          <div className="grid items-center gap-12 rounded-[36px] bg-[#f6ffe9] p-8 shadow-none sm:shadow-[0_22px_48px_rgba(22,108,39,0.18)]  lg:grid-cols-[1.05fr,0.95fr]">
+            <div>
+             
+              <div className="relative overflow-hidden rounded-[32px] bg-white shadow-[0_18px_36px_rgba(22,108,39,0.18)]">
               <div className="absolute left-6 top-6 flex flex-col gap-1.5">
                 <span className="h-1 w-10 rounded-full bg-[#0f8f28]" />
                 <span className="h-1 w-7 rounded-full bg-[#0f8f28]" />
@@ -386,9 +400,10 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
                 <source src={sectionVideo} type="video/mp4" />
               </video>
             </div>
+            </div>
 
             <div className="space-y-6 text-primary-900">
-              <div className="flex items-start gap-4">
+              <div className="hidden md:flex items-start gap-4">
                 <h2 className="text-3xl font-semibold leading-snug text-[#0e4d1b] font-montserrat">
                   <span className="text-[#0d7f1f]">
                     Healing Beyond Medicine
@@ -431,7 +446,7 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
               </div>
               <button
                 type="button"
-                className="inline-flex items-center justify-center rounded-lg bg-gradient-to-b from-[#76e16d] via-[#31a12d] to-[#0d6615] px-10 py-3 text-lg font-semibold text-white shadow-[0_16px_32px_rgba(20,110,33,0.35)] transition hover:-translate-y-0.5 hover:shadow-[0_18px_36px_rgba(20,110,33,0.45)] font-montserrat"
+                className="inline-flex items-center justify-center rounded-none translate-x-14 sm:translate-x-0 sm:rounded-[6px] bg-gradient-to-b from-[#76e16d] via-[#31a12d] to-[#0d6615] px-6 py-1.5 text-[22px] font-semibold text-white shadow-[0_8px_16px_rgba(20,110,33,0.35)] font-montserrat md:rounded-lg md:px-10 md:py-3 md:text-lg md:shadow-[0_16px_32px_rgba(20,110,33,0.35)] md:transition md:hover:-translate-y-0.5 md:hover:shadow-[0_18px_36px_rgba(20,110,33,0.45)]"
               >
                 Our Mission
               </button>
