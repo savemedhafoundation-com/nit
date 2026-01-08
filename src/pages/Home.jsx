@@ -88,6 +88,8 @@ const Home = () => {
   const mobileVideoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMobilePlaying, setIsMobilePlaying] = useState(false);
+  const [isMobileProblemsTextExpanded, setIsMobileProblemsTextExpanded] =
+    useState(false);
 
   const handlePlay = () => {
     videoRef.current.play();
@@ -368,38 +370,36 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
 
       <section id="therapies" className=" mt-0 bg-[#f7ffe8] pb-20">
         <div className="mx-auto max-w-[1180px] px-6 lg:px-10">
-         <div className="md:hidden mb-3">
-                <div className="relative overflow-hidden -translate-x-8 rounded-tr-[18px] rounded-br-[18px] bg-gradient-to-r from-[#0a5f12] via-[#1a7f1f] to-[#2f8f2d] px-4 py-3 text-center text-white shadow-[0_14px_28px_rgba(7,71,21,0.28)]">
-                  <h3 className="text-[33px] font-semibold tracking-[0.08em] font-montserrat leading-[1.3]">
-                    <span className="block">Healing Beyond</span>
-                    <span className="block">Medicine</span>
-                  </h3>
-                  
-                </div>
-                  <p className="mt-2  px-3 py-2 text-center text-[20px] font-semibold leading-[1.35] text-[#000000] font-montserrat">
-                    Uniting Nature's Intelligence with Scientific Understanding.
-                  </p>
-              </div>
+          <div className="md:hidden mb-3">
+            <div className="relative overflow-hidden -translate-x-8 rounded-tr-[18px] rounded-br-[18px] bg-gradient-to-r from-[#0a5f12] via-[#1a7f1f] to-[#2f8f2d] px-4 py-3 text-center text-white shadow-[0_14px_28px_rgba(7,71,21,0.28)]">
+              <h3 className="text-[33px] font-semibold tracking-[0.08em] font-montserrat leading-[1.3]">
+                <span className="block">Healing Beyond</span>
+                <span className="block">Medicine</span>
+              </h3>
+            </div>
+            <p className="mt-2  px-3 py-2 text-center text-[20px] font-semibold leading-[1.35] text-[#000000] font-montserrat">
+              Uniting Nature's Intelligence with Scientific Understanding.
+            </p>
+          </div>
           <div className="grid items-center gap-12 rounded-[36px] bg-[#f6ffe9] p-8 shadow-none sm:shadow-[0_22px_48px_rgba(22,108,39,0.18)]  lg:grid-cols-[1.05fr,0.95fr]">
             <div>
-             
               <div className="relative overflow-hidden rounded-[32px] bg-white shadow-[0_18px_36px_rgba(22,108,39,0.18)]">
-              <div className="absolute left-6 top-6 flex flex-col gap-1.5">
-                <span className="h-1 w-10 rounded-full bg-[#0f8f28]" />
-                <span className="h-1 w-7 rounded-full bg-[#0f8f28]" />
-                <span className="h-1 w-5 rounded-full bg-[#0f8f28]" />
+                <div className="absolute left-6 top-6 flex flex-col gap-1.5">
+                  <span className="h-1 w-10 rounded-full bg-[#0f8f28]" />
+                  <span className="h-1 w-7 rounded-full bg-[#0f8f28]" />
+                  <span className="h-1 w-5 rounded-full bg-[#0f8f28]" />
+                </div>
+                <video
+                  className="h-full w-full object-cover"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  poster="/src/assets/photo/Rectangle 151.png"
+                >
+                  <source src={sectionVideo} type="video/mp4" />
+                </video>
               </div>
-              <video
-                className="h-full w-full object-cover"
-                autoPlay
-                muted
-                loop
-                playsInline
-                poster="/src/assets/photo/Rectangle 151.png"
-              >
-                <source src={sectionVideo} type="video/mp4" />
-              </video>
-            </div>
             </div>
 
             <div className="space-y-6 text-primary-900">
@@ -446,7 +446,7 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
               </div>
               <button
                 type="button"
-                className="inline-flex items-center justify-center rounded-none translate-x-14 sm:translate-x-0 sm:rounded-[6px] bg-gradient-to-b from-[#76e16d] via-[#31a12d] to-[#0d6615] px-6 py-1.5 text-[22px] font-semibold text-white shadow-[0_8px_16px_rgba(20,110,33,0.35)] font-montserrat md:rounded-lg md:px-10 md:py-3 md:text-lg md:shadow-[0_16px_32px_rgba(20,110,33,0.35)] md:transition md:hover:-translate-y-0.5 md:hover:shadow-[0_18px_36px_rgba(20,110,33,0.45)]"
+                className="inline-flex items-center justify-center rounded-none translate-x-10 sm:translate-x-0 sm:rounded-[6px] bg-gradient-to-b from-[#76e16d] via-[#31a12d] to-[#0d6615] px-6 py-1.5 text-[22px] font-semibold text-white shadow-[0_8px_16px_rgba(20,110,33,0.35)] font-montserrat md:rounded-lg md:px-10 md:py-3 md:text-lg md:shadow-[0_16px_32px_rgba(20,110,33,0.35)] md:transition md:hover:-translate-y-0.5 md:hover:shadow-[0_18px_36px_rgba(20,110,33,0.45)]"
               >
                 Our Mission
               </button>
@@ -463,9 +463,10 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
           className="
     relative
     h-[120px]
+    w-full
     mb-8
     -ml-12
-    mr-[140px]
+    mr-[160px]
     overflow-hidden
     bg-gradient-to-r
     from-[#0a5f12]
@@ -481,14 +482,14 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
     flex-col
     items-center
     justify-center
-        rounded-tr-[28px]
+    rounded-tr-[28px]
     rounded-br-[28px]
   "
         >
-          <h3 className="text-1xl font-semibold tracking-[0.08em] sm:text-3xl font-montserrat max-w-[1180px]">
+          <h3 className="text-[22px] font-bold tracking-[0.08em] translate-x-3 sm:text-3xl font-montserrat max-w-[1180px]">
             Body / Symptom Selector
           </h3>
-          <p className="mt-2 text-sm uppercase tracking-[0.22em] text-white/90 sm:text-base font-montserrat max-w-[1180px]">
+          <p className="mt-2 text-[10px] uppercase tracking-[0.22em] translate-x-3 text-white/90 sm:text-base font-montserrat max-w-[1180px]">
             &rarr; Head | Chest | Gut | Kidney | Skin | Neuro | Cancer
           </p>
         </div>
@@ -518,11 +519,11 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
       </section>
       <>
         <div
-          className="h-[120px] flex items-center justify-center mt-10 mb-8 ml-[140px] overflow-hidden rounded-tl-[28px]
+          className="h-[120px] flex items-center justify-center mt-10 mb-8 ml-[60px] sm:ml-[140px] overflow-hidden rounded-tl-[28px]
     rounded-bl-[28px] bg-gradient-to-r from-[#0a5f12] via-[#1a7f1f] to-[#2f8f2d] px-6 py-5 text-center text-white shadow-[0_18px_36px_rgba(7,71,21,0.35)] sm:px-10"
         >
           <h3 className="text-2xl font-semibold tracking-[0.08em] sm:text-3xl font-montserrat max-w-[980px]">
-            What is Natural Immunotherapy ?
+            What is Natural Immunotherapy?
           </h3>
         </div>
         <div className=" z-10 flex justify-center px-2">
@@ -658,32 +659,49 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
                 </div>
               </div>
 
-              <p className="mt-4 text-center font-inter text-[13px] font-semibold leading-[1.35] text-[#B93A0C]">
+              <p className="mt-4 text-center font-inter text-[25px] font-semibold leading-[1.35] text-[#B93A0C]">
                 Natural Immunotherapy is intended as a supportive and
                 complementary approach and should be used under proper guidance.
               </p>
 
-              <p className="mt-3 text-center font-inter text-[12px] leading-[1.6] text-slate-700">
-                Natural Immunotherapy (NIT) has shown positive supportive
-                outcomes in managing chronic conditions such as cancer, kidney
-                disorders, heart disease, spinal problems, and neurological
-                conditions by strengthening the immune system through natural
-                food-based supplements. It helps improve energy levels,
-                immunity, cellular health, detoxification, and overall quality
-                of life. Many patients experience better physical strength,
-                reduced fatigue, improved nerve and organ support, and enhanced
-                well-being while following Natural Immunotherapy as a holistic,
-                nutrition-focused approach.
+              <p className="mt-3 text-center font-inter text-[20px] leading-[1.6] text-slate-700">
+                {isMobileProblemsTextExpanded ? (
+                  <>
+                    Natural Immunotherapy (NIT) has shown positive supportive
+                    outcomes in managing chronic conditions such as cancer,
+                    kidney disorders, heart disease, spinal problems, and
+                    neurological conditions by strengthening the immune system
+                    through natural food-based supplements. It helps improve
+                    energy levels, immunity, cellular health, detoxification,
+                    and overall quality of life. Many patients experience
+                    better physical strength, reduced fatigue, improved nerve
+                    and organ support, and enhanced well-being while following
+                    Natural Immunotherapy as a holistic, nutrition-focused
+                    approach.
+                  </>
+                ) : (
+                  <>
+                    Natural Immunotherapy (NIT) has shown positive supportive
+                    outcomes in managing chronic conditions such as cancer,
+                    kidney disorders, heart disease, spinal problems, and
+                    neurological conditions by strengthening the immune system
+                    through natural food-based supplements.
+                  </>
+                )}
               </p>
 
-              <div className="mt-4 flex justify-center">
-                <button
-                  type="button"
-                  className="rounded-full bg-gradient-to-r from-[#53d744] via-[#2ea02e] to-[#0b5d16] px-6 py-2 text-[11px] font-semibold uppercase text-white shadow-[0_10px_20px_rgba(12,89,31,0.35)]"
-                >
-                  Read Full
-                </button>
-              </div>
+              {!isMobileProblemsTextExpanded && (
+                <div className="mt-4 flex justify-center">
+                  <button
+                    type="button"
+                    onClick={() => setIsMobileProblemsTextExpanded(true)}
+                    className="rounded-full bg-gradient-to-r from-[#53d744] via-[#2ea02e] to-[#0b5d16] px-6 py-2 text-[11px] font-semibold uppercase text-white shadow-[0_10px_20px_rgba(12,89,31,0.35)]"
+                    aria-expanded={isMobileProblemsTextExpanded}
+                  >
+                    Read Full
+                  </button>
+                </div>
+              )}
             </div>
           </div>
 
@@ -794,9 +812,7 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
               complementary approach and should be used under proper guidance.
             </p>
 
-            <p
-              className="  mx-auto mt-4 max-w-[980px] font-inter font-normal text-[24px] leading-[1] tracking-[0.08em] text-justify text-black leading-[1.25] sm:leading-[1.6]"
-            >
+            <p className="  mx-auto mt-4 max-w-[980px] font-inter font-normal text-[24px] leading-[1] tracking-[0.08em] text-justify text-black leading-[1.25] sm:leading-[1.6]">
               Natural Immunotherapy (NIT) has shown positive supportive outcomes
               in managing chronic conditions such as cancer, kidney disorders,
               heart disease, spinal problems, and neurological conditions by
@@ -1069,13 +1085,17 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
   pb-16
 "
           >
-            <span className="block">Ask our NIT Chatbot Agent</span>
-            <span className="block">For your any queries.</span>
+            <span className="block translate-x-4 tracking-[0.08em] sm:tracking-[0.20em]">
+              Ask our NIT Chatbot Agent
+            </span>
+            <span className="block translate-x-5 tracking-[0.15em] sm:tracking-[0.20em]">
+              For your any queries.
+            </span>
           </p>
           <div
-            className="
+            className="-translate-y-10
     flex items-center justify-center
-    h-32 w-32
+    h-35 w-35 sm:h-32 sm:w-32
     rounded-full
     bg-gradient-to-b
     from-[#2ebd3a]
@@ -1085,7 +1105,7 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
   "
           >
             <div
-              className="
+              className=" 
       flex items-center justify-center
       h-22 w-22
       rounded-full

@@ -329,7 +329,7 @@ const DesktopNavbar = () => {
   />
 
   {/* Desktop Nav */}
-  <nav className="hidden md:flex items-center gap-10 font-inter pl-[120px]">
+  <nav className="relative z-30 hidden md:flex items-center gap-10 font-inter pl-[120px]">
     {navItems.map((item) => (
       <div key={item.path} className="relative group">
         <NavLink
@@ -378,13 +378,10 @@ const DesktopNavbar = () => {
 
 
     {/* ================= DESKTOP CTA ================= */}
-    <div className="hidden items-center md:flex">
-      <Link
-        to="/contact"
-        className="relative inline-flex items-center gap-3 whitespace-nowrap rounded-md px-6 py-2 text-xs font-semibold uppercase text-white"
-      >
+    <div className="relative z-10 hidden items-center md:flex">
+      <div className="relative">
         <span
-          className="absolute left-14 -top-[18px] h-20 w-[580px] bg-gradient-to-r from-[#21CE06] via-[#119605] to-[#005505]"
+          className="pointer-events-none absolute left-14 -top-[18px] z-0 h-20 w-[580px] bg-gradient-to-r from-[#21CE06] via-[#119605] to-[#005505]"
           // style={{ clipPath: "polygon(100% 0, 0 50%, 100% 100%)" }}
           style={{
             clipPath:
@@ -392,9 +389,16 @@ const DesktopNavbar = () => {
           }}
           aria-hidden="true"
         />
-        <span className="relative z-15 left-10 px-8 font-bold">Connect & Support</span>
-        <BiSolidContact className="relative z-10 left-2 min-h-7 min-w-7 text-white" />
-      </Link>
+        <Link
+          to="/contact"
+          className="relative z-10 inline-flex items-center gap-3 whitespace-nowrap rounded-md px-6 py-2 text-xs font-semibold uppercase text-white"
+        >
+          <span className="relative z-15 left-10 px-8 font-bold">
+            Connect & Support
+          </span>
+          <BiSolidContact className="relative z-10 left-2 min-h-7 min-w-7 text-white" />
+        </Link>
+      </div>
     </div>
 
 
