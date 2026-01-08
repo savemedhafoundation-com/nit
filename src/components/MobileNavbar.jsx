@@ -109,9 +109,9 @@ const MobileNavbar = () => {
           }`}
           aria-label="Mobile menu"
         >
-          <div className="relative h-full w-full overflow-hidden rounded-r-2xl shadow-[0_16px_32px_rgba(0,0,0,0.25)]">
+          <div className="relative h-full w-full overflow-hidden rounded-r-2xl ">
             <div
-              className="absolute inset-0 bg-gradient-to-b from-[#54E040] to-[#002902] [clip-path:polygon(0_0,100%_0,100%_59%,49%_44%,0_59%)]"
+              className="absolute inset-0 bg-gradient-to-b from-[#54E040] to-[#002902] [clip-path:polygon(0_0,99%_0,99%_50%,49%_40%,0_50%)]"
               aria-hidden="true"
             />
 

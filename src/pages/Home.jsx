@@ -424,20 +424,20 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
                   </svg>
                 </span>
               </div>
-              <div className="space-y-4 text-[1.05rem] leading-8 text-[#1f3b1f] font-lora">
-                <p className="italic font-semibold text-[#0c5c18]">
+              <div className="space-y-4  leading-8 text-[#1f3b1f] font-italic sm:font-lora">
+                <p className=" -translate-y-7 italic md:not-italic sm:not-italic font-semibold text-[#0c5c18]  sm:-translate-y-0 text-[16px]">
                   When modern medicine says "no cure,"{" "}
-                  <span className="font-bold not-italic text-[#0b4713]">
+                  <span className="italic md:not-italic sm:not-italic font-bold text-[#0b4713]">
                     Nature whispers "try again."
                   </span>
                 </p>
-                <p>
+                <p className="text-[#050505]  sm:text-[#0c5c18]">
                   At Natural Immunotherapy (NIT), we bring hope where
                   conventional medicine gives up. Our therapies rebuild the
                   body's natural healing intelligence to cure critical diseases
                   without chemotherapy, surgery, or radiation.
                 </p>
-                <p>
+                <p className="text-[#050505] sm:text-[#0c5c18]">
                   We have witnessed patients recover from cancer, kidney
                   failure, heart disease, thalassemia, nerve disorders, and
                   spinal atrophy through our scientifically designed Natural
@@ -485,7 +485,7 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
     rounded-br-[28px]
   "
         >
-          <h3 className="text-2xl font-semibold tracking-[0.08em] sm:text-3xl font-montserrat max-w-[1180px]">
+          <h3 className="text-1xl font-semibold tracking-[0.08em] sm:text-3xl font-montserrat max-w-[1180px]">
             Body / Symptom Selector
           </h3>
           <p className="mt-2 text-sm uppercase tracking-[0.22em] text-white/90 sm:text-base font-montserrat max-w-[1180px]">
@@ -621,15 +621,15 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
         <div className="mx-auto">
           <div className="md:hidden">
             <div className="mx-auto max-w-[360px]">
-              <div className="rounded-2xl bg-gradient-to-r from-[#0a5f12] via-[#1a7f1f] to-[#2f8f2d] px-4 py-3 text-center text-white shadow-[0_12px_24px_rgba(7,71,21,0.25)]">
-                <h3 className="text-[12px] font-semibold uppercase tracking-[0.2em] font-montserrat leading-[1.3]">
+              <div className="rounded-[8px]   bg-gradient-to-r from-[#0a5f12] via-[#1a7f1f] to-[#2f8f2d] px-4 py-3 translate-x-10   text-center text-white shadow-[0_12px_24px_rgba(7,71,21,0.25)]">
+                <h3 className="text-2xl font-semibold tracking-[0.08em]  sm:text-3xl font-montserrat max-w-[980px]">
                   What Problems NIT Can Help With
                 </h3>
               </div>
 
-              <div className="mt-4 rounded-[28px] bg-gradient-to-b from-[#54E040] to-[#1b7a16] p-3 shadow-[0_18px_36px_rgba(7,71,21,0.25)]">
-                <div className="overflow-hidden rounded-[22px] bg-white">
-                  <div className="relative">
+              <div className="mt-4 pt-10 pr-5 rounded-[20px] bg-gradient-to-b from-[#1b7a16] to-[#54E040] p-3 -translate-x-9 shadow-[0_18px_36px_rgba(7,71,21,0.25)]">
+                <div className="overflow-hidden rounded-[22px] bg-white translate-x-4">
+                  <div className="relative ">
                     <video
                       ref={mobileVideoRef}
                       src={nitSolution}
@@ -837,7 +837,7 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
         rounded-tr-[28px]
     rounded-br-[28px]"
         >
-          <h3 className="text-xl font-semibold uppercase tracking-[0.22em] font-montserrat sm:text-2xl">
+          <h3 className="text-[15px] translate-x-6 font-semibold uppercase tracking-[0.22em] font-montserrat sm:text-2xl">
             When to Seek Medical Help ?
           </h3>
           <p className="mt-1 text-sm font-semibold uppercase tracking-[0.2em] text-white/90 font-montserrat">
