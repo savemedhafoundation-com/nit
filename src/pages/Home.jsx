@@ -1126,8 +1126,8 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
         </div>
       </div>
 
-      <section className="px-6 mb-5 mt-[800px] lg:px-10">
-        <div className="mx-auto max-w-[1180px] overflow-hidden rounded-[40px] bg-gradient-to-r from-[#0c4d1a] via-[#0b8d26] to-[#0c4d1a] shadow-[0_32px_60px_rgba(5,46,16,0.4)]">
+      <section className="px-0 mb-5 mt-[800px] lg:px-10">
+        <div className="mx-auto  sm:max-w-[1180px] overflow-hidden rounded-[40px] bg-gradient-to-r from-[#0c4d1a] via-[#0b8d26] to-[#0c4d1a] shadow-[0_32px_60px_rgba(5,46,16,0.4)]">
           <div className="flex flex-col items-center gap-10 px-8 py-12 text-center text-white lg:flex-row lg:items-center lg:justify-between lg:text-left">
             <div className="max-w-[520px] space-y-4 font-lora text-lg leading-9">
               <p className="text-2xl font-semibold text-white/95">

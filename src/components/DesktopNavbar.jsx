@@ -381,7 +381,7 @@ const DesktopNavbar = () => {
     <div className="relative z-10 hidden items-center md:flex">
       <div className="relative">
         <span
-          className="pointer-events-none absolute left-14 -top-[18px] z-0 h-20 w-[580px] bg-gradient-to-r from-[#21CE06] via-[#119605] to-[#005505]"
+          className="pointer-events-none absolute left-14 -top-[18px] z-0 h-20 w-[535px] bg-gradient-to-r from-[#21CE06] via-[#119605] to-[#005505]"
           // style={{ clipPath: "polygon(100% 0, 0 50%, 100% 100%)" }}
           style={{
             clipPath:
