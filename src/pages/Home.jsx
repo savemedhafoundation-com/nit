@@ -507,7 +507,7 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
           className="h-[120px] flex items-center justify-center mt-10 mb-8 ml-[60px] sm:ml-[140px] overflow-hidden rounded-tl-[28px]
     rounded-bl-[0px] bg-gradient-to-r from-[#0a5f12] via-[#1a7f1f] to-[#2f8f2d] px-6 py-5 text-center text-white shadow-[0_18px_36px_rgba(7,71,21,0.35)] sm:px-10"
         >
-          <h3 className="text-4xl font-bold tracking-[0.08em] sm:text-3xl font-montserrat max-w-[980px] uppercase">
+          <h3 className="text-2xl font-bold tracking-[0.08em] sm:text-3xl font-montserrat max-w-[980px] uppercase">
             What is Natural Immunotherapy?
           </h3>
         </div>
