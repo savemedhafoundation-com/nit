@@ -208,7 +208,7 @@ const Home = () => {
 
   return (
     <div className="min-h-[100px] w-full bg-[#f4fbe7] absolute">
-      <section className="relative h-[90vh] w-full overflow-hidden text-white bg-[#f4fbe7]">
+      <section className="relative min-h-[100vh] w-full overflow-hidden text-white bg-[#f4fbe7]">
         {/* bg-gradient-to-r from-[#0b5f10]/95 via-[#11841b]/82 to-[#6bca60]/55  */}
         {/* Background Overlay Image */}
         {/* <img
@@ -218,7 +218,7 @@ const Home = () => {
         /> */}
         <video
           ref={heroVideoRef}
-          className="absolute inset-0 h-[80vh] w-full object-cover"
+          className="absolute inset-0 min-h-[100vh] w-full object-cover"
           src={HerBackgroundVideo}
           autoPlay
           muted
@@ -267,22 +267,26 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
           </div>
 
           {/* ---------- LEFT SIDE: Text ---------- */}
-          <div className="flex-1 text-left">
-            <p className="text-sm font-semibold uppercase tracking-[0.35em] text-white/85">
+          <div className="sm:flex-1 text-start sm:text-left">
+            <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.35em] text-white/85">
               Recharge your health
             </p>
 
-            <h1 className="mt-4 text-[3.2rem] lg:text-[4.2rem] font-limelight leading-tight font-normal text-white">
+            <h1 className="mt-4 text-[2.2rem] sm:text-[3.2rem] lg:text-[4.2rem] font-limelight leading-tight font-normal text-white">
               Natural Immunotherapy
             </h1>
 
             <p
               className="
     mt-6
-    max-w-[502px]
-    h-[93px]
-    text-[36px]
-    leading-[52px]
+    max-w-full
+    sm:max-w-[502px]
+    h-auto
+    sm:h-[93px]
+    text-[22px]
+    sm:text-[36px]
+    leading-[32px]
+    sm:leading-[52px]
     tracking-normal
     font-lora
     font-normal
@@ -292,7 +296,7 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
             >
               <span ref={heroTypedRef} />
             </p>
-            <div className="mt-8 flex justify-center lg:justify-center">
+            <div className="mt-8 flex justify-center sm:justify-start lg:justify-center">
               <a
                 href="#therapies"
                 className="inline-flex items-center justify-center rounded-full bg-gradient-to-b from-[#76e16d] via-[#31a12d] to-[#0d6615] px-10 py-3 text-lg font-semibold text-white shadow-[0_16px_32px_rgba(20,110,33,0.35)] transition hover:-translate-y-0.5 hover:shadow-[0_18px_36px_rgba(20,110,33,0.45)] font-montserrat"
@@ -333,31 +337,12 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
             </a>
           </div>
         </div>
-        {/* <div className="absolute inset-x-0 bottom-[-24px] z-10 flex justify-center px-6 sm:bottom-[-32px] lg:bottom-[50px]">
-          <div className="w-full max-w-[980px]">
-            <div className="flex items-center justify-between gap-4 rounded-[36px] bg-white px-6 py-5 shadow-[0_16px_34px_rgba(15,90,32,0.28)] sm:px-10 sm:py-6">
-              {therapyTabs.map((tab) => (
-                <button
-                  key={tab.label}
-                  type="button"
-                  onClick={() => setActiveTherapyTab(tab.label)}
-                  className={`min-h-[64px] flex-1 rounded-[22px] px-6 py-3 text-base font-semibold uppercase tracking-[0.18em] sm:text-lg ${
-                    activeTherapyTab === tab.label
-                      ? "bg-gradient-to-b from-[#7ae86c] via-[#33a733] to-[#0d6a18] text-white shadow-[0_14px_24px_rgba(12,111,32,0.35)]"
-                      : "bg-transparent text-slate-900"
-                  }`}
-                >
-                  {tab.label}
-                </button>
-              ))}
-            </div>
-          </div>
-        </div> */}
+       
         <div
           className="
     absolute
     inset-x-0
-    top-[80vh]
+    top-[98vh]
     h-[20px]
     bg-gradient-to-r
     from-[#0d6615]
@@ -368,7 +353,7 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
         />
       </section>
 
-      <section id="therapies" className=" mt-0 bg-[#f7ffe8] pb-20">
+      <section id="therapies" className=" mt-0 bg-[#f7ffe8] pt-20 pb-20">
         <div className="mx-auto max-w-[1180px] px-6 lg:px-10">
           <div className="md:hidden mb-3">
             <div className="relative overflow-hidden -translate-x-8 rounded-tr-[18px] rounded-br-[18px] bg-gradient-to-r from-[#0a5f12] via-[#1a7f1f] to-[#2f8f2d] px-4 py-3 text-center text-white shadow-[0_14px_28px_rgba(7,71,21,0.28)]">
@@ -483,7 +468,7 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
     items-center
     justify-center
     rounded-tr-[28px]
-    rounded-br-[28px]
+    rounded-br-[0px]
   "
         >
           <h3 className="text-[22px] font-bold tracking-[0.08em] translate-x-3 sm:text-3xl font-montserrat max-w-[1180px]">
@@ -520,9 +505,9 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
       <>
         <div
           className="h-[120px] flex items-center justify-center mt-10 mb-8 ml-[60px] sm:ml-[140px] overflow-hidden rounded-tl-[28px]
-    rounded-bl-[28px] bg-gradient-to-r from-[#0a5f12] via-[#1a7f1f] to-[#2f8f2d] px-6 py-5 text-center text-white shadow-[0_18px_36px_rgba(7,71,21,0.35)] sm:px-10"
+    rounded-bl-[0px] bg-gradient-to-r from-[#0a5f12] via-[#1a7f1f] to-[#2f8f2d] px-6 py-5 text-center text-white shadow-[0_18px_36px_rgba(7,71,21,0.35)] sm:px-10"
         >
-          <h3 className="text-2xl font-semibold tracking-[0.08em] sm:text-3xl font-montserrat max-w-[980px]">
+          <h3 className="text-4xl font-bold tracking-[0.08em] sm:text-3xl font-montserrat max-w-[980px] uppercase">
             What is Natural Immunotherapy?
           </h3>
         </div>
@@ -673,11 +658,10 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
                     neurological conditions by strengthening the immune system
                     through natural food-based supplements. It helps improve
                     energy levels, immunity, cellular health, detoxification,
-                    and overall quality of life. Many patients experience
-                    better physical strength, reduced fatigue, improved nerve
-                    and organ support, and enhanced well-being while following
-                    Natural Immunotherapy as a holistic, nutrition-focused
-                    approach.
+                    and overall quality of life. Many patients experience better
+                    physical strength, reduced fatigue, improved nerve and organ
+                    support, and enhanced well-being while following Natural
+                    Immunotherapy as a holistic, nutrition-focused approach.
                   </>
                 ) : (
                   <>
@@ -728,7 +712,7 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
     items-center
     justify-center
         rounded-tr-[28px]
-    rounded-br-[28px]"
+    rounded-br-[0px]"
             >
               <h3 className="text-2xl font-semibold tracking-[0.08em] sm:text-3xl font-montserrat max-w-[800px]">
                 What Problems NIT Can Help With ?
@@ -851,7 +835,7 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
     items-center
     justify-center
         rounded-tr-[28px]
-    rounded-br-[28px]"
+    rounded-br-[0px]"
         >
           <h3 className="text-[15px] translate-x-6 font-semibold uppercase tracking-[0.22em] font-montserrat sm:text-2xl">
             When to Seek Medical Help ?
@@ -1085,10 +1069,10 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
   pb-16
 "
           >
-            <span className="block translate-x-4 tracking-[0.08em] sm:tracking-[0.20em]">
+            <span className="block translate-x-4 tracking-[0.08em] sm:tracking-[0.08em]">
               Ask our NIT Chatbot Agent
             </span>
-            <span className="block translate-x-5 tracking-[0.15em] sm:tracking-[0.20em]">
+            <span className="block translate-x-5 tracking-[0.15em] sm:tracking-[0.08em]">
               For your any queries.
             </span>
           </p>

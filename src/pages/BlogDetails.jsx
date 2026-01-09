@@ -429,7 +429,7 @@ const BlogDetails = () => {
                 <ul className="mt-4 space-y-3 text-sm text-slate-700">
                   {keyPoints.map(point => (
                     <li key={point} className="flex gap-3">
-                      <span className="mt-1 h-2 w-2 rounded-full bg-[#4d6b2f]" />
+                      <span className="mt-1 h-2 w-2 rounded-full bg-gradient-to-r from-[#0d7120] via-[#4fae3c] to-[#9be15d]" />
                       <span>{point}</span>
                     </li>
                   ))}
@@ -481,7 +481,8 @@ const BlogDetails = () => {
                 <button
                   type="submit"
                   disabled={commentStatus.loading}
-                  className="rounded-full bg-[#4d6b2f] px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white"
+                className="rounded-full bg-gradient-to-r from-[#0d7120] via-[#4fae3c] to-[#9be15d] px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white shadow-md"
+
                 >
                   {commentStatus.loading ? 'Posting...' : 'Post comment'}
                 </button>
@@ -515,7 +516,8 @@ const BlogDetails = () => {
               </p>
               <div className="mt-5 flex flex-wrap gap-3">
                 <Link
-                  className="rounded-full bg-[#4d6b2f] px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white"
+                  className="rounded-full bg-gradient-to-r from-[#0d7120] via-[#4fae3c] to-[#9be15d] px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white shadow-md"
+
                   to="/blog"
                 >
                   Back to blog
