@@ -20,7 +20,7 @@ function App() {
   const [showSubscribe, setShowSubscribe] = useState(true);
 
   return (
-    <div className="flex min-h-screen flex-col bg-slate-50 text-slate-900">
+    <div className="flex min-h-screen flex-col bg-slate-50 text-slate-900 overflow-x-hidden">
       <ScrollToTop />
       {showSubscribe && (
         // <AnimatedDepthHero onClose={() => setShowSubscribe(false)} />
