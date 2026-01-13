@@ -20,6 +20,7 @@ const BlogDetails = () => {
   const [shareOpen, setShareOpen] = useState(false);
   const [relatedPosts, setRelatedPosts] = useState([]);
 
+  console.log("post",post);
   useEffect(() => {
     let isMounted = true;
 
@@ -90,6 +91,46 @@ const BlogDetails = () => {
       /(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([A-Za-z0-9_-]{6,})/
     );
     return match ? `https://www.youtube.com/embed/${match[1]}` : '';
+  };
+
+  const wrapLooseListItems = value => {
+    if (!value) return value;
+    if (!/<li[\s>]/i.test(value)) return value;
+    if (/<\s*(ul|ol)[\s>]/i.test(value)) return value;
+    if (typeof window === 'undefined') return value;
+
+    try {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(`<div>${value}</div>`, 'text/html');
+      const container = doc.body.firstElementChild;
+      if (!container) return value;
+
+      const output = doc.createElement('div');
+      let group = [];
+
+      const flushGroup = () => {
+        if (!group.length) return;
+        const ul = doc.createElement('ul');
+        ul.className = 'list-disc pl-6';
+        group.forEach(node => ul.appendChild(node));
+        output.appendChild(ul);
+        group = [];
+      };
+
+      Array.from(container.childNodes).forEach(node => {
+        if (node.nodeName === 'LI') {
+          group.push(node);
+        } else {
+          flushGroup();
+          output.appendChild(node);
+        }
+      });
+      flushGroup();
+
+      return output.innerHTML || value;
+    } catch (error) {
+      return value;
+    }
   };
 
   const renderDescription = () => {
@@ -165,12 +206,13 @@ const BlogDetails = () => {
         );
       }
 
-      if (!part.trim()) return null;
+      const normalizedPart = wrapLooseListItems(part);
+      if (!normalizedPart.trim()) return null;
       return (
         <div
           key={`html-${index}`}
           className="prose prose-slate max-w-none"
-          dangerouslySetInnerHTML={{ __html: part }}
+          dangerouslySetInnerHTML={{ __html: normalizedPart }}
         />
       );
     });
@@ -314,6 +356,32 @@ const BlogDetails = () => {
     <section className="bg-[#f3f1ec] text-slate-900" style={{ fontFamily: '"Source Sans 3", sans-serif' }}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@400;500;600&display=swap');
+
+        .blog-description ol {
+          list-style: decimal;
+          padding-left: 1.5rem;
+        }
+
+        .blog-description ul {
+          list-style: disc;
+          padding-left: 1.5rem;
+        }
+
+        .blog-description li {
+          margin: 0.35rem 0;
+        }
+
+        .blog-description .ql-indent-1 {
+          margin-left: 1.5rem;
+        }
+
+        .blog-description .ql-indent-2 {
+          margin-left: 3rem;
+        }
+
+        .blog-description .ql-indent-3 {
+          margin-left: 4.5rem;
+        }
       `}</style>
       <div className="mx-auto w-full max-w-[1200px] px-4 py-10 sm:px-6 lg:px-8">
         <nav aria-label="Breadcrumb" className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
@@ -399,7 +467,9 @@ const BlogDetails = () => {
                 </>
               )}
 
-              {!status.loading && post?.description && <div className="mt-6">{renderDescription()}</div>}
+              {!status.loading && post?.description && (
+                <div className="blog-description mt-6">{renderDescription()}</div>
+              )}
 
               {!status.loading && Array.isArray(post?.faqs) && post.faqs.length > 0 && (
                 <div className="mt-8 rounded-2xl bg-[#f6f2ea] p-6">
