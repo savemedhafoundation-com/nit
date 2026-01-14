@@ -156,7 +156,7 @@ const DesktopNavbar = () => {
           <span className="relative z-15 left-10 px-8 font-bold">
             Connect & Support
           </span>
-          <BiSolidContact className="relative z-10 left-2 min-h-7 min-w-7 text-white" />
+          <BiSolidContact className="relative z-10 left-7 min-h-7 min-w-7 text-white" />
         </Link>
       </div>
     </div>
