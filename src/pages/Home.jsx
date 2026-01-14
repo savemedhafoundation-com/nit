@@ -440,7 +440,7 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
         </div>
       </section>
 
-      <section
+      {/* <section
         id="symptom-checker"
         className="bg-[#e9f8dd] py-16 pb-20 px-4 sm:px-6 lg:px-10"
       >
@@ -501,7 +501,7 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
           </div>
           <SymptomChecker embedded />
         </div>
-      </section>
+      </section> */}
       <>
         <div
           className="h-[120px] flex items-center justify-center mt-10 mb-8 ml-[60px] sm:ml-[140px] overflow-hidden rounded-tl-[28px]
