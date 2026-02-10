@@ -3,7 +3,7 @@ import { MessageCircle, X } from "lucide-react";
 import { boosterMap } from "./boosterMap";
 
 const N8N_WEBHOOK_URL =
-  "https://sohel56tr.app.n8n.cloud/webhook/dantura-multi-analyzer";
+  "https://talaskabir.app.n8n.cloud/webhook/dantura-multi-analyzer";
 const boosterFallbackImage = new URL(
   "../assets/photo/Rectangle 162.png",
   import.meta.url
