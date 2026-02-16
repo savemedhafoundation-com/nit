@@ -146,9 +146,9 @@ const Blog = () => {
                 to={`/blog/${featuredContent.id}`}
                 className="group block overflow-hidden rounded-2xl bg-white shadow-[0_20px_40px_-30px_rgba(0,0,0,0.6)]"
               >
-                <div className="relative h-56 sm:h-64 lg:h-[360px]">
+                <div className="relative aspect-[16/9]">
                   <img
-                    className="h-full w-full object-cover"
+                    className="h-full w-full object-cover lg:object-contain bg-none"
                     src={featuredContent.image}
                     alt={featuredContent.title}
                   />

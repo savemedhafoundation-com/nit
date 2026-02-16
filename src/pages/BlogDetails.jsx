@@ -404,10 +404,10 @@ const BlogDetails = () => {
 
         <div className="mt-6 grid gap-8 lg:grid-cols-[2.1fr_1fr]">
           <article className="overflow-hidden rounded-[28px] bg-white shadow-[0_24px_60px_-40px_rgba(0,0,0,0.6)]">
-            <div className="relative h-64 sm:h-72 lg:h-96">
+            <div className="relative aspect-[16/9] sm:aspect-[16/9] lg:aspect-[16/9]">
               {!status.loading && (
                 <img
-                  className="h-full w-full object-cover"
+                  className="h-full w-full object-cover lg:object-contain"
                   src={post?.imageUrl || heroImageOne}
                   alt={post?.title || 'Blog'}
                 />
