@@ -1,8 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Homemade+Apple&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root{
+  --font-signature: "Homemade Apple", "Brush Script MT", cursive;
+}
 #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+}
+
+.font-signature {
+  font-family: var(--font-signature);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0.02em;
 }
 
 .logo {

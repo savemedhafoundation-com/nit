@@ -35,11 +35,11 @@ export default function HowNITWorks() {
   ];
 
   return (
-    <section className="bg-[#f2ffe3] py-20">
+    <section className="bg-[#f2ffe3] py-10">
       {/* Title */}
   
 
-       <div className="mx-auto mt-10 mb-8 w-full max-w-[1180px] overflow-hidden rounded-[28px] bg-gradient-to-r from-[#0a5f12] via-[#1a7f1f] to-[#2f8f2d] px-6 py-5 text-center text-white shadow-[0_18px_36px_rgba(7,71,21,0.35)] sm:px-10">
+       <div className="mx-auto mt-2 mb-8 w-full max-w-[1180px] overflow-hidden rounded-[28px] bg-gradient-to-r from-[#0a5f12] via-[#1a7f1f] to-[#2f8f2d] px-6 py-5 text-center text-white shadow-[0_18px_36px_rgba(7,71,21,0.35)] sm:px-10">
           <h3 className="text-2xl font-semibold tracking-[0.08em] sm:text-3xl font-montserrat">
            How NIT Works in Your Body ?
           </h3>

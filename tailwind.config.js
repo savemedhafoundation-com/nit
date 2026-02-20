@@ -27,6 +27,7 @@ export default {
         inter: ['Inter', 'sans-serif'],
         montserrat: ['Montserrat', 'sans-serif'],
         limelight: ['Limelight', 'cursive'],
+        signature: ['"Dancing Script"', 'cursive'],
         lora: ['Lora', 'serif'],
         song: ['Song Myung', 'serif'],
         poppins: ['Poppins', 'sans-serif'],

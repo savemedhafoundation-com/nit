@@ -12,6 +12,7 @@ import HerBackgroundVideo from "../../public/4.mp4";
 import missionImage from "../assets/photo/Rectangle 153.png";
 import beliefSecondaryImage from "../assets/photo/Rectangle 158.png";
 import boosterImage from "../assets/photo/Rectangle 162.png";
+import chairmanMessageImage from "../assets/photo/chairman-message.png";
 import sectionVideo from "../assets/photo/demo.mp4";
 import sectionBg from "../assets/photo/bg.png";
 import HowNITWorks from "../components/HowNITWorks";
@@ -69,12 +70,15 @@ const timedHeroTexts = [
   },
 ];
 
+const cateringMarqueeText =
+  "Thank You NIT • Grateful for My Recovery • Life Saved • Forever Thankful •You Gave Me Hope • Thank You for Healing Me • Blessed & Grateful • Recovered & Thankful • New Life • Endless Gratitude";
+
 const Home = () => {
   const [activeTherapyTab, setActiveTherapyTab] = useState(
-    therapyTabs[0].label
+    therapyTabs[0].label,
   );
   const [currentHeroText, setCurrentHeroText] = useState(
-    timedHeroTexts[0].text
+    timedHeroTexts[0].text,
   );
   const [showHeroPanel, setShowHeroPanel] = useState(true);
   const heroVideoRef = useRef(null);
@@ -137,7 +141,7 @@ const Home = () => {
       }
       heroVideoTimeRef.current = time;
       setCurrentHeroText((prevText) =>
-        prevText === nextText ? prevText : nextText
+        prevText === nextText ? prevText : nextText,
       );
     };
 
@@ -208,6 +212,42 @@ const Home = () => {
 
   return (
     <div className="min-h-[100px] w-full bg-[#f4fbe7] absolute">
+      <style>
+        {`
+          @keyframes homeMarqueeLeft {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+          }
+
+          @keyframes homeMarqueeRight {
+            from { transform: translateX(-50%); }
+            to { transform: translateX(0); }
+          }
+
+          .home-marquee-track {
+            width: max-content;
+            will-change: transform;
+          }
+
+          .home-marquee-track--left {
+            animation: homeMarqueeLeft 30s linear infinite;
+          }
+
+          .home-marquee-track--right {
+            animation: homeMarqueeRight 30s linear infinite;
+          }
+
+          .home-marquee-track:hover .home-marquee-track {
+            animation-play-state: paused;
+          }
+
+          @media (prefers-reduced-motion: reduce) {
+            .home-marquee-track {
+              animation: none;
+            }
+          }
+        `}
+      </style>
       <section className="relative min-h-[100vh] w-full overflow-hidden text-white bg-[#f4fbe7]">
         {/* bg-gradient-to-r from-[#0b5f10]/95 via-[#11841b]/82 to-[#6bca60]/55  */}
         {/* Background Overlay Image */}
@@ -337,7 +377,7 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
             </a>
           </div>
         </div>
-       
+
         <div
           className="
     absolute
@@ -532,10 +572,200 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
             </div>
           </div>
         </div>
+        <section className="mt-10 bg-gradient-to-r from-[#e7f8d8] via-[#f3ffe7] to-[#e0f2d1] py-14 sm:py-20 sm:h-[700px]">
+          <div className="mx-auto grid max-w-[1180px] items-end gap-8 px-6 lg:grid-cols-[1.08fr,0.92fr] lg:px-10">
+            <div className="space-y-6 text-[#1f3b1f]">
+              <h3 className="text-4xl font-bold uppercase tracking-[0.03em] text-[#0d7120] sm:text-4xl font-montserrat">
+                Chairman&apos;s Message
+              </h3>
+              <p className="max-w-2xl text-xl font-semibold leading-10 tracking-[0.04em] text-[#23472b] font-lora">
+                "Built on vision, Delivering the proof"
+              </p>
+              <p className="max-w-2xl text-lg leading-10 tracking-[0.04em] text-[#23472b] font-lora">
+                Natural Immunotherapy (NIT) is a science-guided healing approach focused on restoring the body’s internal balance through immune strengthening, micronutrient correction, and functional system recovery.
+                Rather than suppressing symptoms, NIT works to identify and correct the underlying imbalances that weaken the body over time.
+              </p>
+            </div>
+            <div className="relative mx-auto w-full max-w-[430px] lg:max-w-[460px]">
+              <div
+                className="absolute inset-x-7 bottom-0 h-[86%] rounded-t-[200px] bg-[#8ecf86]/35 blur-md"
+                aria-hidden="true"
+              />
+              <div className="relative rounded-[36px] bg-[linear-gradient(140deg,#f8fbf5_0%,#e8f5dd_22%,#7cae71_50%,#f7fcf2_74%,#d7e7c9_100%)] p-[6px] shadow-[0_20px_42px_rgba(24,72,33,0.35)]">
+                <div className="rounded-[31px] border border-white/70 bg-[#eef8e7] p-1">
+                  <img
+                    src={chairmanMessageImage}
+                    alt="Chairman portrait"
+                    className="relative h-[360px] w-full rounded-3xl border-none border-[#7cae71]/60 object-contain object-top lg:h-[400px]"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+          
+              <span
+                className="pointer-events-none absolute -left-3 top-6 h-14 w-14 rounded-full border border-[#8ab881]/70 bg-white/40 backdrop-blur-[1px]"
+                aria-hidden="true"
+              />
+              <span
+                className="pointer-events-none absolute -right-2 bottom-10 h-10 w-10 rounded-full border border-[#8ab881]/70 bg-white/35 backdrop-blur-[1px]"
+                aria-hidden="true"
+              />
+              <div className="absolute -bottom-25 right-0 z-20 text-right sm:bottom-22">
+                <p className="font-signature text-2xl text-[#0d7120] font-bold leading-none md:text-2xl">
+                  Subhankar Sarkar
+                </p>
+                <p className="mt-1 pr-1 text-sm font-bold tracking-[0.08em]">
+                Founder & Chief Researcher, Natural Immunotherapy Founder, Save Medha Foundation
+                </p>
+              </div>
+            </div>
+             
+          </div>
+        </section>
+
+        {/* home page case study intro */}
+        <section
+          className="home-marquee-shell relative overflow-hidden py-10 sm:py-14"
+          aria-label="Promotional marquee"
+        >
+          <p
+            className="pointer-events-none  inset-0 flex items-center justify-center whitespace-nowrap text-[2.3rem] font-black uppercase tracking-[0.12em] text-[#0d7120]  sm:text-[4.4rem] lg:text-[8rem]"
+            aria-hidden="true"
+          >
+            NIT <p className="text-[#0a0a0a] tracking-[0.10em] pl-4 sm:text-[2.4rem]">VS</p>
+            <p className="text-[#eb2e15] pl-4 sm:text-[3.8rem]"> CANCER</p>
+          </p>
+
+          {/* <p className="relative z-10 mx-auto max-w-6xl px-4 text-center text-sm font-semibold leading-7 tracking-normal text-[#1c140f] sm:px-8 sm:text-lg sm:leading-8 lg:px-12 lg:text-2xl lg:leading-[1.55]">
+            Natural Immunotherapy is restoring lives, reversing cancer, and
+            building a cancer-free world. By strengthening cellular
+            intelligence, correcting micronutrient imbalances, and supporting
+            the body&apos;s natural detox pathways, we focus on root causes - not
+            symptoms. Our mission is simple: empower the human body to heal
+            itself naturally and sustainably.
+          </p> */}
+          <p className="relative z-10 mx-auto max-w-6xl px-4 text-center text-sm font-semibold leading-7 tracking-normal text-[#1c140f] sm:px-8 sm:text-lg sm:leading-8 lg:px-12 lg:text-2xl lg:leading-[1.55]">
+            Natural Immunotherapy is restoring lives, reversing cancer, and building a cancer-free world
+          </p>
+
+          <div className="relative z-10 flex justify-center m-6">
+            <button className="rounded-full bg-[#ff5a00] px-8 py-3 text-sm font-bold uppercase tracking-wider text-white shadow-[0_10px_25px_rgba(0,0,0,0.25)] transition-all duration-300 hover:bg-[#ff7a1c] hover:scale-105 sm:text-base">
+              Explore Our Case Studies
+            </button>
+          </div>
+
+           <p className="mx-auto max-w-6xl px-4 pb-4 text-center text-sm font-semibold leading-7 tracking-[0.12em] text-[#1c140f] sm:px-8 sm:text-lg sm:leading-8 lg:px-12 lg:text-2xl lg:leading-[1.55]">What people say about Natural Immunotherapy!</p>
+
+          <div className="relative overflow-hidden bg-[#0d7120] py-22 text-white shadow-[0_18px_36px_rgba(107,21,15,0.35)] flex flex-col justify-center gap-2  sm:py-16 sm:min-h-[800px] sm:gap-16">
+            {/* Large faded background text */}
+
+            {/* Top strip - scrolls right to left */}
+            <div className="relative z-[1] -ml-[4%] w-[108%] rotate-[-3.5deg] overflow-hidden bg-[#ebe015] py-3 shadow-[0_8px_22px_rgba(66,13,9,0.35)] sm:py-5">
+              <div className="home-marquee relative overflow-hidden">
+                <div className="home-marquee-track home-marquee-track--left flex">
+                  <p className="shrink-0 whitespace-nowrap pr-10 text-lg font-black uppercase tracking-[0.03em] text-[#18110f] sm:text-2xl lg:text-[3.1rem]">
+                    {cateringMarqueeText}
+                  </p>
+                  <p
+                    className="shrink-0 whitespace-nowrap pr-10 text-lg font-black uppercase tracking-[0.03em] text-[#18110f] sm:text-2xl lg:text-[3.1rem]"
+                    aria-hidden="true"
+                  >
+                    {cateringMarqueeText}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Bottom strip - scrolls left to right */}
+            <div className="relative z-[2] -ml-[4%] mt-5 w-[108%] rotate-[8deg] overflow-hidden bg-[#efe9dd] py-3 shadow-[0_8px_22px_rgba(66,13,9,0.35)] sm:py-5">
+              <div className="home-marquee relative overflow-hidden">
+                <div className="home-marquee-track home-marquee-track--right flex">
+                  <p className="shrink-0 whitespace-nowrap pr-10 text-lg font-black uppercase tracking-[0.03em] text-[#12820c] sm:text-2xl lg:text-[3.1rem]">
+                    {cateringMarqueeText}
+                  </p>
+                  <p
+                    className="shrink-0 whitespace-nowrap pr-10 text-center text-lg font-black uppercase tracking-[0.03em] text-[#c33d33] sm:text-2xl lg:text-[3.1rem]"
+                    aria-hidden="true"
+                  >
+                    {cateringMarqueeText}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Third strip - scrolls right to left */}
+            <div className="relative z-[3] -ml-[4%] mt-10 w-[118%] rotate-[-9deg] overflow-hidden bg-[#ff7a1c] py-3 shadow-[0_8px_22px_rgba(66,13,9,0.35)] sm:py-5">
+              <div className="home-marquee relative overflow-hidden">
+                <div className="home-marquee-track home-marquee-track--left flex">
+                  <p className="shrink-0 whitespace-nowrap p-10 text-center text-lg font-black uppercase tracking-[0.03em] text-[#21140f] sm:text-2xl lg:text-[3.1rem]">
+                    {cateringMarqueeText}
+                  </p>
+                  <p
+                    className="shrink-0 whitespace-nowrap p-10 text-center text-lg font-black uppercase tracking-[0.03em] text-[#21140f] sm:text-2xl lg:text-[3.1rem]"
+                    aria-hidden="true"
+                  >
+                    {cateringMarqueeText}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Fourth strip - scrolls left to right */}
+            <div className="relative z-[4] -ml-[4%] mt-4 w-[108%] rotate-[3deg] overflow-hidden bg-[#f5eadc] py-3 shadow-[0_8px_22px_rgba(66,13,9,0.35)] sm:py-5">
+              <div className="home-marquee relative overflow-hidden">
+                <div className="home-marquee-track home-marquee-track--right flex">
+                  <p className="shrink-0 whitespace-nowrap pr-10 text-lg font-black uppercase tracking-[0.03em] text-[#12820c] sm:text-2xl lg:text-[3.1rem]">
+                    {cateringMarqueeText}
+                  </p>
+                  <p
+                    className="shrink-0 whitespace-nowrap pr-10 text-lg font-black uppercase tracking-[0.03em] text-[#c33d33] sm:text-2xl lg:text-[3.1rem]"
+                    aria-hidden="true"
+                  >
+                    {cateringMarqueeText}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Fifth strip - scrolls right to left */}
+            <div className="relative z-[5] -ml-[4%] mt-4 w-[108%] rotate-[-4deg] overflow-hidden bg-[#ebe015] py-3 shadow-[0_8px_22px_rgba(66,13,9,0.35)] sm:py-5">
+              <div className="home-marquee relative overflow-hidden">
+                <div className="home-marquee-track home-marquee-track--left flex">
+                  <p className="shrink-0 whitespace-nowrap pr-10 text-lg font-black uppercase tracking-[0.03em] text-[#21140f] sm:text-2xl lg:text-[3.1rem]">
+                    {cateringMarqueeText}
+                  </p>
+                  <p
+                    className="shrink-0 whitespace-nowrap pr-10 text-lg font-black uppercase tracking-[0.03em] text-[#21140f] sm:text-2xl lg:text-[3.1rem]"
+                    aria-hidden="true"
+                  >
+                    {cateringMarqueeText}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Sixth strip - scrolls left to right */}
+            <div className="relative z-[6] -ml-[4%] mt-4 w-[108%] rotate-[1.4deg] overflow-hidden bg-[#f4dfcb] py-3 shadow-[0_8px_22px_rgba(66,13,9,0.35)] sm:py-5">
+              <div className="home-marquee relative overflow-hidden">
+                <div className="home-marquee-track home-marquee-track--right flex">
+                  <p className="shrink-0 whitespace-nowrap pr-10 text-lg font-black uppercase tracking-[0.03em] text-[#12820c] sm:text-2xl lg:text-[3.1rem]">
+                    {cateringMarqueeText}
+                  </p>
+                  <p
+                    className="shrink-0 whitespace-nowrap pr-10 text-lg font-black uppercase tracking-[0.03em] text-[#12820c] sm:text-2xl lg:text-[3.1rem]"
+                    aria-hidden="true"
+                  >
+                    {cateringMarqueeText}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
         <ThreePillars />
       </>
 
-      <section className="bg-[#f7ffe8] py-20">
+      <section className="bg-[#f7ffe8] py-10">
         <div className="mx-auto max-w-[1180px] px-6 lg:px-10">
           <div className="grid items-center gap-12 rounded-[36px] bg-[#f2ffdb] p-8 pb-16 shadow-[0_20px_46px_rgba(17,109,36,0.18)] lg:grid-cols-[1.1fr,0.9fr] lg:p-12 lg:pb-20">
             <div className="space-y-6 text-[#1f3b1f]">
@@ -1157,3 +1387,4 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
 };
 
 export default Home;
+
