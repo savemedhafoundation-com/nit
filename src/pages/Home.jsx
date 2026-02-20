@@ -611,7 +611,7 @@ lg:flex-row lg:items-center lg:justify-between lg:px-8`}
                 aria-hidden="true"
               />
               <div className="absolute -bottom-25 right-0 z-20 text-right sm:bottom-22">
-                <p className="font-signature text-2xl text-[#0d7120] font-bold leading-none md:text-2xl">
+                <p className="font-signature text-3xl text-[#0d7120] font-bold leading-none md:text-3xl">
                   Subhankar Sarkar
                 </p>
                 <p className="mt-1 pr-1 text-sm font-bold tracking-[0.08em]">
