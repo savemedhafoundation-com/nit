@@ -1,13 +1,10 @@
 import React from 'react'
 import { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
 import $ from "jquery";
 import "./AnimatedDepthHero.css"
+import EyeFollowWord from "./EyeFollowWord";
 
-const AnimatedDepthHero = ({ onClose, variant = "full" }) => {
-  const navigate = useNavigate();
-
-
+const AnimatedDepthHero = ({ variant = "full" }) => {
     useEffect(() => {
     const $items = $(".depth-text");
     let rafId;
@@ -112,7 +109,10 @@ const AnimatedDepthHero = ({ onClose, variant = "full" }) => {
         </span>
      </div>
 
-     <div className="depth-center-title">About NIT</div>
+     <div className="depth-center-title">
+      <span className="depth-center-title-text">About NIT</span>
+      <EyeFollowWord className="depth-center-eye !px-0 !py-0 bg-transparent" ariaLabel="Health monitoring eyes" />
+     </div>
 
     </div>
   )

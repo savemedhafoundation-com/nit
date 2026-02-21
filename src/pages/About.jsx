@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import AnimatedDepthHero from "../components/AnimatedDepthHero";
+import EyeFollowWord from "../components/EyeFollowWord";
 import aboutImageOne from "../assets/photo/Rectangle 151.png";
 import aboutImageTwo from "../assets/photo/Rectangle 153.png";
 import aboutImageThree from "../assets/photo/Rectangle 162.png";
-import visionImage from "../assets/photo/Rectangle 158.png";
 import sectionBg from "../assets/photo/bg.png";
 import WhatNit from "../assets/photo/aboutNit.png";
 
@@ -124,8 +124,10 @@ const About = () => {
         <div className="mx-auto max-w-[1180px] px-6 lg:px-8">
           <div className=" p-8">
             <div className="text-center">
-              <p className="text-2xl font-semibold uppercase tracking-[0.5em] text-[#2a7a2f] pb-2">
-                We Are Redefining the Future of Healing.
+              <p className="flex flex-wrap items-center justify-center gap-3 pb-2 text-center text-xl font-bold uppercase tracking-[0.13em] text-[#2a7a2f] sm:text-3xl">
+                <span>Keeping A Caring</span>
+                <EyeFollowWord />
+                <span>On Your Health</span>
               </p>
               <h2 className="mt-3 text-2xl font-semibold text-[#000000] sm:text-3xl">
                 What Is{" "}
@@ -188,51 +190,77 @@ const About = () => {
               style={{ backgroundImage: `url(${sectionBg})` }}
             >
               <span className="absolute inset-0 bg-[#0b2c10]/45" aria-hidden="true" />
-              <p className="text-base relative bg-[#7fc342]/65 rounded-md border-2 border-dashed border-[#FFFFFF] p-3">
-                Unlike conventional therapies that suppress symptoms, NIT works
-                at the root cause level.
+              <p className="text-lg font-medium relative bg-[#7fc342]/65 rounded-md border-2 border-dashed border-[#FFFFFF] p-4">
+                At Save Medha Foundation, we apply Natural Immunotherapy principles to help patients facing serious health challenges, including cancer.
               </p>
             </div>
 
-            <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
-              <a
-  href="/contact"
-  className="
-    inline-flex items-center justify-center
-    rounded-full
-    bg-[linear-gradient(181.02deg,#17AC05_12.21%,#136E08_59.45%,#034006_99.13%)]
-    px-8 py-4
-    text-sm font-semibold uppercase tracking-[0.2em]
-    text-white
-    shadow-[0_14px_26px_rgba(15,121,39,0.35)]
-    transition-all duration-300
-    hover:-translate-y-0.5
-    hover:shadow-[0_18px_32px_rgba(15,121,39,0.45)]
-  "
->
-  Book a Consultation
-</a>
+            {/* call to action */}
+            <div className="relative mt-10 overflow-hidden rounded-[34px] border border-[#2a7a2f]/25 bg-gradient-to-br from-[#f5ffe8] via-[#e8f8d3] to-[#d7f1bc] p-6 shadow-[0_24px_56px_rgba(20,100,33,0.2)] sm:p-8 lg:p-10">
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute -left-10 -top-10 h-40 w-40 rounded-full bg-[#a7df72]/40 blur-2xl"
+              />
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute -bottom-14 -right-10 h-52 w-52 rounded-full bg-[#4fb948]/25 blur-3xl"
+              />
 
-      
-              <a
-  href="/contact"
-  className="
-    inline-flex items-center justify-center
-    rounded-full
-    bg-[linear-gradient(181.02deg,#17AC05_12.21%,#136E08_59.45%,#034006_99.13%)]
-    px-8 py-4
-    text-sm font-semibold uppercase tracking-[0.2em]
-    text-white
-    shadow-[0_14px_26px_rgba(15,121,39,0.35)]
-    transition-all duration-300
-    hover:-translate-y-0.5
-    hover:shadow-[0_18px_32px_rgba(15,121,39,0.45)]
-  "
->
-   Understand How NIT Works
-</a>
+              <div className="relative grid gap-8 lg:grid-cols-[1.2fr,0.8fr] lg:items-center">
+                <div>
+                  <span className="inline-flex rounded-full border border-[#2a7a2f]/25 bg-white/80 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-[#1e6225]">
+                    Call To Action
+                  </span>
+                  <h3 className="mt-4 text-2xl font-semibold leading-tight text-[#103f16] sm:text-3xl">
+                    We Work With Natural Immunotherapy to Restore Health - Even
+                    in Cancer Cases
+                  </h3>
+                  <p className="mt-4 text-base leading-7 text-[#1f3f1f] sm:text-lg">
+                    Our approach focuses on restoring immune balance, improving
+                    cellular communication, and addressing root causes - not
+                    just symptoms.
+                  </p>
+                  <p className="mt-3 text-base leading-7 text-[#28502b] sm:text-lg">
+                    Thousands of families have trusted this method to regain
+                    strength, stability, and hope.
+                  </p>
 
+                  <a
+                    href="https://savemedha.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-7 inline-flex items-center justify-center rounded-full bg-[linear-gradient(180deg,#1daf22_0%,#0b6f12_100%)] px-8 py-4 text-sm font-semibold uppercase tracking-[0.18em] text-white shadow-[0_16px_28px_rgba(11,111,18,0.35)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_20px_34px_rgba(11,111,18,0.45)]"
+                  >
+                    Visit Save Medha Foundation
+                  </a>
+                </div>
+
+                <div className="rounded-[26px] border border-white/60 bg-white/75 p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.7),0_16px_30px_rgba(18,87,30,0.18)] backdrop-blur-sm">
+                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#2c6f31]">
+                    Why Families Choose us
+                  </p>
+                  <div className="mt-4 space-y-3">
+                    {[
+                      "We look beyond symptoms and focus on correcting internal imbalances through Natural Immunotherapy.",
+                      "Our philosophy is based on continuous internal regulation, immune balance, and micronutrient correction.",
+                      "We support the body’s natural intelligence instead of aggressively weakening it.",
+                      "Our mission is bigger than treatment — we aim to build a disease-resilient society."
+                    ].map((item) => (
+                      <div
+                        key={item}
+                        className="flex items-start gap-3 rounded-xl border border-[#d5ebc1] bg-[#f8ffef] px-3 py-3"
+                      >
+                        <span className="mt-1 inline-flex h-2.5 w-2.5 rounded-full bg-[#189c26]" />
+                        <span className="text-sm leading-6 text-[#204224] sm:text-base">
+                          {item}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
             </div>
+
           </div>
         </div>
       </section>
