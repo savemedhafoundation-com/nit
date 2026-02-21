@@ -42,15 +42,19 @@ const achievements = [
 
 const About = () => {
   return (
-    <div className="min-h-screen w-full bg-[#f4fbe7] text-slate-900">
-      <div className="mx-auto max-w-full px-6 lg:px-0">
+    <div className="min-h-screen w-full overflow-x-hidden bg-[#f4fbe7] text-slate-900">
+      <div className="mx-auto max-w-full px-4 sm:px-6 lg:px-0">
         <AnimatedDepthHero variant="section" />
         <div
           className="
     absolute
     inset-x-0
-    top-[52vh]
-    h-[20px]
+    top-[46vh]
+    h-2
+    sm:top-[50vh]
+    sm:h-3
+    lg:top-[52vh]
+    lg:h-[20px]
     bg-gradient-to-r
     from-[#0d6615]
     via-[#76e16d]
@@ -61,7 +65,7 @@ const About = () => {
       </div>
       {/* Section 1 - Introduction */}
       <section className="bg-gradient-to-r from-[#E0FFBF00] to-[#E0FFBF]">
-        <div className="mx-auto grid max-w-[1180px] items-center gap-10 px-6 py-12 lg:grid-cols-[1fr,1.1fr] lg:gap-16 lg:px-8">
+        <div className="mx-auto grid max-w-[1180px] items-center gap-8 px-4 py-10 sm:px-6 sm:py-12 lg:grid-cols-[1fr,1.1fr] lg:gap-16 lg:px-8">
           <div className="order-2 lg:order-1">
             <div className="relative mx-auto w-full max-w-[440px]">
               <div className="grid gap-5 sm:grid-cols-2">
@@ -70,7 +74,7 @@ const About = () => {
                     <img
                       src={aboutImageOne}
                       alt="Natural Immunotherapy energy visualization"
-                      className="h-[250px] w-full object-cover"
+                      className="h-[220px] w-full object-cover sm:h-[250px]"
                       loading="lazy"
                     />
                   </div>
@@ -78,7 +82,7 @@ const About = () => {
                     <img
                       src={aboutImageTwo}
                       alt="Cellular regeneration illustration"
-                      className="h-[250px] w-full object-cover"
+                      className="h-[220px] w-full object-cover sm:h-[250px]"
                       loading="lazy"
                     />
                   </div>
@@ -88,7 +92,7 @@ const About = () => {
                     <img
                       src={aboutImageThree}
                       alt="Technology guided healing"
-                      className="h-[250px] w-full object-cover"
+                      className="h-[220px] w-full object-cover sm:h-[250px]"
                       loading="lazy"
                     />
                   </div>
@@ -97,16 +101,16 @@ const About = () => {
             </div>
           </div>
           <div className="order-1 lg:order-2">
-            <p className="text-2xl font-semibold uppercase tracking-[0.35em] text-[#0d4f16]">
+            <p className="text-lg font-semibold uppercase tracking-[0.22em] text-[#0d4f16] sm:text-2xl sm:tracking-[0.35em]">
               About us
             </p>
-            <h1 className="mt-3 text-[2.2rem] font-semibold leading-tight text-[#000000] sm:text-[2.2rem]">
+            <h1 className="mt-3 text-[1.8rem] font-semibold leading-tight text-[#000000] sm:text-[2.2rem]">
               Natural Immunotherapy (NIT)
             </h1>
-            <p className="mt-3 text-lg font-medium italic text-[#1f8d2d]">
+            <p className="mt-3 text-base font-medium italic text-[#1f8d2d] sm:text-lg">
               Healing the Body by Restoring Its Natural Intelligence
             </p>
-            <p className="mt-5 text-lg leading-relaxed text-[#1f3b1f]">
+            <p className="mt-5 text-base leading-relaxed text-[#1f3b1f] sm:text-lg">
               Natural Immunotherapy is a science-guided healing approach that
               focuses on correcting internal imbalances-nutritional
               deficiencies, toxin overload, and cellular miscommunication-so the
@@ -119,17 +123,17 @@ const About = () => {
       {/* Section 2 - The Vision */}
       <section
         id="vision"
-        className="bg-gradient-to-b from-[#E0FFBF00] to-[#E0FFBF] py-16"
+        className="bg-gradient-to-b from-[#E0FFBF00] to-[#E0FFBF] py-12 sm:py-16"
       >
-        <div className="mx-auto max-w-[1180px] px-6 lg:px-8">
-          <div className=" p-8">
+        <div className="mx-auto max-w-[1180px] px-4 sm:px-6 lg:px-8">
+          <div className="p-4 sm:p-6 lg:p-8">
             <div className="text-center">
-              <p className="flex flex-wrap items-center justify-center gap-3 pb-2 text-center text-xl font-bold uppercase tracking-[0.13em] text-[#2a7a2f] sm:text-3xl">
+              <p className="flex flex-wrap items-center justify-center gap-2 pb-2 text-center text-lg font-bold uppercase tracking-[0.08em] text-[#2a7a2f] sm:gap-3 sm:text-3xl sm:tracking-[0.13em]">
                 <span>Keeping A Caring</span>
-                <EyeFollowWord />
+                <EyeFollowWord className="scale-[0.68] sm:scale-[0.85] md:scale-100" />
                 <span>On Your Health</span>
               </p>
-              <h2 className="mt-3 text-2xl font-semibold text-[#000000] sm:text-3xl">
+              <h2 className="mt-3 text-xl font-semibold text-[#000000] sm:text-3xl">
                 What Is{" "}
                 <span className="text-[#1f8d2d]">Natural Immunotherapy?</span>
               </h2>
@@ -145,7 +149,7 @@ const About = () => {
             </div>
 
             <div className="mt-8 grid items-center gap-8 lg:grid-cols-[1.1fr,0.9fr]">
-              <ul className="space-y-3 text-base text-[#3a5a3a] sm:text-lg">
+              <ul className="space-y-3 text-sm text-[#3a5a3a] sm:text-lg">
                 {[
                   "Replenishing essential vitamins and minerals",
                   "Reducing toxic burden",
@@ -163,7 +167,7 @@ const About = () => {
                   <img
                     src={WhatNit}
                     alt="Fresh nutrition for healthy healing"
-                    className="h-full w-full object-cover"
+                    className="h-[220px] w-full object-cover sm:h-full"
                     loading="lazy"
                   />
                 </div>
@@ -178,7 +182,8 @@ const About = () => {
     bg-cover bg-center
     relative
     overflow-hidden
-    px-6 py-5
+    px-4 py-4
+    sm:px-6 sm:py-5
     text-center text-white
 
     shadow-[-9px_11px_9px_0px_rgba(0,0,0,0.25)]
@@ -190,13 +195,13 @@ const About = () => {
               style={{ backgroundImage: `url(${sectionBg})` }}
             >
               <span className="absolute inset-0 bg-[#0b2c10]/45" aria-hidden="true" />
-              <p className="text-lg font-medium relative bg-[#7fc342]/65 rounded-md border-2 border-dashed border-[#FFFFFF] p-4">
+              <p className="text-base font-medium relative bg-[#7fc342]/65 rounded-md border-2 border-dashed border-[#FFFFFF] p-3 sm:text-lg sm:p-4">
                 At Save Medha Foundation, we apply Natural Immunotherapy principles to help patients facing serious health challenges, including cancer.
               </p>
             </div>
 
             {/* call to action */}
-            <div className="relative mt-10 overflow-hidden rounded-[34px] border border-[#2a7a2f]/25 bg-gradient-to-br from-[#f5ffe8] via-[#e8f8d3] to-[#d7f1bc] p-6 shadow-[0_24px_56px_rgba(20,100,33,0.2)] sm:p-8 lg:p-10">
+            <div className="relative mt-8 overflow-hidden rounded-[28px] border border-[#2a7a2f]/25 bg-gradient-to-br from-[#f5ffe8] via-[#e8f8d3] to-[#d7f1bc] p-4 shadow-[0_20px_44px_rgba(20,100,33,0.2)] sm:mt-10 sm:rounded-[34px] sm:p-8 lg:p-10">
               <span
                 aria-hidden="true"
                 className="pointer-events-none absolute -left-10 -top-10 h-40 w-40 rounded-full bg-[#a7df72]/40 blur-2xl"
@@ -208,10 +213,10 @@ const About = () => {
 
               <div className="relative grid gap-8 lg:grid-cols-[1.2fr,0.8fr] lg:items-center">
                 <div>
-                  <span className="inline-flex rounded-full border border-[#2a7a2f]/25 bg-white/80 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-[#1e6225]">
+                  <span className="inline-flex rounded-full border border-[#2a7a2f]/25 bg-white/80 px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-[#1e6225] sm:px-4 sm:text-xs sm:tracking-[0.24em]">
                     Call To Action
                   </span>
-                  <h3 className="mt-4 text-2xl font-semibold leading-tight text-[#103f16] sm:text-3xl">
+                  <h3 className="mt-4 text-xl font-semibold leading-tight text-[#103f16] sm:text-3xl">
                     We Work With Natural Immunotherapy to Restore Health - Even
                     in Cancer Cases
                   </h3>
@@ -229,14 +234,14 @@ const About = () => {
                     href="https://savemedha.com"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-7 inline-flex items-center justify-center rounded-full bg-[linear-gradient(180deg,#1daf22_0%,#0b6f12_100%)] px-8 py-4 text-sm font-semibold uppercase tracking-[0.18em] text-white shadow-[0_16px_28px_rgba(11,111,18,0.35)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_20px_34px_rgba(11,111,18,0.45)]"
+                    className="mt-7 inline-flex w-full items-center justify-center rounded-full bg-[linear-gradient(180deg,#1daf22_0%,#0b6f12_100%)] px-5 py-3 text-center text-xs font-semibold uppercase tracking-[0.1em] text-white shadow-[0_16px_28px_rgba(11,111,18,0.35)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_20px_34px_rgba(11,111,18,0.45)] sm:w-auto sm:px-8 sm:py-4 sm:text-sm sm:tracking-[0.18em]"
                   >
                     Visit Save Medha Foundation
                   </a>
                 </div>
 
                 <div className="rounded-[26px] border border-white/60 bg-white/75 p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.7),0_16px_30px_rgba(18,87,30,0.18)] backdrop-blur-sm">
-                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#2c6f31]">
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#2c6f31] sm:text-xs sm:tracking-[0.22em]">
                     Why Families Choose us
                   </p>
                   <div className="mt-4 space-y-3">
@@ -251,7 +256,7 @@ const About = () => {
                         className="flex items-start gap-3 rounded-xl border border-[#d5ebc1] bg-[#f8ffef] px-3 py-3"
                       >
                         <span className="mt-1 inline-flex h-2.5 w-2.5 rounded-full bg-[#189c26]" />
-                        <span className="text-sm leading-6 text-[#204224] sm:text-base">
+                        <span className="text-sm leading-6 text-[#204224] sm:text-[15px]">
                           {item}
                         </span>
                       </div>
@@ -304,7 +309,7 @@ const About = () => {
       {/* Section 4 - Philosophy */}
       <section
         id="how-nit-works"
-        className="relative overflow-hidden bg-[#0a3c13] py-20 text-white"
+        className="relative overflow-hidden bg-[#0a3c13] py-14 text-white sm:py-20"
       >
         <img
           src={sectionBg}
@@ -312,15 +317,15 @@ const About = () => {
           aria-hidden="true"
           className="absolute inset-0 h-full w-full object-cover opacity-10"
         />
-        <div className="relative mx-auto max-w-[1180px] px-6 lg:px-8">
-          <div className="rounded-[36px] border border-white/10 bg-white/5 p-8 backdrop-blur-sm lg:p-12">
-            <span className="inline-flex rounded-full bg-white/10 px-5 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-emerald-100">
+        <div className="relative mx-auto max-w-[1180px] px-4 sm:px-6 lg:px-8">
+          <div className="rounded-[28px] border border-white/10 bg-white/5 p-5 backdrop-blur-sm sm:rounded-[36px] sm:p-8 lg:p-12">
+            <span className="inline-flex rounded-full bg-white/10 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-emerald-100 sm:px-5 sm:text-xs sm:tracking-[0.35em]">
               Our philosophy
             </span>
-            <h3 className="mt-4 text-3xl font-semibold leading-tight sm:text-4xl">
+            <h3 className="mt-4 text-2xl font-semibold leading-tight sm:text-4xl">
               Your Body Is Not Weak - It Is Misguided.
             </h3>
-            <p className="mt-6 text-lg leading-8 text-slate-100">
+            <p className="mt-6 text-base leading-7 text-slate-100 sm:text-lg sm:leading-8">
               Every disease is a sign of miscommunication between cells. When
               toxins enter your body or when essential nutrients are missing,
               your cells receive wrong signals. Natural Immunotherapy repairs
@@ -335,7 +340,7 @@ const About = () => {
                   key={principle.title}
                   className="rounded-[28px] border border-white/20 bg-[#0f4f1c] p-6 shadow-[0_18px_36px_rgba(0,0,0,0.25)]"
                 >
-                  <p className="text-xs font-semibold uppercase tracking-[0.4em] text-[#9bf9c4]">
+                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#9bf9c4] sm:tracking-[0.4em]">
                     {principle.title}
                   </p>
                   <p className="mt-4 text-base leading-7 text-white/90">
@@ -349,17 +354,17 @@ const About = () => {
       </section>
 
       {/* Section 5 - Global Mission */}
-      <section className="bg-[#f7ffe8] py-16">
-        <div className="mx-auto max-w-[1180px] px-6 lg:px-8">
-          <div className="grid gap-10 rounded-[36px] bg-white p-8 shadow-[0_22px_48px_rgba(22,108,39,0.12)] lg:grid-cols-[1.05fr,0.95fr] lg:p-12">
+      <section className="bg-[#f7ffe8] py-12 sm:py-16">
+        <div className="mx-auto max-w-[1180px] px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-8 rounded-[28px] bg-white p-5 shadow-[0_22px_48px_rgba(22,108,39,0.12)] sm:gap-10 sm:rounded-[36px] sm:p-8 lg:grid-cols-[1.05fr,0.95fr] lg:p-12">
             <div>
-              <span className="inline-flex rounded-full bg-[#f8d547] px-5 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-[#1b3c1e]">
+              <span className="inline-flex rounded-full bg-[#f8d547] px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#1b3c1e] sm:px-5 sm:text-xs sm:tracking-[0.35em]">
                 Global mission
               </span>
-              <h3 className="mt-4 text-3xl font-semibold leading-tight text-[#0d4f16] sm:text-4xl">
+              <h3 className="mt-4 text-2xl font-semibold leading-tight text-[#0d4f16] sm:text-4xl">
                 Making Natural Immunotherapy a Global Movement.
               </h3>
-              <p className="mt-4 text-lg leading-8 text-[#1f3b1f] font-lora">
+              <p className="mt-4 text-base leading-7 text-[#1f3b1f] font-lora sm:text-lg sm:leading-8">
                 Through Save Medha Foundation (non-profit) and Dantura Botanics
                 Pvt. Ltd. (research and formulation), our mission is
                 action-focused. We are building a network of educators,
@@ -396,21 +401,21 @@ const About = () => {
       </section>
 
       {/* Section 6 - Achievements */}
-      <section id="achievements" className="bg-white py-16">
-        <div className="mx-auto max-w-[1180px] px-6 lg:px-8">
-          <div className="rounded-[36px] bg-[#f6ffe9] p-8 shadow-[0_28px_64px_rgba(22,108,39,0.12)] lg:p-12">
+      <section id="achievements" className="bg-white py-12 sm:py-16">
+        <div className="mx-auto max-w-[1180px] px-4 sm:px-6 lg:px-8">
+          <div className="rounded-[28px] bg-[#f6ffe9] p-5 shadow-[0_28px_64px_rgba(22,108,39,0.12)] sm:rounded-[36px] sm:p-8 lg:p-12">
             <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
               <div>
-                <span className="inline-flex rounded-full bg-[#0d8b1f] px-5 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-white">
+                <span className="inline-flex rounded-full bg-[#0d8b1f] px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-white sm:px-5 sm:text-xs sm:tracking-[0.35em]">
                   Our achievements
                 </span>
-                <h3 className="mt-4 text-3xl font-semibold leading-tight text-[#0d4f16] sm:text-4xl">
+                <h3 className="mt-4 text-2xl font-semibold leading-tight text-[#0d4f16] sm:text-4xl">
                   Real People. Real Recovery. Real Proof.
                 </h3>
               </div>
               <a
                 href="/#patient-stories"
-                className="inline-flex items-center gap-3 rounded-full border border-[#0d8b1f]/20 bg-white px-6 py-3 text-sm font-semibold uppercase tracking-[0.25em] text-[#0d8b1f] shadow-[0_16px_32px_rgba(20,110,33,0.2)] transition hover:-translate-y-0.5 hover:bg-[#f8d547] hover:text-[#1b3c1e]"
+                className="inline-flex w-full items-center justify-center gap-3 rounded-full border border-[#0d8b1f]/20 bg-white px-5 py-3 text-center text-xs font-semibold uppercase tracking-[0.12em] text-[#0d8b1f] shadow-[0_16px_32px_rgba(20,110,33,0.2)] transition hover:-translate-y-0.5 hover:bg-[#f8d547] hover:text-[#1b3c1e] sm:w-auto sm:px-6 sm:text-sm sm:tracking-[0.25em]"
               >
                 📚 See Recovery Stories
               </a>
@@ -430,17 +435,17 @@ const About = () => {
       </section>
 
       {/* Section 7 - Science Behind NIT */}
-      <section id="science" className="bg-[#f7ffe8] py-16">
-        <div className="mx-auto max-w-[1180px] px-6 lg:px-8">
-          <div className="overflow-hidden rounded-[36px] border border-[#e6f6d3] bg-gradient-to-br from-[#0b5f10] via-[#0f8f28] to-[#31a12d] p-8 text-white shadow-[0_30px_60px_rgba(0,0,0,0.25)] lg:p-12">
+      <section id="science" className="bg-[#f7ffe8] py-12 sm:py-16">
+        <div className="mx-auto max-w-[1180px] px-4 sm:px-6 lg:px-8">
+          <div className="overflow-hidden rounded-[28px] border border-[#e6f6d3] bg-gradient-to-br from-[#0b5f10] via-[#0f8f28] to-[#31a12d] p-5 text-white shadow-[0_30px_60px_rgba(0,0,0,0.25)] sm:rounded-[36px] sm:p-8 lg:p-12">
             <div className="max-w-3xl space-y-6">
-              <span className="inline-flex rounded-full bg-white/20 px-5 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-emerald-100">
+              <span className="inline-flex rounded-full bg-white/20 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-emerald-100 sm:px-5 sm:text-xs sm:tracking-[0.35em]">
                 Science behind NIT
               </span>
-              <h3 className="text-3xl font-semibold leading-tight sm:text-4xl">
+              <h3 className="text-2xl font-semibold leading-tight sm:text-4xl">
                 When Nutrition Meets Intelligence, Medicine Evolves.
               </h3>
-              <p className="text-lg leading-8 text-white/90 font-lora">
+              <p className="text-base leading-7 text-white/90 font-lora sm:text-lg sm:leading-8">
                 Modern science isolates disease; NIT studies the intelligence of
                 the body as a whole. Our research focuses on how cells interpret
                 signals, and how micronutrients control decisions at the DNA
@@ -452,7 +457,7 @@ const About = () => {
             </div>
             <a
               href="#vision"
-              className="mt-10 inline-flex items-center gap-3 rounded-full bg-white px-8 py-3 text-base font-semibold uppercase tracking-[0.25em] text-[#0d4f16] shadow-[0_18px_36px_rgba(0,0,0,0.25)] transition hover:-translate-y-0.5 hover:bg-[#f8d547] hover:text-[#1b3c1e]"
+              className="mt-10 inline-flex w-full items-center justify-center gap-3 rounded-full bg-white px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.1em] text-[#0d4f16] shadow-[0_18px_36px_rgba(0,0,0,0.25)] transition hover:-translate-y-0.5 hover:bg-[#f8d547] hover:text-[#1b3c1e] sm:w-auto sm:px-8 sm:text-base sm:tracking-[0.25em]"
             >
               🔎 Explore the Science of Healing
             </a>
@@ -461,15 +466,15 @@ const About = () => {
       </section>
 
       {/* Section 8 - Join the Movement */}
-      <section className="bg-[#f7ffe8] py-20">
-        <div className="mx-auto max-w-[900px] px-6 text-center lg:px-8">
-          <span className="inline-flex rounded-full bg-[#f8d547] px-5 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-[#1b3c1e]">
+      <section className="bg-[#f7ffe8] py-14 sm:py-20">
+        <div className="mx-auto max-w-[900px] px-4 text-center sm:px-6 lg:px-8">
+          <span className="inline-flex rounded-full bg-[#f8d547] px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-[#1b3c1e] sm:px-5 sm:text-xs sm:tracking-[0.35em]">
             Join the movement
           </span>
-          <h3 className="mt-4 text-3xl font-semibold leading-tight text-[#0b3d14] sm:text-4xl">
+          <h3 className="mt-4 text-2xl font-semibold leading-tight text-[#0b3d14] sm:text-4xl">
             Be Part of the Natural Immunotherapy Revolution.
           </h3>
-          <p className="mt-6 text-lg leading-8 text-[#1f3b1f] font-lora">
+          <p className="mt-6 text-base leading-7 text-[#1f3b1f] font-lora sm:text-lg sm:leading-8">
             Healing is no longer a miracle-it is a choice backed by science.
             Join hands with us to spread awareness, volunteer in our projects,
             or support patients who cannot afford treatment. Together, we can
@@ -478,19 +483,19 @@ const About = () => {
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <Link
               to="/contact"
-              className="inline-flex items-center gap-3 rounded-r-[32px] border border-[#0d8b1f]/20 bg-[#0d8b1f] px-8 py-3 text-base font-semibold uppercase tracking-[0.3em] text-white shadow-[0_20px_36px_rgba(15,121,39,0.35)] transition hover:-translate-y-0.5 hover:bg-[#0b5f10]"
+              className="inline-flex w-full items-center justify-center gap-3 rounded-r-[32px] border border-[#0d8b1f]/20 bg-[#0d8b1f] px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.1em] text-white shadow-[0_20px_36px_rgba(15,121,39,0.35)] transition hover:-translate-y-0.5 hover:bg-[#0b5f10] sm:w-auto sm:px-8 sm:text-base sm:tracking-[0.3em]"
             >
               🌱 Volunteer Now
             </Link>
             <Link
               to="/contact"
-              className="inline-flex items-center gap-3 rounded-full border border-[#0d8b1f]/30 bg-white px-8 py-3 text-base font-semibold uppercase tracking-[0.25em] text-[#0d8b1f] shadow-[0_18px_32px_rgba(22,108,39,0.15)] transition hover:-translate-y-0.5 hover:bg-[#f8d547] hover:text-[#1b3c1e]"
+              className="inline-flex w-full items-center justify-center gap-3 rounded-full border border-[#0d8b1f]/30 bg-white px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.1em] text-[#0d8b1f] shadow-[0_18px_32px_rgba(22,108,39,0.15)] transition hover:-translate-y-0.5 hover:bg-[#f8d547] hover:text-[#1b3c1e] sm:w-auto sm:px-8 sm:text-base sm:tracking-[0.25em]"
             >
               💬 Share Your Story
             </Link>
             <Link
               to="/contact"
-              className="inline-flex items-center gap-3 rounded-full border border-[#f8d547]/40 bg-[#f8d547] px-8 py-3 text-base font-semibold uppercase tracking-[0.25em] text-[#1b3c1e] shadow-[0_18px_32px_rgba(146,108,5,0.35)] transition hover:-translate-y-0.5 hover:bg-white hover:text-[#0d8b1f]"
+              className="inline-flex w-full items-center justify-center gap-3 rounded-full border border-[#f8d547]/40 bg-[#f8d547] px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.1em] text-[#1b3c1e] shadow-[0_18px_32px_rgba(146,108,5,0.35)] transition hover:-translate-y-0.5 hover:bg-white hover:text-[#0d8b1f] sm:w-auto sm:px-8 sm:text-base sm:tracking-[0.25em]"
             >
               💖 Support Save Medha Foundation
             </Link>
