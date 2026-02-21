@@ -266,7 +266,7 @@ const About = () => {
       </section>
 
       {/* Section 3 - Founder */}
-      <section className="bg-[#f7ffe8] py-16">
+      {/* <section className="bg-[#f7ffe8] py-16">
         <div className="mx-auto max-w-[1100px] px-6 lg:px-8">
           <div className="rounded-[36px] border border-[#dff5c2] bg-white/80 p-8 shadow-[0_24px_56px_rgba(15,121,39,0.15)] lg:p-12">
             <span className="inline-flex rounded-full bg-[#0d8b1f] px-5 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-white">
@@ -299,7 +299,7 @@ const About = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Section 4 - Philosophy */}
       <section
